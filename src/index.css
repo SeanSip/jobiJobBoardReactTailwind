@@ -1,13 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alike+Angular&family=EB+Garamond:wght@500&family=Kumbh+Sans&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #244034;
+  padding-top: 100px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+svg {
+  user-select: none;
+}
+
+body.mobileNavOpen {
+  overflow: hidden;
+  /* background-color: red; */
+}
+
+.selected {
+  transform: scale(1.25);
+}
+
+.card {
+  height: 244px;
+  background-color: #ffffff;
+  border-radius: 70px;
+  border: 1px solid transparent;
+}
+
+.card:hover {
+  background-color: #d2f34c;
+  cursor: pointer;
+  border: 1px solid #b9d640;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-[#00BF58];
+}
+
+.wrapper {
+  @apply max-w-[1365px] w-[95%] m-auto;
+}
+
+.navWrapper {
+  @apply max-w-[1600px] w-[100%] m-auto px-6;
+}
+
+@layer base {
+  li {
+    @apply p-3;
+  }
+
+  @layer components {
+    .textShadow {
+      text-shadow: #244034 1px 1px 5px;
+    }
+  }
+
+  button {
+    @apply px-4 py-2 rounded-full font-medium text-black bg-color-one 
+    hover:bg-[#00BF58];
+  }
 }
