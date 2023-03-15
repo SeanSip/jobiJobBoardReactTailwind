@@ -1,7 +1,7 @@
 import React from 'react';
-import bgShapeSmall from '../assets/bgShapeSmall.png';
-import bgShapeLarge from '../assets/bgShapeLarge.png';
-import heroImage from '../assets/heroImage.jpg';
+import bgShapeSmall from '../../assets/bgShapeSmall.png';
+import bgShapeLarge from '../../assets/bgShapeLarge.png';
+import heroImage from '../../assets/heroImage.jpg';
 
 const Hero = () => {
   return (

@@ -1,12 +1,12 @@
 import React from 'react';
-import bgDarkShapeSmall from '../assets/bgDarkShapeSmall.png';
-import categoryTitleShape from '../assets/categoryTitleShape.png';
-import iconPencil from '../assets/iconPencil.png';
-import iconCode from '../assets/iconCode.png';
-import iconPhone from '../assets/iconPhone.png';
-import iconEditing from '../assets/iconEditing.png';
-import iconMarketing from '../assets/iconMarketing.png';
-import iconAccounting from '../assets/iconAccounting.png';
+import bgDarkShapeSmall from '../../assets/bgDarkShapeSmall.png';
+import categoryTitleShape from '../../assets/categoryTitleShape.png';
+import iconPencil from '../../assets/iconPencil.png';
+import iconCode from '../../assets/iconCode.png';
+import iconPhone from '../../assets/iconPhone.png';
+import iconEditing from '../../assets/iconEditing.png';
+import iconMarketing from '../../assets/iconMarketing.png';
+import iconAccounting from '../../assets/iconAccounting.png';
 
 const JobCategory = () => {
   return (

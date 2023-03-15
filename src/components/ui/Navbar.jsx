@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
-import category from '../assets/Category.png';
-import shape from '../assets/shape.png';
+import logo from '../../assets/logo.png';
+import category from '../../assets/Category.png';
+import shape from '../../assets/shape.png';
 import SubMenu from './SubMenu';
 
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
@@ -63,12 +63,14 @@ const Navbar = () => {
         }
       >
         <div className="flex items-center ">
-          <img
-            className="w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
-            src={logo}
-            alt=""
-          />
-          <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
+          <Link className="flex" to="/">
+            <img
+              className="w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
+              src={logo}
+              alt=""
+            />
+            <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
+          </Link>
           <ul className="hidden capitalize items-center text-white laptop:flex ">
             <li>
               <button className="bg-white/10 flex text-color-one capitalize ml-4 mr-6 xl:ml-10 xl:mr-16 py-1 xl:py-2 ">
