@@ -62,38 +62,40 @@ const Navbar = () => {
         }
       >
         <div className="flex items-center ">
-          <img className="w-8 h-fit self-center sm:w-12" src={logo} alt="" />
-          <h1 className="text-2xl ml-3 font-logo text-white sm:text-4xl">
-            jobi
-          </h1>
+          <img
+            className="w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
+            src={logo}
+            alt=""
+          />
+          <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
           <ul className="hidden capitalize items-center text-white laptop:flex ">
             <li>
-              <button className="bg-white/10 flex text-color-one capitalize xl:ml-10 xl:mr-16">
+              <button className="bg-white/10 flex text-color-one capitalize ml-4 mr-6 xl:ml-10 xl:mr-16 py-1 xl:py-2 ">
                 <img
-                  className="w-3 h-fit self-center mr-2"
+                  className="w-2 xl:w-3 h-fit self-center mr-2"
                   src={category}
-                  alt=""
+                  alt="Graphic of 4 small boxes stacked 2x2 ontop of one another"
                 />
                 category
               </button>
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one">
+            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
               home
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one">
+            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
               job
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one">
+            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
               explore
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one">
+            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
               contact
             </li>
             <li
               className={
                 !isOpen
-                  ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one'
-                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer'
+                  ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3'
+                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer p-3'
               }
               onClick={() => setIsOpen(prev => !prev)}
             >
@@ -109,10 +111,10 @@ const Navbar = () => {
         />
         <div className="hidden laptop:flex pr-4">
           <ul className="flex mr-4">
-            <li className="text-white after:content-['|'] after:ml-4 after:font-thin after:text-sm">
+            <li className="text-white after:content-['|'] after:ml-4 after:font-thin after:text-sm p-3">
               post job
             </li>
-            <li className="text-color-one">login</li>
+            <li className="text-color-one p-3">login</li>
           </ul>
           <button>Hire Top Talents</button>
         </div>
