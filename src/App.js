@@ -5,6 +5,7 @@ import JobCategory from './pages/Home/JobCategory';
 import ExpertsSection from './pages/Home/ExpertsSection';
 import JobListingPage from './pages/JobListingPage';
 import Layout from './components/layout/Layout';
+import HowItWorksSection from './pages/Home/HowItWorksSection';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Hero />
                 <JobCategory />
                 <ExpertsSection />
+                <HowItWorksSection />
               </section>
             }
           ></Route>
