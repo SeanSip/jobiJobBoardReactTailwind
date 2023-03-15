@@ -1,33 +1,30 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/ui/Navbar';
 import Hero from './pages/Home/Hero';
 import JobCategory from './pages/Home/JobCategory';
 import ExpertsSection from './pages/Home/ExpertsSection';
-import Footer from './components/ui/Footer';
 import JobListingPage from './pages/JobListingPage';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
+      <Layout>
         <Routes>
           <Route
             exact
             path="/"
             element={
-              <>
+              <section>
                 <Hero />
                 <JobCategory />
                 <ExpertsSection />
-              </>
+              </section>
             }
           ></Route>
           <Route path="/job-listing" element={<JobListingPage />} />
         </Routes>
-        <Footer />
-      </div>
+      </Layout>
     </Router>
   );
 }
