@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import category from '../assets/Category.png';
 import shape from '../assets/shape.png';
@@ -116,7 +117,9 @@ const Navbar = () => {
             </li>
             <li className="text-color-one p-3">login</li>
           </ul>
-          <button>Hire Top Talents</button>
+          <button>
+            <Link to="/job-listing">Hire Top Talents</Link>
+          </button>
         </div>
 
         <div
