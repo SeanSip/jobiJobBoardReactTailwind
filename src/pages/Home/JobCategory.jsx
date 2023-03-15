@@ -17,7 +17,7 @@ const JobCategory = () => {
         <div className="flex xl:flex-row flex-col justify-between items-center space-y-10">
           {/* Section Title Text Container */}
           <div className="flex flex-col relative">
-            <h2 className="font-title text-black text-7xl ">
+            <h2 className="">
               Most Demanding
               <span className="block"> Categories.</span>
             </h2>
