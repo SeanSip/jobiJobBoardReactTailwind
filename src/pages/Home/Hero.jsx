@@ -18,9 +18,9 @@ const Hero = () => {
               </span>
               <span className="textShadow text-green-400">on jobi.</span>
             </h1>
-            <h2 className="text-white mt-12 mb-9 font-body text-[22px] z-20">
-              We delivered blazing fast & striking work soludtion
-            </h2>
+            <p className="text-white mt-12 mb-9 font-body text-[22px] z-20">
+              We delivered blazing fast & striking work solutions
+            </p>
             <div className="bg-white rounded-lg h-[100px] laptop:w-[69.5%] w-full z-20 flex items-center">
               <div className="flex w-full ml-10 space-x-10">
                 <div className="flex flex-col w-full self-center space-y-4 ">
