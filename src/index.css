@@ -55,6 +55,14 @@ body.mobileNavOpen {
     @apply text-5xl xl:text-7xl font-title;
   }
 
+  h3 {
+    @apply font-body;
+  }
+
+  p {
+    @apply font-body font-normal text-base;
+  }
+
   @layer components {
     .textShadow {
       text-shadow: #244034 1px 1px 5px;
