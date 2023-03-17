@@ -34,6 +34,20 @@ body.mobileNavOpen {
   border: 1px solid #b9d640;
 }
 
+.expertsCard {
+  height: 400px;
+  width: 280px;
+  background-color: #d9d9d9;
+  border-radius: 200px;
+  border: 1px solid transparent;
+}
+
+.expertsCard:hover {
+  background-color: #d2f34c;
+  cursor: pointer;
+  border: 1px solid #b9d640;
+}
+
 .btn {
   @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-[#00BF58];
 }

@@ -6,6 +6,7 @@ import ExpertsSection from './pages/Home/ExpertsSection';
 import JobListingPage from './pages/JobListingPage';
 import Layout from './components/layout/Layout';
 import HowItWorksSection from './pages/Home/HowItWorksSection';
+import FindExpertsSection from './pages/Home/FindExpertsSection';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <JobCategory />
                 <ExpertsSection />
                 <HowItWorksSection />
+                <FindExpertsSection />
               </section>
             }
           ></Route>
