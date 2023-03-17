@@ -10,6 +10,7 @@ import FindExpertsSection from './pages/Home/FindExpertsSection';
 import ClientFeedbackSection from './pages/Home/ClientFeedbackSection';
 import CollaborationSection from './pages/Home/CollaborationSection';
 import JobiGuideSection from './pages/Home/JobiGuideSection';
+import CvSection from './pages/Home/CvSection';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 <ClientFeedbackSection />
                 <CollaborationSection />
                 <JobiGuideSection />
+                <CvSection />
               </section>
             }
           ></Route>
