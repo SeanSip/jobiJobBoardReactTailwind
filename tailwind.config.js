@@ -8,6 +8,7 @@ module.exports = {
         'color-gray': '#81B197',
         'color-title': '#254035',
         'color-body': '#000000B2',
+        'color-background': '#244034',
       },
       screens: {
         phone: '400px',
@@ -20,6 +21,7 @@ module.exports = {
         title: ['EB Garamond', 'serif'],
         body: ['Kumbh Sans', 'sans-serif'],
         logo: ['Alike Angular', 'serif'],
+        button: ['Plus Jakarta Sans', 'sans-serif'],
       },
       typography: theme => ({
         DEFAULT: {
