@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         'color-one': '#D2F34C',
+        'color-gray': '#81B197',
+        'color-title': '#254035',
+        'color-body': '#000000B2',
       },
       screens: {
         phone: '400px',
