@@ -62,6 +62,17 @@ body.mobileNavOpen {
   cursor: pointer;
 }
 
+.collaborationBtn {
+  background-color: transparent;
+  text-transform: capitalize;
+  width: fit-content;
+}
+
+.collaborationBtn:hover {
+  background-color: transparent;
+  color: blue;
+}
+
 .btn {
   @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-[#00BF58];
 }
@@ -80,15 +91,15 @@ body.mobileNavOpen {
   }
 
   h2 {
-    @apply text-5xl xl:text-7xl font-title;
+    @apply text-5xl xl:text-7xl font-title text-color-title;
   }
 
   h3 {
-    @apply font-body;
+    @apply font-body text-color-title;
   }
 
   p {
-    @apply font-body font-normal text-base;
+    @apply font-body font-normal text-base text-color-body;
   }
 
   @layer components {

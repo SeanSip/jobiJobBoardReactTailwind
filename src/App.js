@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout';
 import HowItWorksSection from './pages/Home/HowItWorksSection';
 import FindExpertsSection from './pages/Home/FindExpertsSection';
 import ClientFeedbackSection from './pages/Home/ClientFeedbackSection';
+import CollaborationSection from './pages/Home/CollaborationSection';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <HowItWorksSection />
                 <FindExpertsSection />
                 <ClientFeedbackSection />
+                <CollaborationSection />
               </section>
             }
           ></Route>
