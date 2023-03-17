@@ -9,6 +9,7 @@ import HowItWorksSection from './pages/Home/HowItWorksSection';
 import FindExpertsSection from './pages/Home/FindExpertsSection';
 import ClientFeedbackSection from './pages/Home/ClientFeedbackSection';
 import CollaborationSection from './pages/Home/CollaborationSection';
+import JobiGuideSection from './pages/Home/JobiGuideSection';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                 <FindExpertsSection />
                 <ClientFeedbackSection />
                 <CollaborationSection />
+                <JobiGuideSection />
               </section>
             }
           ></Route>
