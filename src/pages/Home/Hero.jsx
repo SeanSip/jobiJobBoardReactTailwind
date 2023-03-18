@@ -63,7 +63,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <img className="absolute bottom-0" src={bgShapeSmall} alt="" />
+      <img
+        className="absolute bottom-0"
+        src={bgShapeSmall}
+        alt="Striped patterned garphic"
+      />
     </div>
   );
 };

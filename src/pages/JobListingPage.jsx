@@ -1,9 +1,13 @@
 import React from 'react';
+import Banner from '../components/ui/Banner';
 
 function JobListingPage() {
   return (
-    <section>
-      <div className="">test</div>
+    <section className="">
+      <Banner />
+      <div className="bg-white">
+        <div className="wrapper"></div>
+      </div>
     </section>
   );
 }
