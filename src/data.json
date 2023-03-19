@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "company": "Photosnap",
+    "role": "Web Dev Senior",
+    "hours": "Full-time",
+    "pay": "$300-$450/ week",
+    "location": "USA, California",
+    "logo": "http://placekitten.com/50/50"
+  },
+  {
+    "id": 2,
+    "company": "Facebump",
+    "role": "Lead designer & expert in maya 3D ",
+    "hours": "Full-time",
+    "pay": "$200-$250/ week",
+    "location": "Canada, Toronto",
+    "logo": "http://placekitten.com/50/50"
+  },
+  {
+    "id": 3,
+    "company": "Pear",
+    "role": "Developer & expert in c++ & java.",
+    "hours": "Part-time",
+    "pay": "$300-$340/ week",
+    "location": "USA, California",
+    "logo": "http://placekitten.com/50/50"
+  },
+  {
+    "id": 4,
+    "company": "Microhard",
+    "role": "Marketing specialist in SEO & Affiliate. ",
+    "hours": "Full-time",
+    "pay": "$140-$400/ week",
+    "location": "USA, California",
+    "logo": "http://placekitten.com/50/50"
+  },
+  {
+    "id": 5,
+    "company": "Amazonian",
+    "role": "Lead & Product & Web Designer.",
+    "hours": "Full-time",
+    "pay": "$200-$280/ week",
+    "location": "Canada, Toronto",
+    "logo": "http://placekitten.com/50/50"
+  },
+  {
+    "id": 6,
+    "company": "Samsong",
+    "role": "Interactive Designer.",
+    "hours": "Part-time",
+    "pay": "$450-$680/ week",
+    "location": "USA, New York",
+    "logo": "http://placekitten.com/50/50"
+  }
+]
