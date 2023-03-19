@@ -20,6 +20,7 @@ const Navbar = () => {
   const handleClick = () => {
     setOpenMobileNav(!mobileNav);
     // setStopScroll(!stopScroll);
+    setMobileNavSubMenu(false);
   };
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Navbar = () => {
       if (e.target.innerWidth >= 1124 && stopScroll === true) {
         document.body.classList.remove('mobileNavOpen');
         setOpenMobileNav(false);
+        setMobileNavSubMenu(false);
       }
     });
 
@@ -42,16 +44,31 @@ const Navbar = () => {
   }, [stopScroll]);
 
   useEffect(() => {
+    const pages = document.querySelectorAll('nav ul li:not(.pages)');
+    const handleClick = () => setOpenMobileNav(false);
+
     if (mobileNav) {
-      setStopScroll(true);
-    } else {
-      setStopScroll(false);
+      pages.forEach(li => {
+        li.addEventListener('click', handleClick);
+      });
     }
+
+    return () => {
+      pages.forEach(li => {
+        li.removeEventListener('click', handleClick);
+      });
+
+      if (mobileNav) {
+        setStopScroll(true);
+      } else {
+        setStopScroll(false);
+      }
+    };
   }, [mobileNav]);
 
   return (
     // Navbar Container
-    <div
+    <nav
       onMouseLeave={() => setIsOpen(false)} // Closes sub menu if cursor leaves nav section
       className="w-screen h-[100px] z-50 fixed top-0 pb-1 bg-[#244034]"
     >
@@ -97,8 +114,8 @@ const Navbar = () => {
             <li
               className={
                 !isOpen
-                  ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3'
-                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer p-3'
+                  ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3 pages'
+                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer p-3 pages'
               }
               onClick={() => setIsOpen(prev => !prev)}
             >
@@ -176,12 +193,12 @@ const Navbar = () => {
         <li
           className={
             !mobileNavSubMenu
-              ? 'hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full'
-              : 'text-color-one cursor-pointer w-full'
+              ? 'hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full pages'
+              : 'text-color-one cursor-pointer w-full pages'
           }
           onClick={handleMobileSubMenu}
         >
-          page
+          pages
           <div
             className={
               !mobileNavSubMenu
@@ -203,8 +220,9 @@ const Navbar = () => {
                   : 'text-white'
               }
             >
-              about us
+              <Link to="/about-us"> about us</Link>
             </li>
+
             <li
               className={
                 mobileNavSubMenu
@@ -244,7 +262,7 @@ const Navbar = () => {
           </ul>
         </li>
       </ul>
-    </div>
+    </nav>
     // </div> IMPORTANT remove later
   );
 };

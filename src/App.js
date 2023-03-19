@@ -11,6 +11,7 @@ import ClientFeedbackSection from './pages/Home/ClientFeedbackSection';
 import CollaborationSection from './pages/Home/CollaborationSection';
 import JobiGuideSection from './pages/Home/JobiGuideSection';
 import CvSection from './pages/Home/CvSection';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             }
           ></Route>
           <Route path="/job-listing" element={<JobListingPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
         </Routes>
       </Layout>
     </Router>
