@@ -9,6 +9,7 @@ module.exports = {
         'color-title': '#254035',
         'color-body': '#000000B2',
         'color-background': '#244034',
+        'color-jobCardBg': '#F8FDE4',
       },
       screens: {
         phone: '400px',
