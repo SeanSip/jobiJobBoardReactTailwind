@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bgDarkShapeSmall from '../../assets/bgDarkShapeSmall.png';
 import categoryTitleShape from '../../assets/categoryTitleShape.png';
 import iconPencil from '../../assets/iconPencil.png';
@@ -33,7 +34,7 @@ const JobCategory = () => {
               Together with useful notifications, collaborationinsights, and
               improvement tip lorem etc.
             </p>
-            <a href="">Explore all fields</a>
+            <Link>Explore all fields</Link>
           </div>
         </div>
         {/* Bottom Cards Container */}

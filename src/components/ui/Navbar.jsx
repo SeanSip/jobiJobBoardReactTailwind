@@ -117,10 +117,11 @@ const Navbar = () => {
                   ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3 pages'
                   : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer p-3 pages'
               }
-              onClick={() => setIsOpen(prev => !prev)}
+              onMouseEnter={() => setIsOpen(prev => !prev)}
+              onMouseLeave={() => setIsOpen(prev => !prev)}
             >
               pages
-              <SubMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+              <SubMenu isOpen={isOpen} />
             </li>
           </ul>
         </div>
