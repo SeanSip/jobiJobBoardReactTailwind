@@ -100,10 +100,10 @@ const Navbar = () => {
               </button>
             </li>
             <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              home
+              <Link to="/">home</Link>
             </li>
             <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              job
+              <Link to="/job-listing">jobs</Link>
             </li>
             <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
               explore
@@ -136,9 +136,7 @@ const Navbar = () => {
             </li>
             <li className="text-color-one p-3">login</li>
           </ul>
-          <button>
-            <Link to="/job-listing">Hire Top Talents</Link>
-          </button>
+          <button>Hire Top Talents</button>
         </div>
 
         <div
