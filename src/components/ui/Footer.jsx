@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import footerBgShape from '../../assets/footerBgShape.png';
 import { FaPinterestP, FaInstagram, FaFacebookF } from 'react-icons/fa';
@@ -43,22 +44,22 @@ const Footer = () => {
             <h4 className="text-lg font-body mb-4 ">Products</h4>
             <ul className="flex flex-col leading-10 font-body text-base text-black/50">
               <li className="">
-                <a href="#">Take the tour</a>
+                <Link>Take the tour</Link>
               </li>
               <li>
-                <a href="#">Live chat</a>
+                <Link>Live chat</Link>
               </li>
               <li>
-                <a href="#">Self-service</a>
+                <Link>Self-service</Link>
               </li>
               <li>
-                <a href="#">Mobile</a>
+                <Link>Mobile</Link>
               </li>
               <li>
-                <a href="#">Collaberation</a>
+                <Link>Collaberation</Link>
               </li>
               <li>
-                <a href="#">Reviews</a>
+                <Link>Reviews</Link>
               </li>
             </ul>
           </div>
@@ -67,16 +68,16 @@ const Footer = () => {
             <h4 className="text-lg font-body mb-4">Links</h4>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
-                <a href="#">Pricing</a>
+                <Link>Pricing</Link>
               </li>
               <li>
-                <a href="#">About us</a>
+                <Link>About us</Link>
               </li>
               <li>
-                <a href="#">Careers</a>
+                <Link>Careers</Link>
               </li>
               <li>
-                <a href="#">Blog</a>
+                <Link>Blog</Link>
               </li>
             </ul>
           </div>
@@ -85,16 +86,16 @@ const Footer = () => {
             <h4 className="text-lg font-body mb-4">Legal</h4>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
-                <a href="#">Terms of use</a>
+                <Link>Terms of use</Link>
               </li>
               <li>
-                <a href="#">Terms & conditions</a>
+                <Link>Terms & conditions</Link>
               </li>
               <li>
-                <a href="#">Privacy</a>
+                <Link>Privacy</Link>
               </li>
               <li>
-                <a href="#">Cookie policy</a>
+                <Link>Cookie policy</Link>
               </li>
             </ul>
           </div>
@@ -121,33 +122,25 @@ const Footer = () => {
         <div className="flex items-center justify-between py-4">
           {/* Privacy and Terms */}
           <div>
-            <a href="#" className="text-gray-500 mr-4">
-              Privacy &amp; Terms
-            </a>
-            <a href="#" className="text-gray-500">
-              Contact Us
-            </a>
+            <Link className="text-gray-500 mr-4">Privacy &amp; Terms</Link>
+            <Link className="text-gray-500">Contact Us</Link>
           </div>
           {/* Jobi Inc. */}
           <div className="text-gray-500">Copyright &copy;2022 Jobi Inc.</div>
           {/* Social Media Icons */}
           <div className="flex ">
-            <a
-              href="#"
+            <Link
               // IMPORTANT Change text color of hover text later to a custom color
               className="text-gray-500 hover:text-green-500 mr-4 text-lg"
             >
               <FaFacebookF />
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-green-500 mr-4 text-lg"
-            >
+            </Link>
+            <Link className="text-gray-500 hover:text-green-500 mr-4 text-lg">
               <FaInstagram />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-green-500 text-lg">
+            </Link>
+            <Link className="text-gray-500 hover:text-green-500 text-lg">
               <FaPinterestP />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
