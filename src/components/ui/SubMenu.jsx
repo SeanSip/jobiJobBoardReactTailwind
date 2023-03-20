@@ -15,7 +15,9 @@ function SubMenu({ isOpen }) {
             <Link to="/about-us">About Us</Link>
           </li>
           <li className="hover:underline ">Pricing</li>
-          <li className="hover:underline ">Error 404</li>
+          <li className="hover:underline ">
+            <Link to="/404">Error 404</Link>
+          </li>
           <li className="hover:underline ">Blog</li>
           <li className="hover:underline ">Contact us</li>
           <div className="absolute left-4 top-[-10px] w-4 h-4 border-t-2 border-r-2 border-b-0 border-l-2 border-white transform rotate-45 bg-white"></div>
