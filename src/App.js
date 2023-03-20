@@ -12,6 +12,7 @@ import CollaborationSection from './pages/Home/CollaborationSection';
 import JobiGuideSection from './pages/Home/JobiGuideSection';
 import CvSection from './pages/Home/CvSection';
 import AboutUsPage from './pages/AboutUsPage';
+import Page404 from './pages/Page404';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           ></Route>
           <Route path="/job-listing" element={<JobListingPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/404" element={<Page404 />} />
         </Routes>
       </Layout>
     </Router>
