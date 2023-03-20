@@ -1,31 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function SubMenu({ isOpen, setIsOpen }) {
+function SubMenu({ isOpen }) {
   const subMenuRef = React.useRef(null);
-
-  // useEffect hook that sets isOpen state to false when mousedown click outside of sub menu
-  useEffect(() => {
-    const clickOutside = e => {
-      if (subMenuRef.current && !subMenuRef.current.contains(e.target))
-        setIsOpen(false);
-    };
-
-    document.addEventListener('mousedown', clickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', clickOutside);
-    };
-  }, [subMenuRef]);
 
   return (
     <>
       {isOpen && (
         <ul
           ref={subMenuRef}
-          // onMouseLeave={() => setIsOpen(false)}
-          className="absolute space-y-1 w-fit mt-4 bg-white text-black py-4 pl-7 pr-12 rounded-md "
+          className="absolute space-y-1 w-fit mt-4 bg-white text-black py-4 pl-7 pr-12 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
         >
           <li className="hover:underline ">
             <Link to="/about-us">About Us</Link>
@@ -41,4 +25,4 @@ function SubMenu({ isOpen, setIsOpen }) {
   );
 }
 
-export default SubMenu;
+export default React.memo(SubMenu);
