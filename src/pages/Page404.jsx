@@ -9,7 +9,7 @@ const Page404 = () => {
         <img
           className="xl:w-7/12 w-3/12"
           src={Error404}
-          alt="Graphic design of 404 with a magnifying lense making up the 0 in between the other numbers. Credit for this image goes to: gstudioimagen @ https://www.vecteezy.com/members/gstudioimagen"
+          alt="Graphic design of 404 with a magnifying lense making up the 0 in between the other numbers. Credit goes to: gstudioimagen @ https://www.vecteezy.com/members/gstudioimagen"
         />
         <div className="w-fit xl:w-[39%] flex flex-col space-y-12 text-center xl:text-left">
           <h1 className="flex flex-col capitalize text-[100px] leading-tight text-[#31795A]">
