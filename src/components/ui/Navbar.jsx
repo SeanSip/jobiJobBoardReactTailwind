@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import category from '../../assets/Category.png';
@@ -8,20 +8,20 @@ import SubMenu from './SubMenu';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
+  // Define State
   const [stopScroll, setStopScroll] = useState(false);
-
-  // State for open sub menu on hover for the drop down menu on the li elements
   const [isOpen, setIsOpen] = useState(false);
-
   const [mobileNavSubMenu, setMobileNavSubMenu] = useState(false);
-  const handleMobileSubMenu = () => setMobileNavSubMenu(!mobileNavSubMenu);
-
   const [mobileNav, setOpenMobileNav] = useState(false);
-  const handleClick = () => {
-    setOpenMobileNav(!mobileNav);
-    // setStopScroll(!stopScroll);
+
+  // Handle click function call back hook for toggling the mobile nav
+  const handleClick = useCallback(() => {
+    setOpenMobileNav(prev => !prev);
+    setStopScroll(prev => !prev);
     setMobileNavSubMenu(false);
-  };
+  }, []);
+
+  const handleMobileSubMenu = () => setMobileNavSubMenu(!mobileNavSubMenu);
 
   useEffect(() => {
     if (stopScroll) {
@@ -30,21 +30,24 @@ const Navbar = () => {
       document.body.classList.remove('mobileNavOpen');
     }
 
-    window.addEventListener('resize', e => {
-      if (e.target.innerWidth >= 1124 && stopScroll === true) {
+    const handleResize = () => {
+      if (window.innerWidth >= 1124 && stopScroll) {
         document.body.classList.remove('mobileNavOpen');
         setOpenMobileNav(false);
         setMobileNavSubMenu(false);
       }
-    });
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', () => {});
+      window.removeEventListener('resize', handleResize);
     };
   }, [stopScroll]);
 
   useEffect(() => {
     const pages = document.querySelectorAll('nav ul li:not(.pages)');
+
     const handleClick = () => setOpenMobileNav(false);
 
     if (mobileNav) {
@@ -59,12 +62,10 @@ const Navbar = () => {
       });
 
       if (mobileNav) {
-        setStopScroll(true);
-      } else {
         setStopScroll(false);
       }
     };
-  }, [mobileNav]);
+  }, [mobileNav, handleClick]);
 
   return (
     // Navbar Container

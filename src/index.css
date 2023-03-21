@@ -12,9 +12,12 @@ svg {
   user-select: none;
 }
 
-body.mobileNavOpen {
+.mobileNavOpen {
   overflow: hidden;
   /* background-color: red; */
+  /* position: fixed; */
+  /* position: absolute;
+  inset: 0; */
 }
 
 .selected {
