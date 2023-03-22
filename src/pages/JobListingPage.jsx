@@ -25,7 +25,7 @@ function JobListingPage() {
   useEffect(() => {
     // fetchJobs(data); // IMPORTANT Remove later, this was the dummy data
     fetchJobs(setJobs); // This is the current data from firebase
-  }, [fetchJobs]); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
+  }, [setJobs]); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
 
   return (
     <section>
