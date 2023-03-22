@@ -6,7 +6,7 @@
     "hours": "Full-time",
     "pay": "$300-$450/ week",
     "location": "USA, California",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=1"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "hours": "Full-time",
     "pay": "$200-$250/ week",
     "location": "Canada, Toronto",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=2"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "hours": "Part-time",
     "pay": "$300-$340/ week",
     "location": "USA, California",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=3"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "hours": "Full-time",
     "pay": "$140-$400/ week",
     "location": "USA, California",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=4"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "hours": "Full-time",
     "pay": "$200-$280/ week",
     "location": "Canada, Toronto",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=5"
   },
   {
     "id": 6,
@@ -51,6 +51,6 @@
     "hours": "Part-time",
     "pay": "$450-$680/ week",
     "location": "USA, New York",
-    "logo": "http://placekitten.com/50/50"
+    "logo": "https://picsum.photos/50?random=6"
   }
 ]
