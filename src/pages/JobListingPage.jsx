@@ -5,26 +5,27 @@ import Banner from '../components/ui/Banner';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
+const ref = collection(db, 'jobs');
+
+const fetchJobs = async setJobs => {
+  try {
+    const req = await getDocs(ref);
+    console.log(req);
+    const jobsTemp = req.docs.map(job => ({ ...job.data(), id: job.id }));
+    setJobs(jobsTemp);
+    console.log(jobsTemp);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 function JobListingPage() {
   const [jobs, setJobs] = useState([]);
-  const ref = collection(db, 'jobs');
-
-  const fetchJobs = async () => {
-    try {
-      const req = await getDocs(ref);
-      console.log(req);
-      const jobsTemp = req.docs.map(job => ({ ...job.data(), id: job.id }));
-      setJobs(jobsTemp);
-      console.log(jobsTemp);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     // fetchJobs(data); // IMPORTANT Remove later, this was the dummy data
-    fetchJobs(); // This is the current data from firebase
-  }, []); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
+    fetchJobs(setJobs); // This is the current data from firebase
+  }, [fetchJobs]); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
 
   return (
     <section>
