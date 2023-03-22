@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import JobsIncomming from '../components/jobListings/JobCards';
-import data from '../data.json';
+import JobsCard from '../components/jobListings/JobCards';
+// import data from '../data.json';
 import Banner from '../components/ui/Banner';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase/config';
+
+const ref = collection(db, 'jobs');
+
+const fetchJobs = async setJobs => {
+  try {
+    const req = await getDocs(ref);
+    console.log(req);
+    const jobsTemp = req.docs.map(job => ({ ...job.data(), id: job.id }));
+    setJobs(jobsTemp);
+    console.log(jobsTemp);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 function JobListingPage() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    setJobs(data);
-  }, []);
+    // fetchJobs(data); // IMPORTANT Remove later, this was the dummy data
+    fetchJobs(setJobs); // This is the current data from firebase
+  }, [setJobs]); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
 
   return (
     <section>
@@ -19,11 +36,19 @@ function JobListingPage() {
         {/* Job Listings Wrapper Container */}
         <div className="wrapper">
           {/* Card Layout Container */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-x-6 md:gap-x-11 gap-y-6 md:gap-y-10 pt-7 w-full mx-auto">
+          <div
+            className={
+              jobs.length === 0
+                ? 'grid grid-cols-1 text-center py-10'
+                : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-x-6 md:gap-x-11 gap-y-6 md:gap-y-10 pt-7 w-full mx-auto'
+            }
+          >
             {jobs.length === 0 ? (
-              <p>Job listings are incomming...</p>
+              <p className="text-4xl w-full m-10">
+                Hang in there, the jobs are coming . . .
+              </p>
             ) : (
-              jobs.map(job => <JobsIncomming job={job} key={job.id} />)
+              jobs.map(job => <JobsCard job={job} key={job.id} />)
             )}
           </div>
         </div>
