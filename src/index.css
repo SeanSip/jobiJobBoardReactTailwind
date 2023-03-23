@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Alike+Angular&family=EB+Garamond:wght@500&family=Kumbh+Sans&family=Plus+Jakarta+Sans:wght@500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Alike+Angular&family=EB+Garamond:wght@500&family=Kumbh+Sans&family=Plus+Jakarta+Sans:wght@500&display=swap');
 
 body {
   background-color: #244034;
@@ -89,10 +89,6 @@ svg {
 }
 
 @layer base {
-  li {
-    /* @apply p-3; */
-  }
-
   h1 {
     @apply font-title;
   }

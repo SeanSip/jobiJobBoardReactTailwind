@@ -3,7 +3,7 @@ import JobsCard from '../components/jobListings/JobCards';
 // import data from '../data.json';
 import Banner from '../components/ui/Banner';
 import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { db } from '../firebase/config.jsx';
 
 const ref = collection(db, 'jobs');
 
