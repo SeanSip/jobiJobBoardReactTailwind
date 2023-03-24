@@ -13,6 +13,7 @@ import JobiGuideSection from './pages/Home/JobiGuideSection';
 import CvSection from './pages/Home/CvSection';
 import AboutUsPage from './pages/AboutUsPage';
 import Page404 from './pages/Page404';
+import PostJobPage from './pages/PostJobPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/job-listing" element={<JobListingPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/404" element={<Page404 />} />
+          <Route path="/post-job" element={<PostJobPage />} />
         </Routes>
       </Layout>
     </Router>
