@@ -12,6 +12,7 @@ const fetchJobs = async setJobs => {
     const req = await getDocs(ref);
     console.log(req);
     const jobsTemp = req.docs.map(job => ({ ...job.data(), id: job.id }));
+    console.log(jobsTemp);
     setJobs(jobsTemp);
     console.log(jobsTemp);
   } catch (error) {

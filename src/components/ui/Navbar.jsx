@@ -134,7 +134,7 @@ const Navbar = () => {
         <div className="hidden laptop:flex pr-4">
           <ul className="flex mr-4">
             <li className="text-white after:content-['|'] after:ml-4 after:font-thin after:text-sm p-3">
-              post job
+              <Link to="/post-job">post job</Link>
             </li>
             <li className="text-color-one p-3">login</li>
           </ul>
