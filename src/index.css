@@ -77,7 +77,7 @@ svg {
 }
 
 .btn {
-  @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-[#00BF58];
+  @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-one/30 hover:border-black border-2 border-transparent;
 }
 
 .wrapper {
@@ -86,6 +86,10 @@ svg {
 
 .navWrapper {
   @apply max-w-[1600px] w-[100%] m-auto px-6;
+}
+
+.jobPostLabel {
+  @apply font-body text-sm text-black;
 }
 
 @layer base {
@@ -111,7 +115,7 @@ svg {
 
   input::placeholder,
   input {
-    @apply font-body;
+    @apply font-body text-[#00000080];
   }
 
   @layer components {
@@ -122,6 +126,6 @@ svg {
 
   button {
     @apply px-4 py-2 rounded-full font-medium text-black bg-color-one 
-    hover:bg-[#00BF58];
+    hover:bg-color-one/30 hover:border-black border-2 border-transparent;
   }
 }
