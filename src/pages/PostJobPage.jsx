@@ -4,12 +4,13 @@ import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import bgShapeSmall from '../assets/bgShapeSmall.png';
+import { Menu } from '@headlessui/react';
 
 const ref = collection(db, 'jobs');
 
 const PostJobPage = () => {
   const randomNumber = Math.trunc(Math.random() * 50 + 1); // For random image generator
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
   const [formError, setFormError] = useState(null);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [jobDetails, setJobDetails] = useState({
@@ -21,13 +22,8 @@ const PostJobPage = () => {
     role: '',
   });
 
-  const toggleDropdown = () => {
-    setIsDropDownOpen(!isDropDownOpen);
-  };
-
   const handleOptionSelect = optionValue => {
     setJobDetails(prevState => ({ ...prevState, hours: optionValue }));
-    toggleDropdown();
   };
 
   const handleInputChange = e => {
@@ -144,7 +140,7 @@ const PostJobPage = () => {
                   value={jobDetails.logo}
                 />
               </label>
-              <label className="jobPostLabel flex flex-col relative">
+              <Menu as="div" className="jobPostLabel flex flex-col relative">
                 <div className="flex gap-x-2">
                   hours*
                   <div
@@ -158,45 +154,55 @@ const PostJobPage = () => {
                   </div>
                 </div>
                 <div
-                  className={
-                    isDropDownOpen
-                      ? 'rounded-b-none border-2 rounded-md h-14 mt-2 flex items-center focus:border-blue-500'
-                      : 'border-2 rounded-md h-14  mt-2 flex items-center hover:bg-color-one/20 hover:border-2 hover:border-blue-500 '
-                  }
                   onChange={handleInputChange}
                   name="hours"
                   value={jobDetails.hours}
-                  onClick={toggleDropdown}
                 >
-                  <div className="flex justify-between items-center w-full h-full cursor-pointer px-4">
+                  <Menu.Button className="flex justify-between items-center w-full cursor-pointer px-4 rounded-md h-14 border-black/10 mt-4">
                     <div>{jobDetails.hours ? jobDetails.hours : ''}</div>
-                    <ChevronDownIcon
-                      className={`${
-                        isDropDownOpen ? 'transform rotate-180' : ''
-                      } h-5 w-5 text-black`}
-                    />
-                  </div>
-                  {isDropDownOpen && (
-                    <div
-                      className="absolute z-10 left-0 w-full bg-white rounded-b-md shadow-lg top-20 border-2 "
-                      onMouseLeave={toggleDropdown}
+                    <ChevronDownIcon className="h-5 w-5" />
+                  </Menu.Button>
+                  {/* Menu Items */}
+                  <Menu.Items className="absolute z-10 left-0 w-full bg-white rounded-b-md shadow-lg top-[91.5px] border-2 border-t-0 ">
+                    <Menu.Item
+                      as="div"
+                      className=""
+                      onClick={() => handleOptionSelect('Full-time')}
                     >
-                      <div
-                        className="cursor-pointer px-3 py-2 hover:bg-color-one"
-                        onClick={() => handleOptionSelect('Full-time')}
-                      >
-                        Full-time
-                      </div>
-                      <div
-                        className="cursor-pointer px-3 py-2 hover:bg-color-one"
-                        onClick={() => handleOptionSelect('Part-time')}
-                      >
-                        Part-time
-                      </div>
-                    </div>
-                  )}
+                      {({ close, active }) => (
+                        <div
+                          className={`${
+                            active
+                              ? 'cursor-pointer px-3 py-2 bg-color-one '
+                              : 'px-3 py-2'
+                          }`}
+                          onClick={close}
+                        >
+                          Full-time
+                        </div>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item
+                      as="div"
+                      className=""
+                      onClick={() => handleOptionSelect('Part-time')}
+                    >
+                      {({ close, active }) => (
+                        <div
+                          className={`${
+                            active
+                              ? 'cursor-pointer px-3 py-2 bg-color-one '
+                              : 'px-3 py-2'
+                          }`}
+                          onClick={close}
+                        >
+                          Part-time
+                        </div>
+                      )}
+                    </Menu.Item>
+                  </Menu.Items>
                 </div>
-              </label>
+              </Menu>
               <label className="jobPostLabel flex flex-col">
                 role
                 <input
