@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import bgShapeSmall from '../assets/bgShapeSmall.png';
-import { Menu } from '@headlessui/react';
+import Dropdown from '../components/ui/Dropdown';
 
 const ref = collection(db, 'jobs');
 
@@ -18,13 +17,17 @@ const PostJobPage = () => {
     hours: '',
     location: '',
     logo: `https://picsum.photos/50?random=${randomNumber}`,
-    pay: '',
+    min: '',
+    max: '',
     role: '',
+    salary: '',
   });
 
-  const handleOptionSelect = optionValue => {
-    setJobDetails(prevState => ({ ...prevState, hours: optionValue }));
-  };
+  // const errors = [{ hours, salary }];
+
+  // Dropdown Menu Options
+  const hoursOptions = ['Full-Time', 'Part-Time', 'Contract'];
+  const salaryOptions = ['Month', 'Week', 'Hour'];
 
   const handleInputChange = e => {
     e.persist();
@@ -34,7 +37,7 @@ const PostJobPage = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!jobDetails.hours) {
+    if (!jobDetails.hours || !jobDetails.salary) {
       setFormError('Required, please select an option');
       return;
     }
@@ -44,11 +47,13 @@ const PostJobPage = () => {
       // Form fields reset
       setJobDetails({
         company: '',
-        hours: '',
         location: '',
         logo: `https://picsum.photos/50?random=${randomNumber}`,
-        pay: '',
+        min: '',
+        max: '',
         role: '',
+        hours: '',
+        salary: '',
       });
       setSuccessfulSubmit(true);
     } catch (error) {
@@ -59,6 +64,23 @@ const PostJobPage = () => {
   const handlePostAnotherJob = () => {
     setSuccessfulSubmit(false);
     setFormError(false);
+  };
+
+  // Required error for onSubmit for form to prevent custom dropdown field values being empty
+  const required = fieldName => {
+    return (
+      <div className={formError ? 'relative' : 'hidden'}>
+        <h3
+          className={`${
+            jobDetails[fieldName]
+              ? 'hidden'
+              : 'absolute bg-red-500 text-white px-2 rounded-md rounded-t-none w-full -top-[4px]'
+          }`}
+        >
+          {`Please select an option for ${fieldName}`}
+        </h3>
+      </div>
+    );
   };
 
   if (successfulSubmit) {
@@ -140,69 +162,7 @@ const PostJobPage = () => {
                   value={jobDetails.logo}
                 />
               </label>
-              <Menu as="div" className="jobPostLabel flex flex-col relative">
-                <div className="flex gap-x-2">
-                  hours*
-                  <div
-                    className={
-                      formError
-                        ? 'absoulte bg-red-500/30 px-2 rounded-md'
-                        : 'hidden'
-                    }
-                  >
-                    <h3 className="">Please select an option</h3>
-                  </div>
-                </div>
-                <div
-                  onChange={handleInputChange}
-                  name="hours"
-                  value={jobDetails.hours}
-                >
-                  <Menu.Button className="flex justify-between items-center w-full cursor-pointer px-4 rounded-md h-14 border-black/10 mt-4">
-                    <div>{jobDetails.hours ? jobDetails.hours : ''}</div>
-                    <ChevronDownIcon className="h-5 w-5" />
-                  </Menu.Button>
-                  {/* Menu Items */}
-                  <Menu.Items className="absolute z-10 left-0 w-full bg-white rounded-b-md shadow-lg top-[91.5px] border-2 border-t-0 ">
-                    <Menu.Item
-                      as="div"
-                      className=""
-                      onClick={() => handleOptionSelect('Full-time')}
-                    >
-                      {({ close, active }) => (
-                        <div
-                          className={`${
-                            active
-                              ? 'cursor-pointer px-3 py-2 bg-color-one '
-                              : 'px-3 py-2'
-                          }`}
-                          onClick={close}
-                        >
-                          Full-time
-                        </div>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item
-                      as="div"
-                      className=""
-                      onClick={() => handleOptionSelect('Part-time')}
-                    >
-                      {({ close, active }) => (
-                        <div
-                          className={`${
-                            active
-                              ? 'cursor-pointer px-3 py-2 bg-color-one '
-                              : 'px-3 py-2'
-                          }`}
-                          onClick={close}
-                        >
-                          Part-time
-                        </div>
-                      )}
-                    </Menu.Item>
-                  </Menu.Items>
-                </div>
-              </Menu>
+
               <label className="jobPostLabel flex flex-col">
                 role
                 <input
@@ -214,17 +174,72 @@ const PostJobPage = () => {
                   value={jobDetails.role}
                 />
               </label>
-              <label className="jobPostLabel flex flex-col">
-                pay
-                <input
-                  required
-                  className="border-2 rounded-md h-14 pl-4 mt-2"
-                  onChange={handleInputChange}
-                  type="text"
-                  name="pay"
-                  value={jobDetails.pay}
+
+              {/* Pay Category */}
+
+              {/* Job Type Dropdown  */}
+              <div>
+                <Dropdown
+                  value={jobDetails.hours}
+                  onChange={value =>
+                    setJobDetails(prevState => ({ ...prevState, hours: value }))
+                  }
+                  options={hoursOptions}
+                  selectedOption={jobDetails.hours}
+                  name={jobDetails.hours}
+                  label="Hours*"
                 />
-              </label>
+                <div>{required('hours')}</div>
+              </div>
+              <div className="flex lg:flex-row flex-col gap-x-6 lg:gap-y-0 gap-y-10">
+                {/* Salary Dropdown */}
+                <div className="w-full">
+                  <Dropdown
+                    value={jobDetails.salary}
+                    onChange={value =>
+                      setJobDetails(prevState => ({
+                        ...prevState,
+                        salary: value,
+                      }))
+                    }
+                    options={salaryOptions}
+                    selectedOption={jobDetails.salary}
+                    name={jobDetails.salary}
+                    label="Salary*"
+                  />
+                  <div>{required('salary')}</div>
+                </div>
+
+                {/* Min/Max Container */}
+                <div className="flex justify-evenly gap-x-6">
+                  {/* Min $ input */}
+                  <label className="jobPostLabel flex flex-col w-full">
+                    Min
+                    <input
+                      required
+                      className="border-2 rounded-md h-14 pl-4 mt-2"
+                      onChange={handleInputChange}
+                      type="text"
+                      name="min"
+                      value={jobDetails.min}
+                      placeholder={'$'}
+                    />
+                  </label>
+                  {/* Max $ input */}
+                  <label className="jobPostLabel flex flex-col w-full">
+                    Max
+                    <input
+                      required
+                      className="border-2 rounded-md h-14 pl-4 mt-2"
+                      onChange={handleInputChange}
+                      type="text"
+                      name="max"
+                      value={jobDetails.max}
+                      placeholder={'$'}
+                    />
+                  </label>
+                </div>
+              </div>
               <label className="jobPostLabel flex flex-col">
                 location
                 <input
