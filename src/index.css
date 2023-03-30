@@ -118,6 +118,10 @@ svg {
     @apply font-body text-[#00000080];
   }
 
+  textarea {
+    @apply resize-none font-body border-2;
+  }
+
   @layer components {
     .textShadow {
       text-shadow: #244034 1px 1px 5px;

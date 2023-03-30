@@ -4,6 +4,7 @@ import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
 import bgShapeSmall from '../assets/bgShapeSmall.png';
 import Dropdown from '../components/ui/Dropdown';
+import { skills } from '../components/skills/Skills';
 
 const ref = collection(db, 'jobs');
 
@@ -15,12 +16,21 @@ const PostJobPage = () => {
   const [jobDetails, setJobDetails] = useState({
     company: '',
     hours: '',
-    location: '',
+    country: '',
+    city: '',
+    state: '',
+    address: '',
     logo: `https://picsum.photos/50?random=${randomNumber}`,
-    min: '',
-    max: '',
+    min: '$',
+    max: '$',
     role: '',
     salary: '',
+    description: '',
+    category: '',
+    skills: [],
+    experience: '',
+    qualifications: '',
+    industry: '',
   });
 
   // const errors = [{ hours, salary }];
@@ -28,6 +38,7 @@ const PostJobPage = () => {
   // Dropdown Menu Options
   const hoursOptions = ['Full-Time', 'Part-Time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
+  const skillOptions = skills;
 
   const handleInputChange = e => {
     e.persist();
@@ -47,13 +58,22 @@ const PostJobPage = () => {
       // Form fields reset
       setJobDetails({
         company: '',
-        location: '',
+        country: '',
+        city: '',
+        state: '',
+        address: '',
         logo: `https://picsum.photos/50?random=${randomNumber}`,
         min: '',
         max: '',
         role: '',
         hours: '',
         salary: '',
+        description: '',
+        category: '',
+        skills: [],
+        experience: '',
+        qualifications: '',
+        industry: '',
       });
       setSuccessfulSubmit(true);
     } catch (error) {
@@ -175,6 +195,21 @@ const PostJobPage = () => {
                 />
               </label>
 
+              {/* Description Text Area */}
+              <label htmlFor="textarea" className="jobPostLabel ">
+                Job Description*
+                <textarea
+                  className="w-full rounded-md p-4 mt-2"
+                  onChange={handleInputChange}
+                  name="textarea"
+                  id="textarea"
+                  type="text"
+                  rows={12}
+                  placeholder="Write some details about the job..."
+                  value={jobDetails.description}
+                ></textarea>
+              </label>
+
               {/* Pay Category */}
 
               {/* Job Type Dropdown  */}
@@ -223,6 +258,8 @@ const PostJobPage = () => {
                       name="min"
                       value={jobDetails.min}
                       placeholder={'$'}
+                      pattern="[0-9]*"
+                      title="Please enter a valid number"
                     />
                   </label>
                   {/* Max $ input */}
@@ -236,21 +273,66 @@ const PostJobPage = () => {
                       name="max"
                       value={jobDetails.max}
                       placeholder={'$'}
+                      pattern="[0-9]*"
+                      title="Please enter a valid number"
                     />
                   </label>
                 </div>
               </div>
-              <label className="jobPostLabel flex flex-col">
-                location
+
+              {/* Location Category */}
+
+              {/* Address */}
+              <label className="jobPostLabel flex flex-col w-full">
+                Address*
                 <input
                   required
                   className="border-2 rounded-md h-14 pl-4 mt-2"
                   onChange={handleInputChange}
                   type="text"
-                  name="location"
-                  value={jobDetails.location}
+                  name="address"
+                  value={jobDetails.address}
                 />
               </label>
+              {/* Country, City, State/ Province Container */}
+              <div className="flex gap-x-6">
+                {/* Country */}
+                <label className="jobPostLabel flex flex-col w-full">
+                  Country*
+                  <input
+                    required
+                    className="border-2 rounded-md h-14 pl-4 mt-2"
+                    onChange={handleInputChange}
+                    type="text"
+                    name="country"
+                    value={jobDetails.country}
+                  />
+                </label>
+                {/* City */}
+                <label className="jobPostLabel flex flex-col w-full">
+                  City*
+                  <input
+                    required
+                    className="border-2 rounded-md h-14 pl-4 mt-2"
+                    onChange={handleInputChange}
+                    type="text"
+                    name="city"
+                    value={jobDetails.city}
+                  />
+                </label>
+                {/* Province/State */}
+                <label className="jobPostLabel flex flex-col w-full">
+                  State/ Province
+                  <input
+                    required
+                    className="border-2 rounded-md h-14 pl-4 mt-2"
+                    onChange={handleInputChange}
+                    type="text"
+                    name="state"
+                    value={jobDetails.state}
+                  />
+                </label>
+              </div>
               <label>
                 <button className="bg-color-one w-fit" type="submit">
                   Submit

@@ -17,9 +17,9 @@ const JobCards = ({ job }) => {
       <h2 className="font-body text-2xl mt-4">{job.role}</h2>
       {/* Company Pay */}
       <div className="flex items-center mt-4">
-        <p>{job.min}</p>
+        <p>{`$${job.min}`}</p>
         <p>-</p>
-        <p>{job.max}</p>
+        <p>{`$${job.max}`}</p>
         <p className="ml-1 text-color-gray">{`/ ${job.salary}`}</p>
       </div>
       {/* Company Location and Button Container */}
