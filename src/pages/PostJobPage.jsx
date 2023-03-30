@@ -4,7 +4,7 @@ import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
 import bgShapeSmall from '../assets/bgShapeSmall.png';
 import Dropdown from '../components/ui/Dropdown';
-import { skills } from '../components/skills/Skills';
+import Skills from '../components/skills/Skills';
 
 const ref = collection(db, 'jobs');
 
@@ -21,11 +21,11 @@ const PostJobPage = () => {
     state: '',
     address: '',
     logo: `https://picsum.photos/50?random=${randomNumber}`,
-    min: '$',
-    max: '$',
+    min: '',
+    max: '',
     role: '',
     salary: '',
-    description: '',
+    textarea: '',
     category: '',
     skills: [],
     experience: '',
@@ -38,7 +38,18 @@ const PostJobPage = () => {
   // Dropdown Menu Options
   const hoursOptions = ['Full-Time', 'Part-Time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
-  const skillOptions = skills;
+
+  // const addRemoveSkills = skill => {
+  //   jobDetails.skills.includes(skill)
+  //     ? setJobDetails(prevState => ({
+  //         ...prevState,
+  //         skills: prevState.skills.filter(s => s !== skill),
+  //       }))
+  //     : setJobDetails(prevState => ({
+  //         ...prevState,
+  //         skills: prevState.skills.concat(skill),
+  //       }));
+  // };
 
   const handleInputChange = e => {
     e.persist();
@@ -68,7 +79,7 @@ const PostJobPage = () => {
         role: '',
         hours: '',
         salary: '',
-        description: '',
+        textarea: '',
         category: '',
         skills: [],
         experience: '',
@@ -85,6 +96,8 @@ const PostJobPage = () => {
     setSuccessfulSubmit(false);
     setFormError(false);
   };
+
+  console.log(jobDetails);
 
   // Required error for onSubmit for form to prevent custom dropdown field values being empty
   const required = fieldName => {
@@ -196,7 +209,7 @@ const PostJobPage = () => {
               </label>
 
               {/* Description Text Area */}
-              <label htmlFor="textarea" className="jobPostLabel ">
+              <label htmlFor="textarea" className="jobPostLabel">
                 Job Description*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -206,7 +219,7 @@ const PostJobPage = () => {
                   type="text"
                   rows={12}
                   placeholder="Write some details about the job..."
-                  value={jobDetails.description}
+                  value={jobDetails.textarea}
                 ></textarea>
               </label>
 
@@ -257,7 +270,7 @@ const PostJobPage = () => {
                       type="text"
                       name="min"
                       value={jobDetails.min}
-                      placeholder={'$'}
+                      placeholder="$"
                       pattern="[0-9]*"
                       title="Please enter a valid number"
                     />
@@ -272,7 +285,7 @@ const PostJobPage = () => {
                       type="text"
                       name="max"
                       value={jobDetails.max}
-                      placeholder={'$'}
+                      placeholder="$"
                       pattern="[0-9]*"
                       title="Please enter a valid number"
                     />
@@ -333,6 +346,9 @@ const PostJobPage = () => {
                   />
                 </label>
               </div>
+              {/* Skills */}
+              <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
+              {/* Submit Button */}
               <label>
                 <button className="bg-color-one w-fit" type="submit">
                   Submit

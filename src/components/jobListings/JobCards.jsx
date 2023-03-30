@@ -22,6 +22,20 @@ const JobCards = ({ job }) => {
         <p>{`$${job.max}`}</p>
         <p className="ml-1 text-color-gray">{`/ ${job.salary}`}</p>
       </div>
+      {/* Company Skills  */}
+      {/* IMPORTANT This is here temporarily just for testing purposes */}
+      {job.skills && job.skills.length > 0 && (
+        <div className="flex flex-wrap mt-4">
+          {job.skills.map(skill => (
+            <span
+              key={skill.value}
+              className="text-sm text-gray-600 bg-gray-200 p-1 rounded-md mr-2 mb-2"
+            >
+              {skill.label}
+            </span>
+          ))}
+        </div>
+      )}
       {/* Company Location and Button Container */}
       <div className="flex justify-between mt-16 md:flex-row flex-col space-y-3 md:space-y-0">
         {/* Company Location */}
