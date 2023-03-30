@@ -5,6 +5,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import bgShapeSmall from '../assets/bgShapeSmall.png';
 import Dropdown from '../components/ui/Dropdown';
 import Skills from '../components/skills/Skills';
+import JobDetailsPage from './JobDetailsPage';
 
 const ref = collection(db, 'jobs');
 
