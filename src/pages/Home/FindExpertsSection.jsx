@@ -14,7 +14,7 @@ function FindExpertsSection() {
               <span>on jobi.</span>
             </h2>
             <img
-              className="absolute -right-24 -top-12"
+              className="absolute -right-24 -top-12 hidden sm:block"
               src={categoryTitleShape}
               alt=""
             />
@@ -35,7 +35,7 @@ function FindExpertsSection() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 mt-20 gap-8 xl:grid-cols-4 xl:w-full w-fit space-x-10 xl:space-x-0 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-20 gap-8 xl:grid-cols-4 xl:w-full w-fit xl:space-x-10 space-x-0 mx-auto">
           <div className="flex flex-col text-center">
             <div className="expertsCard self-center "></div>
             <h3 className="mt-12 text-xl">Julie Ake</h3>

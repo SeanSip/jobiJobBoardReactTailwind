@@ -12,7 +12,7 @@ function HowItWorksSection() {
         <div className="flex w-fit relative mb-24">
           <h2 className="text-white">How it works?</h2>
           <img
-            className="absolute right-0 top-0 -mr-24 -mt-12"
+            className="absolute right-0 top-0 -mr-24 -mt-12 hidden sm:block"
             src={howItWorksTextGraphic}
             alt="Gaphic of three yellow lines bursting outwards from the top-right corner of the heading text"
           />

@@ -25,7 +25,7 @@ const JobCategory = () => {
             <img
               src={categoryTitleShape}
               alt=""
-              className="absolute -right-28 -top-9"
+              className="absolute -right-28 -top-9 hidden sm:block"
             />
           </div>
           {/* Right Side Text Container */}
