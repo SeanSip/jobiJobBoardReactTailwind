@@ -29,7 +29,7 @@ const PostJobPage = () => {
     textarea: '',
     responsibilities: '',
     requiredSkills: '',
-    benifits: '',
+    benefits: '',
     overview: '',
     category: '',
     skills: [],
@@ -88,7 +88,7 @@ const PostJobPage = () => {
         textarea: '',
         responsibilities: '',
         requiredSkills: '',
-        benifits: '',
+        benefits: '',
         overview: '',
         category: '',
         skills: [],
@@ -280,18 +280,33 @@ const PostJobPage = () => {
                 ></textarea>
               </label>
 
-              {/* Benifits Text Area */}
-              <label htmlFor="benifits" className="jobPostLabel">
-                Job benifits*
+              {/* Required Skills  */}
+              <label htmlFor="requiredSkills" className="jobPostLabel">
+                Required Skills*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
                   onChange={handleInputChange}
-                  name="benifits"
-                  id="benifits"
+                  name="requiredSkills"
+                  id="requiredSkills"
                   type="text"
                   rows={5}
-                  placeholder="Write some benifits for the job..."
-                  value={jobDetails.benifits}
+                  placeholder="What skills are right for the job..."
+                  value={jobDetails.requiredSkills}
+                ></textarea>
+              </label>
+
+              {/* Benefits Text Area */}
+              <label htmlFor="benefits" className="jobPostLabel">
+                Job Benefits*
+                <textarea
+                  className="w-full rounded-md p-4 mt-2"
+                  onChange={handleInputChange}
+                  name="benefits"
+                  id="benefits"
+                  type="text"
+                  rows={5}
+                  placeholder="Write some benefits for the job..."
+                  value={jobDetails.benefits}
                 ></textarea>
               </label>
 

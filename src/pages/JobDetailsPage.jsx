@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { BackwardIcon } from '@heroicons/react/24/solid';
 
 const JobDetailsPage = props => {
@@ -53,16 +54,47 @@ const JobDetailsPage = props => {
         <div className="flex justify-evenly gap-x-44">
           <div className="flex flex-col w-fit">
             {/* TODO Make the posted by a timestamp */}
-            <p>{`posted by: ${job.company}`}</p>
-            <h1>{job.role}</h1>
-            <p>{job.overview}</p>
-            <p>{job.textarea}</p>
-            <p>{job.responsibilities}</p>
-            <p>{job.requiredSkills}</p>
-            <p>{job.benifits}</p>
-            <button className="w-fit bg-color-button-green text-white rounded-md px-7 hover:bg-blue-600">
-              Apply for this position
-            </button>
+            <p className="mb-4 text-color-gray">{`Posted by: ${job.company}`}</p>
+            <h1 className="text-4xl font-body mb-5">{job.role}</h1>
+            <ul className="flex gap-x-2 mb-12 ">
+              <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
+                <FaFacebookF className="w-2 mr-2" />
+                Facebook
+              </li>
+              <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
+                <FaTwitter className="w-3 mr-2" />
+                Twitter
+              </li>
+              <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
+                <FaLink className="w-3 mr-2" />
+                Copy
+              </li>
+            </ul>
+            <div className="flex flex-col gap-y-14">
+              <div>
+                <h2 className="text-2xl font-body mb-5">Overview</h2>
+                <p>{job.overview}</p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-body mb-5">Job Description</h2>
+                <p>{job.textarea}</p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-body mb-5">Responsibilities</h2>
+                <p>{job.responsibilities}</p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-body mb-5">Required Skills:</h2>
+                <p>{job.requiredSkills}</p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-body mb-5">Benefits:</h2>
+                <p>{job.benefits}</p>
+              </div>
+              <button className="w-fit bg-color-button-green text-white rounded-md px-7 hover:bg-blue-600">
+                Apply for this position
+              </button>
+            </div>
           </div>
           <aside className="flex flex-col w-full max-w-[340px] min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md">
             <div className="flex flex-col items-center">
