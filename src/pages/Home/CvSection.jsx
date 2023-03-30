@@ -63,6 +63,20 @@ function CvSection() {
           </div>
         </div>
       </div>
+      <div className="wrapper flex border-b-[1px] pt-[100px] pb-[70px] justify-between flex-col lg:flex-row">
+        <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
+          <h1 className="text-5xl font-title ">Most complete job portal.</h1>
+          <p className="text-[#979797] font-body">
+            Sign up and start finding your job or talents
+          </p>
+        </div>
+        <div className="space-x-5 self-center lg:mt-0 mt-10">
+          <button className="rounded-md bg-transparent border-[1.5px] border-[#244034]">
+            Looking for job?
+          </button>
+          <button className="rounded-md">Post a job</button>
+        </div>
+      </div>
     </section>
   );
 }
