@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import JobsCard from '../components/jobListings/JobCards';
 // import data from '../data.json';
 import Banner from '../components/ui/Banner';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
+import JobDetailsPage from './JobDetailsPage';
 
 const ref = collection(db, 'jobs');
 
@@ -21,7 +23,14 @@ const fetchJobs = async setJobs => {
 };
 
 function JobListingPage() {
+  const [selectedJob, setSelectedJob] = useState(null);
   const [jobs, setJobs] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleJobClick = selectedJobCard => {
+    navigate(`/job-listing/${selectedJobCard.id}`, { state: selectedJobCard });
+  };
 
   useEffect(() => {
     // fetchJobs(data); // IMPORTANT Remove later, this was the dummy data
@@ -49,11 +58,14 @@ function JobListingPage() {
                 Hang in there, the jobs are coming . . .
               </p>
             ) : (
-              jobs.map(job => <JobsCard job={job} key={job.id} />)
+              jobs.map(job => (
+                <JobsCard job={job} key={job.id} onClick={handleJobClick} />
+              ))
             )}
           </div>
         </div>
       </div>
+      {selectedJob && <JobDetailsPage job={selectedJob} />}
     </section>
   );
 }

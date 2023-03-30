@@ -1,8 +1,11 @@
 import React from 'react';
 
-const JobCards = ({ job }) => {
+const JobCards = ({ job, onClick }) => {
   return (
-    <div className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between">
+    <div
+      onClick={() => onClick(job)}
+      className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer"
+    >
       {/* Company Logo */}
       <img
         className="w-fit"
@@ -23,10 +26,9 @@ const JobCards = ({ job }) => {
         <p className="ml-1 text-color-gray">{`/ ${job.salary}`}</p>
       </div>
       {/* Company Skills  */}
-      {/* IMPORTANT This is here temporarily just for testing purposes */}
       {job.skills && job.skills.length > 0 && (
         <div className="flex flex-wrap mt-4">
-          {job.skills.map(skill => (
+          {job.skills.slice(0, 3).map(skill => (
             <span
               key={skill.value}
               className="text-sm text-gray-600 bg-gray-200 p-1 rounded-md mr-2 mb-2"
