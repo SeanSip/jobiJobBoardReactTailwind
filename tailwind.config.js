@@ -10,6 +10,8 @@ module.exports = {
         'color-body': '#000000B2',
         'color-background': '#244034',
         'color-jobCardBg': '#F8FDE4',
+        'color-button-green': '#31795A',
+        'color-bg-gray': '#F6F6F6',
       },
       screens: {
         phone: '400px',
