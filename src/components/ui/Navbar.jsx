@@ -157,110 +157,132 @@ const Navbar = () => {
         className={
           !mobileNav
             ? 'hidden'
-            : 'absolute right-0 top-0 bg-slate-800      w-full h-screen phone:px-10 px-4 py-[100px] flex flex-col items-start text-white overflow-auto -z-10'
+            : 'absolute right-0 top-0 bg-black/70 backdrop-blur-lg w-full h-screen phone:px-10 px-4 py-[100px] flex flex-col items-start text-white overflow-auto -z-10'
         }
       >
-        <div className="w-full border-2 my-10 flex flex-col mx-auto flex-wrap">
-          <ul className="my-0 pb-4 flex">
-            <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-              post job
-            </li>
-            <li className="text-color-one hover:text-white hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-              log in
-            </li>
+        <div className="w-full my-10 flex flex-col mx-auto flex-wrap items-center">
+          <ul className="my-0 pb-4 flex w-full text-center flex-col">
+            <div className="flex sm:flex-row flex-col space-y-6 sm:space-y-0">
+              <Link to="/post-job" className="w-full">
+                <li className="hover:text-color-one hover:cursor-pointer border-2 sm:border-r-[1px] border-white/20 hover:border-b-2 hover:border-color-one p-4">
+                  post job
+                </li>
+              </Link>
+              <li className="text-white hover:text-color-one hover:cursor-pointer border-2 border-white/20 hover:border-b-2 hover:border-color-one w-full p-4 sm:border-l-[1px]">
+                log in
+              </li>
+            </div>
+            <div className="flex mt-14 justify-center gap-x-4 sm:flex-row flex-col sm:space-y-0 space-y-6 items-center">
+              <button className="w-fit">Hire Top Talents</button>
+              <li>
+                <button className="bg-white/10 flex text-color-one capitalize">
+                  <img
+                    className="w-3 h-fit self-center mr-2"
+                    src={category}
+                    alt=""
+                  />
+                  category
+                </button>
+              </li>
+            </div>
           </ul>
-
-          <button className="w-full max-w-xl">Hire Top Talents</button>
         </div>
-        <li>
-          <button className="bg-white/10 flex text-color-one capitalize">
-            <img className="w-3 h-fit self-center mr-2" src={category} alt="" />
-            category
-          </button>
-        </li>
-        <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-          home
-        </li>
-        <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-          job
-        </li>
-        <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-          explore
-        </li>
-        <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
-          contact
-        </li>
-        <li
-          className={
-            !mobileNavSubMenu
-              ? 'hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full pages'
-              : 'text-color-one cursor-pointer w-full pages'
-          }
-          onClick={handleMobileSubMenu}
-        >
-          pages
-          <div
-            className={
-              !mobileNavSubMenu
-                ? 'border-transparent'
-                : 'border-b-2 mt-2 border-color-one'
-            }
-          ></div>
-          <ul
-            className={
-              !mobileNavSubMenu
-                ? 'hidden '
-                : 'block relative capitalize bg-white/10 text-sm mt-4 rounded-lg'
-            }
-          >
-            <li
-              className={
-                mobileNavSubMenu
-                  ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer rounded-t-lg'
-                  : 'text-white'
-              }
-            >
-              <Link to="/about-us"> about us</Link>
-            </li>
 
-            <li
+        <ul className="w-full flex flex-col gap-y-6">
+          <Link to="/">
+            <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
+              home
+            </li>
+          </Link>
+          <Link to="/job-listing">
+            <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
+              jobs
+            </li>
+          </Link>
+          <Link to="/">
+            <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
+              explore
+            </li>
+          </Link>
+          <Link to="/" className="">
+            <li className="hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full">
+              contact
+            </li>
+          </Link>
+          <li
+            className={
+              !mobileNavSubMenu
+                ? 'hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full pages'
+                : 'text-color-one cursor-pointer w-full pages'
+            }
+            onClick={handleMobileSubMenu}
+          >
+            pages
+            <div
               className={
-                mobileNavSubMenu
-                  ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer '
-                  : 'text-white'
+                !mobileNavSubMenu
+                  ? 'border-transparent'
+                  : 'border-b-2 mt-2 border-color-one'
+              }
+            ></div>
+            <ul
+              className={
+                !mobileNavSubMenu
+                  ? 'hidden '
+                  : 'block relative capitalize bg-white/10 text-sm mt-[1px] rounded-b-lg'
               }
             >
-              pricing
-            </li>
-            <li
-              className={
-                mobileNavSubMenu
-                  ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer '
-                  : 'text-white'
-              }
-            >
-              error 404
-            </li>
-            <li
-              className={
-                mobileNavSubMenu
-                  ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer '
-                  : 'text-white'
-              }
-            >
-              blog
-            </li>
-            <li
-              className={
-                mobileNavSubMenu
-                  ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one w-full cursor-pointer rounded-b-lg'
-                  : 'text-white'
-              }
-            >
-              contact us
-            </li>
-          </ul>
-        </li>
+              <Link to="/about-us">
+                <li
+                  className={
+                    mobileNavSubMenu
+                      ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
+                      : 'text-white'
+                  }
+                >
+                  about us
+                </li>
+              </Link>
+
+              <li
+                className={
+                  mobileNavSubMenu
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
+                    : 'text-white'
+                }
+              >
+                pricing
+              </li>
+              <li
+                className={
+                  mobileNavSubMenu
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
+                    : 'text-white'
+                }
+              >
+                error 404
+              </li>
+              <li
+                className={
+                  mobileNavSubMenu
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
+                    : 'text-white'
+                }
+              >
+                blog
+              </li>
+              <li
+                className={
+                  mobileNavSubMenu
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one w-full cursor-pointer py-1 px-4 rounded-b-lg'
+                    : 'text-white'
+                }
+              >
+                contact us
+              </li>
+            </ul>
+          </li>
+        </ul>
       </ul>
     </nav>
     // </div> IMPORTANT remove later

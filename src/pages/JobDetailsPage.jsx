@@ -96,7 +96,7 @@ const JobDetailsPage = props => {
               </button>
             </div>
           </div>
-          <aside className="flex flex-col w-full max-w-[340px] min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md">
+          <aside className="flex flex-col w-full max-w-[340px] min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md sticky top-40">
             <div className="flex flex-col items-center">
               <img
                 className="w-20 rounded-full mb-4"
