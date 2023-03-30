@@ -16,7 +16,7 @@ function CollaborationSection() {
           {/* Right Side Context Container */}
           <div className="flex flex-col">
             <p className="uppercase text-color-gray mb-[18px]">top brand</p>
-            <h2 className="flex flex-col text-6xl mb-11">
+            <h2 className="flex flex-col text-5xl mb-11 sm:text-6xl">
               Collaboration with
               <span>Top Brands.</span>
             </h2>
