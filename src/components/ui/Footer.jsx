@@ -8,39 +8,27 @@ const Footer = () => {
   return (
     <footer className=" bg-white">
       <div className=" text-black mx-auto wrapper">
-        <div className="flex border-b-[1px] pt-[100px] pb-[70px] justify-between">
-          <div className="space-y-3">
-            <h1 className="text-5xl font-title">Most complete job portal.</h1>
-            <p className="text-[#979797] font-body">
-              Sign up and start finding your job or talents
-            </p>
-          </div>
-          <div className="space-x-5 self-center">
-            <button className="rounded-md bg-transparent border-[1.5px] border-[#244034]">
-              Looking for job?
-            </button>
-            <button className="rounded-md">Post a job</button>
-          </div>
-        </div>
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-11 gap-4 py-8">
+        <div className="md:grid flex sm:flex-row flex-col flex-wrap justify-between grid-cols-4 md:grid-cols-4 xl:grid-cols-11 sm:gap-4 gap-8 py-8 border-t-[1px]">
           {/* Logo */}
-          <div className="col-span-2 flex-col flex justify-between">
+          <div className="col-span-1 xl:col-span-2 flex-col flex justify-between mb-8 sm:mb-0">
             <div className="flex">
               <img
-                className="w-8 h-fit self-center sm:w-12"
+                className="h-fit self-center w-12"
                 src={logo}
-                alt=""
+                alt="logo for jobi featuring two circles overlapping one another"
               />
-              <h2 className="text-2xl ml-3 font-logo text-black sm:text-4xl">
-                jobi
-              </h2>
+              <h2 className=" ml-3 font-logo text-black text-4xl">jobi</h2>
             </div>
-            <img className="w-12" src={footerBgShape} alt="" />
+            <img
+              className="w-12 hidden md:block"
+              src={footerBgShape}
+              alt="square shape pattern graphic with striped design"
+            />
           </div>
 
           {/* Products */}
-          <div className="col-span-2">
+          <div className="col-span-1 xl:col-span-2">
             <h4 className="text-lg font-body mb-4 ">Products</h4>
             <ul className="flex flex-col leading-10 font-body text-base text-black/50">
               <li className="">
@@ -64,7 +52,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Links */}
-          <div className="col-span-2">
+          <div className="col-span-1 xl:col-span-2">
             <h4 className="text-lg font-body mb-4">Links</h4>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
@@ -82,7 +70,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Legal */}
-          <div className="col-span-2">
+          <div className="col-span-1 xl:col-span-2">
             <h4 className="text-lg font-body mb-4">Legal</h4>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
@@ -100,17 +88,18 @@ const Footer = () => {
             </ul>
           </div>
           {/* Newsletter */}
-          <div className="col-span-3 ">
+          <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full">
             <h4 className="text-lg font-body mb-4">Newsletter</h4>
             <p>Join & get important news regularly</p>
             <div className="flex mt-6 mb-2 relative">
               <input
-                className="py-2 px-3 rounded-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px]"
+                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px] mr-24"
                 type="text"
                 placeholder="Enter your email"
               />
               <button className="rounded-md bg-black text-white hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 absolute right-3 top-0 bottom-0 my-2 px-5">
                 Send
+                <div className="bg-black/10 h-[60px] w-[95px] inset-0 -top-[10px] -left-[3.8px] absolute rounded-r-md"></div>
               </button>
             </div>
             <p className="text-[#979797] text-sm">
@@ -119,7 +108,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Sub Footer */}
-        <div className="flex items-center justify-between py-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between py-4 gap-y-2">
           {/* Privacy and Terms */}
           <div>
             <Link className="text-gray-500 mr-4">Privacy &amp; Terms</Link>
