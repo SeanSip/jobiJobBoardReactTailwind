@@ -27,17 +27,22 @@ const PostJobPage = () => {
     role: '',
     salary: '',
     textarea: '',
+    responsibilities: '',
+    requiredSkills: '',
+    benifits: '',
+    overview: '',
     category: '',
     skills: [],
     experience: '',
     qualifications: '',
     industry: '',
+    companyLink: '',
   });
 
   // const errors = [{ hours, salary }];
 
   // Dropdown Menu Options
-  const hoursOptions = ['Full-Time', 'Part-Time', 'Contract'];
+  const hoursOptions = ['Full-time', 'Part-time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
 
   // const addRemoveSkills = skill => {
@@ -81,11 +86,16 @@ const PostJobPage = () => {
         hours: '',
         salary: '',
         textarea: '',
+        responsibilities: '',
+        requiredSkills: '',
+        benifits: '',
+        overview: '',
         category: '',
         skills: [],
         experience: '',
         qualifications: '',
         industry: '',
+        companyLink: '',
       });
       setSuccessfulSubmit(true);
     } catch (error) {
@@ -174,17 +184,32 @@ const PostJobPage = () => {
           >
             <h2 className="text-3xl font-body">Job Details</h2>
             <div className="flex flex-col space-y-10 pt-7">
-              <label className="jobPostLabel flex flex-col">
-                Company*
-                <input
-                  required
-                  className="border-2 rounded-md h-14 pl-4 mt-2"
-                  onChange={handleInputChange}
-                  type="text"
-                  name="company"
-                  value={jobDetails.company}
-                />
-              </label>
+              <div className="flex lg:flex-row flex-col gap-x-6 lg:gap-y-0 gap-y-10">
+                <label className="jobPostLabel flex flex-col w-full">
+                  Company Name*
+                  <input
+                    required
+                    className="border-2 rounded-md h-14 pl-4 mt-2"
+                    onChange={handleInputChange}
+                    type="text"
+                    name="company"
+                    value={jobDetails.company}
+                    placeholder="Ex: Jobi"
+                  />
+                </label>
+                <label className="jobPostLabel flex flex-col w-full">
+                  Company Link*
+                  <input
+                    required
+                    className="border-2 rounded-md h-14 pl-4 mt-2"
+                    onChange={handleInputChange}
+                    type="text"
+                    name="companyLink"
+                    value={jobDetails.companyLink}
+                    placeholder="https://"
+                  />
+                </label>
+              </div>
               <label className="jobPostLabel flex flex-col">
                 Logo*
                 <input
@@ -209,6 +234,21 @@ const PostJobPage = () => {
                 />
               </label>
 
+              {/* Overview Text Area */}
+              <label htmlFor="overview" className="jobPostLabel">
+                Job Overview*
+                <textarea
+                  className="w-full rounded-md p-4 mt-2"
+                  onChange={handleInputChange}
+                  name="overview"
+                  id="overview"
+                  type="text"
+                  rows={5}
+                  placeholder="Write an overview about the job..."
+                  value={jobDetails.overview}
+                ></textarea>
+              </label>
+
               {/* Description Text Area */}
               <label htmlFor="textarea" className="jobPostLabel">
                 Job Description*
@@ -221,6 +261,37 @@ const PostJobPage = () => {
                   rows={12}
                   placeholder="Write some details about the job..."
                   value={jobDetails.textarea}
+                ></textarea>
+              </label>
+
+              {/* Responsibilities Text Area */}
+              {/* TODO Make it so that when user types in a responsibility, it gets saved as an li */}
+              <label htmlFor="responsibilities" className="jobPostLabel">
+                Job Responsibilities*
+                <textarea
+                  className="w-full rounded-md p-4 mt-2"
+                  onChange={handleInputChange}
+                  name="responsibilities"
+                  id="responsibilities"
+                  type="text"
+                  rows={5}
+                  placeholder="Write some responsibilities for the job..."
+                  value={jobDetails.responsibilities}
+                ></textarea>
+              </label>
+
+              {/* Benifits Text Area */}
+              <label htmlFor="benifits" className="jobPostLabel">
+                Job benifits*
+                <textarea
+                  className="w-full rounded-md p-4 mt-2"
+                  onChange={handleInputChange}
+                  name="benifits"
+                  id="benifits"
+                  type="text"
+                  rows={5}
+                  placeholder="Write some benifits for the job..."
+                  value={jobDetails.benifits}
                 ></textarea>
               </label>
 

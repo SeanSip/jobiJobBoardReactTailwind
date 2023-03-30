@@ -6,6 +6,7 @@ import Banner from '../components/ui/Banner';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
 import JobDetailsPage from './JobDetailsPage';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 const ref = collection(db, 'jobs');
 
@@ -42,9 +43,17 @@ function JobListingPage() {
       {/* Banner Component Import */}
       <Banner />
       {/* Job Listings Container */}
-      <div className="bg-white">
+      <div className="bg-white pb-[162px]">
         {/* Job Listings Wrapper Container */}
         <div className="wrapper">
+          {/* Filter By */}
+          {/* TODO Convert this into an actual functional filter */}
+          <div className="lg pt-[101px] pb-[120px]">
+            <div className="bg-color-bg-gray p-6 rounded-lg capitalize flex justify-between items-center">
+              filter by
+              <ChevronDownIcon className="w-7 bg-white rounded-full p-2" />
+            </div>
+          </div>
           {/* Card Layout Container */}
           <div
             className={
