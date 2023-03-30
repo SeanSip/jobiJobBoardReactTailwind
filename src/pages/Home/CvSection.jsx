@@ -63,7 +63,7 @@ function CvSection() {
           </div>
         </div>
       </div>
-      <div className="wrapper flex border-b-[1px] pt-[100px] pb-[70px] justify-between flex-col lg:flex-row">
+      <div className="wrapper flex pt-[100px] pb-[70px] justify-between flex-col lg:flex-row">
         <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
           <h1 className="text-5xl font-title ">Most complete job portal.</h1>
           <p className="text-[#979797] font-body">

@@ -8,8 +8,9 @@ const Footer = () => {
   return (
     <footer className=" bg-white">
       <div className=" text-black mx-auto wrapper">
+        <div className="border-b-[1px] pt-4"></div>
         {/* Main Footer Grid */}
-        <div className="md:grid flex sm:flex-row flex-col flex-wrap justify-between grid-cols-4 md:grid-cols-4 xl:grid-cols-11 sm:gap-4 gap-8 py-8 border-t-[1px]">
+        <div className="md:grid flex sm:flex-row flex-col flex-wrap justify-between grid-cols-4 md:grid-cols-4 xl:grid-cols-11 sm:gap-4 gap-8 py-8 ">
           {/* Logo */}
           <div className="col-span-1 xl:col-span-2 flex-col flex justify-between mb-8 sm:mb-0">
             <div className="flex">
