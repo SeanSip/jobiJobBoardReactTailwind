@@ -13,7 +13,7 @@ const JobCards = ({ job, onClick }) => {
           src={job.logo}
           alt={`Company logo for ${job.company}`}
         />
-        <h1 className="text-3xl mt-2">{job.company}</h1>
+        <h1 className="text-3xl mt-6">{job.company}</h1>
       </div>
       {/* Company Hours */}
       <p className="text-[#FF5757] bg-[#FA0F0014] w-fit px-[10px] py-1 rounded-[3px] mt-14">
