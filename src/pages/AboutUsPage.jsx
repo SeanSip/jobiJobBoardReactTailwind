@@ -77,7 +77,7 @@ function AboutUsPage() {
                 <div className="flex flex-row ">
                   <h3 className="flex-1 text-start text-2xl">{heading}</h3>
                   <button
-                    className="p-0 bg-transparent hover:bg-transparent flex-1 text-end "
+                    className="p-0 bg-transparent hover:bg-transparent flex-1 text-end border-0"
                     onClick={() => handleClick(id)}
                   >
                     {isPlusButton ? '+' : '-'}
@@ -97,7 +97,7 @@ function AboutUsPage() {
           </div>
         </div>
         {/* Video Play Container */}
-        <div className="bg-[#D9D9D9] rounded-[20px] h-96 w-6/12 mx-auto mb-[72px] relative ">
+        <div className="bg-[#D9D9D9] rounded-[20px] h-96 w-6/12 mx-auto mb-[72px] relative xl:mt-0 mt-20">
           <div className="absolute inset-0 flex items-center justify-center">
             {/* TODO Put an actual video in here at some point? Or a gif when you press play? */}
             <img
