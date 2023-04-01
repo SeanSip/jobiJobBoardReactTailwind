@@ -15,10 +15,12 @@ import AboutUsPage from './pages/AboutUsPage';
 import Page404 from './pages/Page404';
 import PostJobPage from './pages/PostJobPage';
 import JobDetailsPage from './pages/JobDetailsPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route
