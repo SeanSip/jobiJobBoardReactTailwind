@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
-import bgShapeSmall from '../assets/bgShapeSmall.png';
-import Dropdown from '../components/ui/Dropdown';
-import Skills from '../components/skills/Skills';
-import JobDetailsPage from './JobDetailsPage';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+// Page Imports
+import Dropdown from '../components/ui/Dropdown';
+import Skills from '../components/skills/Skills';
+import Banner from '../components/ui/Banner';
 
 const ref = collection(db, 'jobs');
 
@@ -26,20 +26,20 @@ const PostJobPage = () => {
     logo: `https://picsum.photos/50?random=${randomNumber}`,
     min: '',
     max: '',
-    role: '',
+    jobTitle: '',
     salary: '',
-    textarea: '',
-    responsibilities: '',
-    requiredSkills: '',
-    benefits: '',
-    overview: '',
+    // textarea: '',
+    // responsibilities: '',
+    // requiredSkills: '',
+    // benefits: '',
+    // overview: '',
     category: '',
     skills: [],
     experience: '',
     qualifications: '',
     industry: '',
     companyLink: '',
-    quill: '',
+    jobDescription: '',
   });
 
   // const errors = [{ hours, salary }];
@@ -73,21 +73,21 @@ const PostJobPage = () => {
         logo: `https://picsum.photos/50?random=${randomNumber}`,
         min: '',
         max: '',
-        role: '',
+        jobTitle: '',
         hours: '',
         salary: '',
-        textarea: '',
-        responsibilities: '',
-        requiredSkills: '',
-        benefits: '',
-        overview: '',
+        // textarea: '',
+        // responsibilities: '',
+        // requiredSkills: '',
+        // benefits: '',
+        // overview: '',
         category: '',
         skills: [],
         experience: '',
         qualifications: '',
         industry: '',
         companyLink: '',
-        quill: '',
+        jobDescription: '',
       });
       setSuccessfulSubmit(true);
     } catch (error) {
@@ -100,7 +100,7 @@ const PostJobPage = () => {
     setFormError(false);
   };
 
-  const job = { ...jobDetails, quill: jobDetails.textareaPlainText };
+  const job = { ...jobDetails, jobDescription: jobDetails.textareaPlainText };
 
   useEffect(() => {
     const plainText = document.createElement('div');
@@ -111,7 +111,16 @@ const PostJobPage = () => {
     }));
   }, [jobDetails.textarea]);
 
-  console.log(jobDetails);
+  const reactQuillModules = {
+    toolbar: [
+      [{ header: ['1', '2', '3', '4', '5', '6'] }],
+      ['bold', 'italic', 'underline', 'strike', 'code', 'image'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      [{ align: [] }],
+      ['link'],
+    ],
+  };
 
   // Required error for onSubmit for form to prevent custom dropdown field values being empty
   const required = fieldName => {
@@ -163,21 +172,10 @@ const PostJobPage = () => {
     <>
       <header>
         {/* Banner Section */}
-        <div className="relative">
-          <img
-            className="absolute bottom-0 left-0"
-            src={bgShapeSmall}
-            alt="Striped patterned garphic"
-          />
-          <h1 className="text-white font-title text-[64px] text-center">
-            Post Job
-          </h1>
-          <div className="flex justify-center pb-[82px]">
-            <p className="text-white text-center capitalize">
-              Create an account & start posting or hiring talents
-            </p>
-          </div>
-        </div>
+        <Banner
+          title={'Post Job'}
+          subTitle={'Start posting & hiring talents'}
+        />
       </header>
       <div className="bg-[#F0F5F3] py-44">
         <div className="wrapper">
@@ -226,19 +224,40 @@ const PostJobPage = () => {
               </label>
 
               <label className="jobPostLabel flex flex-col">
-                role
+                Job Title*
                 <input
                   required
                   className="border-2 rounded-md h-14 pl-4 mt-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   onChange={handleInputChange}
                   type="text"
-                  name="role"
-                  value={jobDetails.role}
+                  name="jobTitle"
+                  value={jobDetails.jobTitle}
                 />
               </label>
 
+              {/* Job Description */}
+              <label className="jobPostLabel" htmlFor="jobDescription">
+                Job Description*
+              </label>
+
+              <ReactQuill
+                id="jobDescription"
+                type="text"
+                required
+                className="h-72 pb-10 mt-2"
+                name="jobDescription"
+                value={jobDetails.jobDescription}
+                onChange={value =>
+                  setJobDetails(prevState => ({
+                    ...prevState,
+                    jobDescription: value,
+                  }))
+                }
+                modules={reactQuillModules}
+              />
+
               {/* Overview Text Area */}
-              <label htmlFor="overview" className="jobPostLabel">
+              {/* <label htmlFor="overview" className="jobPostLabel">
                 Job Overview*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -250,10 +269,10 @@ const PostJobPage = () => {
                   placeholder="Write an overview about the job..."
                   value={jobDetails.overview}
                 ></textarea>
-              </label>
+              </label> */}
 
               {/* Description Text Area */}
-              <label htmlFor="textarea" className="jobPostLabel">
+              {/* <label htmlFor="textarea" className="jobPostLabel">
                 Job Description*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -265,11 +284,11 @@ const PostJobPage = () => {
                   placeholder="Write some details about the job..."
                   value={jobDetails.textarea}
                 ></textarea>
-              </label>
+              </label> */}
 
               {/* Responsibilities Text Area */}
               {/* TODO Make it so that when user types in a responsibility, it gets saved as an li */}
-              <label htmlFor="responsibilities" className="jobPostLabel">
+              {/* <label htmlFor="responsibilities" className="jobPostLabel">
                 Job Responsibilities*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -281,10 +300,10 @@ const PostJobPage = () => {
                   placeholder="Write some responsibilities for the job..."
                   value={jobDetails.responsibilities}
                 ></textarea>
-              </label>
+              </label> */}
 
               {/* Required Skills  */}
-              <label htmlFor="requiredSkills" className="jobPostLabel">
+              {/* <label htmlFor="requiredSkills" className="jobPostLabel">
                 Required Skills*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -296,10 +315,10 @@ const PostJobPage = () => {
                   placeholder="What skills are right for the job..."
                   value={jobDetails.requiredSkills}
                 ></textarea>
-              </label>
+              </label> */}
 
               {/* Benefits Text Area */}
-              <label htmlFor="benefits" className="jobPostLabel">
+              {/* <label htmlFor="benefits" className="jobPostLabel">
                 Job Benefits*
                 <textarea
                   className="w-full rounded-md p-4 mt-2"
@@ -311,7 +330,7 @@ const PostJobPage = () => {
                   placeholder="Write some benefits for the job..."
                   value={jobDetails.benefits}
                 ></textarea>
-              </label>
+              </label> */}
 
               {/* Pay Category */}
 
@@ -438,27 +457,7 @@ const PostJobPage = () => {
               </div>
               {/* Skills */}
               <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
-              <ReactQuill
-                className="h-60 pb-10"
-                name="quill"
-                value={jobDetails.quill}
-                onChange={value =>
-                  setJobDetails(prevState => ({
-                    ...prevState,
-                    quill: value,
-                  }))
-                }
-                modules={{
-                  toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'code', 'image'],
-                    [{ list: 'ordered' }, { list: 'bullet' }],
-                    [{ indent: '-1' }, { indent: '+1' }],
-                    [{ align: [] }],
-                    ['link'],
-                    [{ header: ['1', '2', '3', '4', '5', '6'] }],
-                  ],
-                }}
-              />
+
               {/* Submit Button */}
               <label>
                 <button className="bg-color-one w-fit" type="submit">

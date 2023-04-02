@@ -41,7 +41,10 @@ function JobListingPage() {
   return (
     <section>
       {/* Banner Component Import */}
-      <Banner />
+      <Banner
+        title={'Job Listings'}
+        subTitle={'Find your dream job, the jobi way!'}
+      />
       {/* Job Listings Container */}
       <div className="bg-white pb-[162px]">
         {/* Job Listings Wrapper Container */}
