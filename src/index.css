@@ -133,3 +133,19 @@ svg {
     hover:bg-color-one/30 hover:border-black border-2 border-transparent;
   }
 }
+
+/* ReactQuill Stylings */
+
+div.ql-container.ql-snow {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.no-border div.ql-container.ql-snow {
+  border: none;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
@@ -6,6 +6,8 @@ import bgShapeSmall from '../assets/bgShapeSmall.png';
 import Dropdown from '../components/ui/Dropdown';
 import Skills from '../components/skills/Skills';
 import JobDetailsPage from './JobDetailsPage';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const ref = collection(db, 'jobs');
 
@@ -37,6 +39,7 @@ const PostJobPage = () => {
     qualifications: '',
     industry: '',
     companyLink: '',
+    quill: '',
   });
 
   // const errors = [{ hours, salary }];
@@ -44,18 +47,6 @@ const PostJobPage = () => {
   // Dropdown Menu Options
   const hoursOptions = ['Full-time', 'Part-time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
-
-  // const addRemoveSkills = skill => {
-  //   jobDetails.skills.includes(skill)
-  //     ? setJobDetails(prevState => ({
-  //         ...prevState,
-  //         skills: prevState.skills.filter(s => s !== skill),
-  //       }))
-  //     : setJobDetails(prevState => ({
-  //         ...prevState,
-  //         skills: prevState.skills.concat(skill),
-  //       }));
-  // };
 
   const handleInputChange = e => {
     e.persist();
@@ -70,7 +61,7 @@ const PostJobPage = () => {
       return;
     }
     try {
-      await addDoc(ref, jobDetails);
+      await addDoc(ref, jobDetails, job);
       console.log('Success! Job added!');
       // Form fields reset
       setJobDetails({
@@ -96,6 +87,7 @@ const PostJobPage = () => {
         qualifications: '',
         industry: '',
         companyLink: '',
+        quill: '',
       });
       setSuccessfulSubmit(true);
     } catch (error) {
@@ -107,6 +99,17 @@ const PostJobPage = () => {
     setSuccessfulSubmit(false);
     setFormError(false);
   };
+
+  const job = { ...jobDetails, quill: jobDetails.textareaPlainText };
+
+  useEffect(() => {
+    const plainText = document.createElement('div');
+    plainText.innerHTML = jobDetails.textarea;
+    setJobDetails(prevState => ({
+      ...prevState,
+      textareaPlainText: plainText.textContent || plainText.innerText || '',
+    }));
+  }, [jobDetails.textarea]);
 
   console.log(jobDetails);
 
@@ -435,6 +438,27 @@ const PostJobPage = () => {
               </div>
               {/* Skills */}
               <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
+              <ReactQuill
+                className="h-60 pb-10"
+                name="quill"
+                value={jobDetails.quill}
+                onChange={value =>
+                  setJobDetails(prevState => ({
+                    ...prevState,
+                    quill: value,
+                  }))
+                }
+                modules={{
+                  toolbar: [
+                    ['bold', 'italic', 'underline', 'strike', 'code', 'image'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    [{ indent: '-1' }, { indent: '+1' }],
+                    [{ align: [] }],
+                    ['link'],
+                    [{ header: ['1', '2', '3', '4', '5', '6'] }],
+                  ],
+                }}
+              />
               {/* Submit Button */}
               <label>
                 <button className="bg-color-one w-fit" type="submit">
