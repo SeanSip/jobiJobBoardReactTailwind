@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { BackwardIcon } from '@heroicons/react/24/solid';
+import ReactQuill from 'react-quill';
 
 const JobDetailsPage = props => {
   const location = useLocation();
@@ -34,6 +35,10 @@ const JobDetailsPage = props => {
     }
   };
 
+  const quillModules = {
+    toolbar: false,
+  };
+
   if (!job) {
     return (
       <div className="bg-white w-full h-screen flex justify-center items-center">
@@ -43,18 +48,18 @@ const JobDetailsPage = props => {
   }
   return (
     <div className="bg-white">
-      <div className="wrapper flex flex-col py-[100px]">
+      <div className="wrapper py-[100px]">
         <Link
-          className="text-xl font-button mb-20 text-color-gray flex items-center gap-x-1 w-fit underline hover:text-blue-600/70"
+          className="text-xl font-button mb-4 sm:mb-20 text-color-gray flex items-center gap-x-1 w-fit underline hover:text-blue-600/70"
           to="/job-listing"
         >
           <BackwardIcon className="w-7" alt="back icon" />
           back
         </Link>
-        <div className="flex justify-evenly gap-x-44">
+        <div className="flex justify-evenly lg:gap-x-44 gap-x-8 flex-col-reverse sm:flex-row">
           <div className="flex flex-col w-fit">
             {/* TODO Make the posted by a timestamp */}
-            <p className="mb-4 text-color-gray">{`Posted by: ${job.company}`}</p>
+            <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
             <h1 className="text-4xl font-body mb-5">{job.role}</h1>
             <ul className="flex gap-x-2 mb-12 ">
               <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
@@ -91,12 +96,19 @@ const JobDetailsPage = props => {
                 <h2 className="text-2xl font-body mb-5">Benefits:</h2>
                 <p>{job.benefits}</p>
               </div>
+              <ReactQuill
+                value={job.quill}
+                readOnly={true}
+                modules={quillModules}
+                className="no-border"
+              />
+
               <button className="w-fit bg-color-button-green text-white rounded-md px-7 hover:bg-blue-600">
                 Apply for this position
               </button>
             </div>
           </div>
-          <aside className="flex flex-col w-full max-w-[340px] min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md sticky top-40">
+          <aside className="flex flex-col w-full sm:max-w-[340px] sm:min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md static sm:sticky top-0 sm:top-40">
             <div className="flex flex-col items-center">
               <img
                 className="w-20 rounded-full mb-4"
