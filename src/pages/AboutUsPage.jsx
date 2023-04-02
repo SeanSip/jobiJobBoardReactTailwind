@@ -4,6 +4,7 @@ import ExpertsSection from './Home/ExpertsSection';
 import HowItWorksSection from './Home/HowItWorksSection';
 import ClientFeedbackSection from './Home/ClientFeedbackSection';
 import videoButton from '../assets/videoButton.png';
+import Banner from '../components/ui/Banner';
 
 function AboutUsPage() {
   // Button and Text Objects in useState for Right Side About Us Content
@@ -43,20 +44,7 @@ function AboutUsPage() {
     <>
       <header>
         {/* Banner Section */}
-        <div className="relative">
-          <img
-            className="absolute bottom-0 left-0"
-            src={bgShapeSmall}
-            alt="Striped patterned garphic"
-          />
-          <h1 className="text-white font-title text-[64px] text-center">
-            About Us
-          </h1>
-          <div className="flex justify-center space-x-6 pb-[82px]">
-            <p className="text-white text-center capitalize">home</p>
-            <p className="text-white text-center capitalize">about</p>
-          </div>
-        </div>
+        <Banner title={'About us'} />
       </header>
       <section className="bg-white pt-[133px]">
         {/* Heading Text Left Container and About Us Right Content Container */}

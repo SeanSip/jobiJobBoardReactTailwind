@@ -19,8 +19,8 @@ const JobCards = ({ job, onClick }) => {
       <p className="text-[#FF5757] bg-[#FA0F0014] w-fit px-[10px] py-1 rounded-[3px] mt-14">
         {job.hours}
       </p>
-      {/* Company Role */}
-      <h2 className="font-body text-2xl mt-4">{job.role}</h2>
+      {/* Company Job Title */}
+      <h2 className="font-body text-2xl mt-4">{job.jobTitle}</h2>
       {/* Company Pay */}
       <div className="flex items-center mt-4">
         <p>{`$${job.min}`}</p>
