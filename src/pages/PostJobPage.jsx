@@ -28,11 +28,6 @@ const PostJobPage = () => {
     max: '',
     jobTitle: '',
     salary: '',
-    // textarea: '',
-    // responsibilities: '',
-    // requiredSkills: '',
-    // benefits: '',
-    // overview: '',
     category: '',
     skills: [],
     experience: '',
@@ -61,7 +56,7 @@ const PostJobPage = () => {
       return;
     }
     try {
-      await addDoc(ref, jobDetails, job);
+      await addDoc(ref, jobDetails);
       console.log('Success! Job added!');
       // Form fields reset
       setJobDetails({
@@ -76,11 +71,6 @@ const PostJobPage = () => {
         jobTitle: '',
         hours: '',
         salary: '',
-        // textarea: '',
-        // responsibilities: '',
-        // requiredSkills: '',
-        // benefits: '',
-        // overview: '',
         category: '',
         skills: [],
         experience: '',
@@ -100,16 +90,14 @@ const PostJobPage = () => {
     setFormError(false);
   };
 
-  const job = { ...jobDetails, jobDescription: jobDetails.textareaPlainText };
-
-  useEffect(() => {
-    const plainText = document.createElement('div');
-    plainText.innerHTML = jobDetails.textarea;
-    setJobDetails(prevState => ({
-      ...prevState,
-      textareaPlainText: plainText.textContent || plainText.innerText || '',
-    }));
-  }, [jobDetails.textarea]);
+  // useEffect(() => {
+  //   const plainText = document.createElement('div');
+  //   plainText.innerHTML = jobDetails.textarea;
+  //   setJobDetails(prevState => ({
+  //     ...prevState,
+  //     textareaPlainText: plainText.textContent || plainText.innerText || '',
+  //   }));
+  // }, [jobDetails.textarea]);
 
   const reactQuillModules = {
     toolbar: [
@@ -182,6 +170,7 @@ const PostJobPage = () => {
           <form
             className="bg-white rounded-2xl py-14 px-16"
             onSubmit={handleSubmit}
+            onReset={handleSubmit}
           >
             <h2 className="text-3xl font-body">Job Details</h2>
             <div className="flex flex-col space-y-10 pt-7">
@@ -255,82 +244,6 @@ const PostJobPage = () => {
                 }
                 modules={reactQuillModules}
               />
-
-              {/* Overview Text Area */}
-              {/* <label htmlFor="overview" className="jobPostLabel">
-                Job Overview*
-                <textarea
-                  className="w-full rounded-md p-4 mt-2"
-                  onChange={handleInputChange}
-                  name="overview"
-                  id="overview"
-                  type="text"
-                  rows={5}
-                  placeholder="Write an overview about the job..."
-                  value={jobDetails.overview}
-                ></textarea>
-              </label> */}
-
-              {/* Description Text Area */}
-              {/* <label htmlFor="textarea" className="jobPostLabel">
-                Job Description*
-                <textarea
-                  className="w-full rounded-md p-4 mt-2"
-                  onChange={handleInputChange}
-                  name="textarea"
-                  id="textarea"
-                  type="text"
-                  rows={12}
-                  placeholder="Write some details about the job..."
-                  value={jobDetails.textarea}
-                ></textarea>
-              </label> */}
-
-              {/* Responsibilities Text Area */}
-              {/* TODO Make it so that when user types in a responsibility, it gets saved as an li */}
-              {/* <label htmlFor="responsibilities" className="jobPostLabel">
-                Job Responsibilities*
-                <textarea
-                  className="w-full rounded-md p-4 mt-2"
-                  onChange={handleInputChange}
-                  name="responsibilities"
-                  id="responsibilities"
-                  type="text"
-                  rows={5}
-                  placeholder="Write some responsibilities for the job..."
-                  value={jobDetails.responsibilities}
-                ></textarea>
-              </label> */}
-
-              {/* Required Skills  */}
-              {/* <label htmlFor="requiredSkills" className="jobPostLabel">
-                Required Skills*
-                <textarea
-                  className="w-full rounded-md p-4 mt-2"
-                  onChange={handleInputChange}
-                  name="requiredSkills"
-                  id="requiredSkills"
-                  type="text"
-                  rows={5}
-                  placeholder="What skills are right for the job..."
-                  value={jobDetails.requiredSkills}
-                ></textarea>
-              </label> */}
-
-              {/* Benefits Text Area */}
-              {/* <label htmlFor="benefits" className="jobPostLabel">
-                Job Benefits*
-                <textarea
-                  className="w-full rounded-md p-4 mt-2"
-                  onChange={handleInputChange}
-                  name="benefits"
-                  id="benefits"
-                  type="text"
-                  rows={5}
-                  placeholder="Write some benefits for the job..."
-                  value={jobDetails.benefits}
-                ></textarea>
-              </label> */}
 
               {/* Pay Category */}
 
@@ -459,11 +372,24 @@ const PostJobPage = () => {
               <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
 
               {/* Submit Button */}
-              <label>
-                <button className="bg-color-one w-fit" type="submit">
-                  Submit
-                </button>
-              </label>
+              <div className="flex gap-x-4">
+                <label className="w-fit">
+                  <button
+                    className="bg-color-one w-fit secondaryButton"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </label>
+                <label className="w-fit">
+                  <button
+                    className="bg-transparent hover:bg-transparent hover:rounded-md"
+                    type="reset"
+                  >
+                    Cancel
+                  </button>
+                </label>
+              </div>
             </div>
           </form>
         </div>
