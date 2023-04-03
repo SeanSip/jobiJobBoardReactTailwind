@@ -76,6 +76,16 @@ svg {
   color: blue;
 }
 
+.secondaryButton {
+  background-color: #31795a;
+  border-radius: 6px;
+  color: white;
+}
+
+.secondaryButton:hover {
+  background-color: #1d4736;
+}
+
 .btn {
   @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-one/30 hover:border-black border-2 border-transparent;
 }
