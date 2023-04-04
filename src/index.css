@@ -156,6 +156,10 @@ div.ql-container.ql-snow {
   border-top-right-radius: 5px;
 }
 
+.text-area div.ql-editor {
+  height: 300px;
+}
+
 .no-border div.ql-container.ql-snow {
   border: none;
 }

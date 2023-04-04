@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
@@ -9,11 +9,12 @@ import Dropdown from '../components/ui/Dropdown';
 import Skills from '../components/skills/Skills';
 import Banner from '../components/ui/Banner';
 
+// IMPORTANT TODO Add scroll to view of error on form submission
+
 const ref = collection(db, 'jobs');
 
 const PostJobPage = () => {
   const randomNumber = Math.trunc(Math.random() * 50 + 1); // For random image generator
-
   const [formError, setFormError] = useState(null);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [cancelSubmit, setCancelSubmit] = useState(false);
@@ -38,8 +39,6 @@ const PostJobPage = () => {
     jobDescription: '',
   });
 
-  // const errors = [{ hours, salary }];
-
   // Dropdown Menu Options
   const hoursOptions = ['Full-time', 'Part-time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
@@ -52,8 +51,33 @@ const PostJobPage = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!jobDetails.hours || !jobDetails.salary) {
-      setFormError('Required, please select an option');
+
+    const required = fieldName => {
+      return !jobDetails[fieldName];
+    };
+
+    // Check if jobDescription field is empty
+    if (!jobDetails.jobDescription.trim()) {
+      setFormError(required);
+      return;
+    }
+    // Check if hours and salary fields are selected
+    const missingRequiredFields = [
+      'jobTitle',
+      'company',
+      'companyLink',
+      'hours',
+      'salary',
+      'min',
+      'max',
+      'address',
+      'country',
+      'city',
+      'state',
+    ].filter(required);
+
+    if (missingRequiredFields.length) {
+      setFormError(required);
       return;
     }
     try {
@@ -128,18 +152,20 @@ const PostJobPage = () => {
     ],
   };
 
+  // jobDetails.length !== 0
+
   // Required error for onSubmit for form to prevent custom dropdown field values being empty
-  const required = fieldName => {
+  const required = (fieldName, selectFor) => {
     return (
-      <div className={formError ? 'relative' : 'hidden'}>
+      <div className={`${!formError ? 'hidden' : 'relative'} `}>
         <h3
           className={`${
             jobDetails[fieldName]
               ? 'hidden'
-              : 'absolute bg-red-500 text-white px-2 rounded-md rounded-t-none w-full -top-[4px]'
+              : 'absolute bg-red-500 text-white px-2 rounded-md rounded-t-none w-full -top-[4px] font-body text-sm'
           }`}
         >
-          {`Please select an option for ${fieldName}`}
+          {`Please fill out field for ${selectFor}`}
         </h3>
       </div>
     );
@@ -193,7 +219,7 @@ const PostJobPage = () => {
       <div className="bg-[#F0F5F3] py-44">
         <div className="wrapper">
           <form
-            className="bg-white rounded-2xl py-14 px-16"
+            className="bg-white rounded-2xl py-14 px-6 md:px-16"
             onSubmit={handleSubmit}
             onReset={handleReset}
           >
@@ -203,7 +229,6 @@ const PostJobPage = () => {
                 <label className="jobPostLabel flex flex-col w-full">
                   Company Name*
                   <input
-                    required
                     className="border-2 rounded-md h-14 pl-4 mt-2"
                     onChange={handleInputChange}
                     type="text"
@@ -211,11 +236,11 @@ const PostJobPage = () => {
                     value={jobDetails.company}
                     placeholder="Ex: Jobi"
                   />
+                  <div>{required('company', 'Company Name')}</div>
                 </label>
                 <label className="jobPostLabel flex flex-col w-full">
                   Company Link*
                   <input
-                    required
                     className="border-2 rounded-md h-14 pl-4 mt-2"
                     onChange={handleInputChange}
                     type="text"
@@ -223,52 +248,56 @@ const PostJobPage = () => {
                     value={jobDetails.companyLink}
                     placeholder="https://"
                   />
+                  <div>{required('companyLink', 'Company Link')}</div>
                 </label>
               </div>
+              {/* IMPORTANT TODO Add upload image feature */}
               <label className="jobPostLabel flex flex-col">
                 Logo*
                 <input
-                  required
                   className="border-2 rounded-md h-14 pl-4 mt-2"
                   onChange={handleInputChange}
                   type="text"
                   name="logo"
                   value={jobDetails.logo}
                 />
+                <div>{required('logo', 'Logo')}</div>
               </label>
 
               <label className="jobPostLabel flex flex-col">
                 Job Title*
                 <input
-                  required
                   className="border-2 rounded-md h-14 pl-4 mt-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   onChange={handleInputChange}
                   type="text"
                   name="jobTitle"
                   value={jobDetails.jobTitle}
                 />
+                <div>{required('jobTitle', 'Job Title')}</div>
               </label>
 
               {/* Job Description */}
-              <label className="jobPostLabel" htmlFor="jobDescription">
-                Job Description*
-              </label>
+              <div>
+                <label className="jobPostLabel" htmlFor="jobDescription">
+                  Job Description*
+                </label>
 
-              <ReactQuill
-                id="jobDescription"
-                type="text"
-                required
-                className="h-72 pb-10 mt-2"
-                name="jobDescription"
-                value={jobDetails.jobDescription}
-                onChange={value =>
-                  setJobDetails(prevState => ({
-                    ...prevState,
-                    jobDescription: value,
-                  }))
-                }
-                modules={reactQuillModules}
-              />
+                <ReactQuill
+                  id="jobDescription"
+                  type="text"
+                  className="text-area mt-2"
+                  name="jobDescription"
+                  value={jobDetails.jobDescription}
+                  onChange={value =>
+                    setJobDetails(prevState => ({
+                      ...prevState,
+                      jobDescription: value,
+                    }))
+                  }
+                  modules={reactQuillModules}
+                />
+                <div>{required('jobDescription', 'job description')}</div>
+              </div>
 
               {/* Pay Category */}
 
@@ -287,7 +316,7 @@ const PostJobPage = () => {
                   name={jobDetails.hours}
                   label="Hours*"
                 />
-                <div>{required('hours')}</div>
+                <div>{required('hours', 'Hours')}</div>
               </div>
               <div className="flex lg:flex-row flex-col gap-x-6 lg:gap-y-0 gap-y-10">
                 {/* Salary Dropdown */}
@@ -305,16 +334,15 @@ const PostJobPage = () => {
                     name={jobDetails.salary}
                     label="Salary*"
                   />
-                  <div>{required('salary')}</div>
+                  <div>{required('salary', 'Salary')}</div>
                 </div>
 
                 {/* Min/Max Container */}
-                <div className="flex justify-evenly gap-x-6">
+                <div className="flex justify-evenly gap-x-6 gap-y-10 md:flex-row flex-col">
                   {/* Min $ input */}
                   <label className="jobPostLabel flex flex-col w-full">
-                    Min
+                    Min*
                     <input
-                      required
                       className="border-2 rounded-md h-14 pl-4 mt-2"
                       onChange={handleInputChange}
                       type="text"
@@ -324,12 +352,12 @@ const PostJobPage = () => {
                       pattern="[0-9]*"
                       title="Please enter a valid number"
                     />
+                    <div>{required('min', 'Min $')}</div>
                   </label>
                   {/* Max $ input */}
                   <label className="jobPostLabel flex flex-col w-full">
-                    Max
+                    Max*
                     <input
-                      required
                       className="border-2 rounded-md h-14 pl-4 mt-2"
                       onChange={handleInputChange}
                       type="text"
@@ -339,6 +367,7 @@ const PostJobPage = () => {
                       pattern="[0-9]*"
                       title="Please enter a valid number"
                     />
+                    <div>{required('max', 'Max $')}</div>
                   </label>
                 </div>
               </div>
@@ -349,58 +378,58 @@ const PostJobPage = () => {
               <label className="jobPostLabel flex flex-col w-full">
                 Address*
                 <input
-                  required
                   className="border-2 rounded-md h-14 pl-4 mt-2"
                   onChange={handleInputChange}
                   type="text"
                   name="address"
                   value={jobDetails.address}
                 />
+                <div>{required('address', 'Address')}</div>
               </label>
               {/* Country, City, State/ Province Container */}
-              <div className="flex gap-x-6">
+              <div className="flex gap-x-6 gap-y-10 md:flex-row flex-col">
                 {/* Country */}
                 <label className="jobPostLabel flex flex-col w-full">
                   Country*
                   <input
-                    required
                     className="border-2 rounded-md h-14 pl-4 mt-2"
                     onChange={handleInputChange}
                     type="text"
                     name="country"
                     value={jobDetails.country}
                   />
+                  <div>{required('country', 'Country')}</div>
                 </label>
                 {/* City */}
                 <label className="jobPostLabel flex flex-col w-full">
                   City*
                   <input
-                    required
                     className="border-2 rounded-md h-14 pl-4 mt-2"
                     onChange={handleInputChange}
                     type="text"
                     name="city"
                     value={jobDetails.city}
                   />
+                  <div>{required('city', 'City')}</div>
                 </label>
                 {/* Province/State */}
                 <label className="jobPostLabel flex flex-col w-full">
-                  State/ Province
+                  State/ Province*
                   <input
-                    required
                     className="border-2 rounded-md h-14 pl-4 mt-2"
                     onChange={handleInputChange}
                     type="text"
                     name="state"
                     value={jobDetails.state}
                   />
+                  <div>{required('state', 'Sate/Province')}</div>
                 </label>
               </div>
               {/* Skills */}
               <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
 
               {/* Submit Button */}
-              <div className="flex gap-x-4">
+              <div className="flex gap-x-4 flex-wrap gap-y-10">
                 <label className="w-fit">
                   <button
                     className="bg-color-one w-fit secondaryButton"
@@ -417,6 +446,15 @@ const PostJobPage = () => {
                     Cancel
                   </button>
                 </label>
+                <div
+                  className={`${
+                    formError
+                      ? 'self-center relative bg-red-500 text-white font-body px-2 py-[1px] rounded-md'
+                      : 'hidden'
+                  }`}
+                >
+                  Please fill in missing fields & press submit again
+                </div>
               </div>
             </div>
           </form>
