@@ -16,6 +16,7 @@ const PostJobPage = () => {
 
   const [formError, setFormError] = useState(null);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
+  const [cancelSubmit, setCancelSubmit] = useState(false);
   const [jobDetails, setJobDetails] = useState({
     company: '',
     hours: '',
@@ -85,19 +86,36 @@ const PostJobPage = () => {
     }
   };
 
-  const handlePostAnotherJob = () => {
-    setSuccessfulSubmit(false);
-    setFormError(false);
+  const handleReset = () => {
+    setJobDetails({
+      company: '',
+      country: '',
+      city: '',
+      state: '',
+      address: '',
+      logo: `https://picsum.photos/50?random=${randomNumber}`,
+      min: '',
+      max: '',
+      jobTitle: '',
+      hours: '',
+      salary: '',
+      category: '',
+      skills: [],
+      experience: '',
+      qualifications: '',
+      industry: '',
+      companyLink: '',
+      jobDescription: '',
+    });
+    setCancelSubmit(true);
+    setFormError(null);
   };
 
-  // useEffect(() => {
-  //   const plainText = document.createElement('div');
-  //   plainText.innerHTML = jobDetails.textarea;
-  //   setJobDetails(prevState => ({
-  //     ...prevState,
-  //     textareaPlainText: plainText.textContent || plainText.innerText || '',
-  //   }));
-  // }, [jobDetails.textarea]);
+  const handlePostAnotherJob = () => {
+    setSuccessfulSubmit(false);
+    setCancelSubmit(false);
+    setFormError(false);
+  };
 
   const reactQuillModules = {
     toolbar: [
@@ -127,12 +145,19 @@ const PostJobPage = () => {
     );
   };
 
-  if (successfulSubmit) {
+  if (successfulSubmit || cancelSubmit) {
     return (
       <div className="bg-[#F0F5F3] pb-[190px] pt-[305px]">
         <div className=" wrapper">
           <div className="bg-white rounded-lg py-40 px-16 text-center">
-            <h2 className="text-3xl font-body">Success!</h2>
+            <h2 className="text-3xl font-body">{`${
+              successfulSubmit
+                ? 'Success!'
+                : cancelSubmit
+                ? 'Job posting cancelled'
+                : ''
+            }`}</h2>
+
             <div className="flex justify-center gap-x-5 mt-4 ">
               <Link to="/">
                 <p className="text-color-gray hover:text-blue-500 underline capitalize">
@@ -170,7 +195,7 @@ const PostJobPage = () => {
           <form
             className="bg-white rounded-2xl py-14 px-16"
             onSubmit={handleSubmit}
-            onReset={handleSubmit}
+            onReset={handleReset}
           >
             <h2 className="text-3xl font-body">Job Details</h2>
             <div className="flex flex-col space-y-10 pt-7">
@@ -252,7 +277,10 @@ const PostJobPage = () => {
                 <Dropdown
                   value={jobDetails.hours}
                   onChange={value =>
-                    setJobDetails(prevState => ({ ...prevState, hours: value }))
+                    setJobDetails(prevState => ({
+                      ...prevState,
+                      hours: value,
+                    }))
                   }
                   options={hoursOptions}
                   selectedOption={jobDetails.hours}
