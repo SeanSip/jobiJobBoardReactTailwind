@@ -84,26 +84,7 @@ const JobDetailsPage = props => {
                 </li>
               </ul>
               <div className="flex flex-col gap-y-14">
-                {/* <div>
-                  <h2 className="text-2xl font-body mb-5">Overview</h2>
-                  <p>{job.overview}</p>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-body mb-5">Job Description</h2>
-                  <p>{job.textarea}</p>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-body mb-5">Responsibilities</h2>
-                  <p>{job.responsibilities}</p>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-body mb-5">Required Skills:</h2>
-                  <p>{job.requiredSkills}</p>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-body mb-5">Benefits:</h2>
-                  <p>{job.benefits}</p>
-                </div> */}
+                {/* Job Description */}
                 <ReactQuill
                   value={job.jobDescription}
                   readOnly={true}
