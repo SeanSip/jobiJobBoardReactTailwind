@@ -10,12 +10,14 @@ const Footer = () => {
       <div className=" text-black mx-auto wrapper">
         <div className="wrapper flex pt-[100px] pb-[70px] justify-between flex-col lg:flex-row border-b-[1px]">
           <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
-            <h1 className="text-5xl font-title ">Most complete job portal.</h1>
+            <h1 className="text-4xl sm:text-5xl font-title ">
+              Most complete job portal.
+            </h1>
             <p className="text-[#979797] font-body">
               Sign up and start finding your job or talents
             </p>
           </div>
-          <div className="space-x-5 self-center lg:mt-0 mt-10">
+          <div className="self-center gap-x-5 gap-y-5 lg:mt-0 mt-10 flex flex-wrap justify-center">
             <button className="rounded-md bg-transparent border-[1.5px] border-[#244034]">
               Looking for job?
             </button>
