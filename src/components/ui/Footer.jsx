@@ -8,7 +8,20 @@ const Footer = () => {
   return (
     <footer className=" bg-white">
       <div className=" text-black mx-auto wrapper">
-        <div className="border-b-[1px] pt-4"></div>
+        <div className="wrapper flex pt-[100px] pb-[70px] justify-between flex-col lg:flex-row border-b-[1px]">
+          <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
+            <h1 className="text-5xl font-title ">Most complete job portal.</h1>
+            <p className="text-[#979797] font-body">
+              Sign up and start finding your job or talents
+            </p>
+          </div>
+          <div className="space-x-5 self-center lg:mt-0 mt-10">
+            <button className="rounded-md bg-transparent border-[1.5px] border-[#244034]">
+              Looking for job?
+            </button>
+            <button className="rounded-md">Post a job</button>
+          </div>
+        </div>
         {/* Main Footer Grid */}
         <div className="md:grid flex sm:flex-row flex-col flex-wrap justify-between grid-cols-4 md:grid-cols-4 xl:grid-cols-11 sm:gap-4 gap-8 py-8 ">
           {/* Logo */}
