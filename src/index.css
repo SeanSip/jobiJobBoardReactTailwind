@@ -102,6 +102,10 @@ svg {
   @apply font-body text-sm text-black;
 }
 
+.navbarLi {
+  @apply pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3;
+}
+
 @layer base {
   h1 {
     @apply font-title;
