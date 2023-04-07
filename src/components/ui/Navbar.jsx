@@ -13,6 +13,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileNavSubMenu, setMobileNavSubMenu] = useState(false);
   const [mobileNav, setOpenMobileNav] = useState(false);
+  const [closeTimer, setCloseTimer] = useState(null);
 
   // Handle click function call back hook for toggling the mobile nav
   const handleClick = useCallback(() => {
@@ -22,6 +23,23 @@ const Navbar = () => {
   }, []);
 
   const handleMobileSubMenu = () => setMobileNavSubMenu(!mobileNavSubMenu);
+
+  function handlePagesBlur() {
+    // Sets a delay before closing the submenu
+    setCloseTimer(
+      setTimeout(() => {
+        setIsOpen(false);
+        setMobileNavSubMenu(false);
+      }, 100)
+    );
+  }
+
+  function handlePagesFocus() {
+    // Cancels the close timer if it's running
+    clearTimeout(closeTimer);
+    setIsOpen(true);
+    setMobileNavSubMenu(true);
+  }
 
   useEffect(() => {
     if (stopScroll) {
@@ -46,19 +64,31 @@ const Navbar = () => {
   }, [stopScroll]);
 
   useEffect(() => {
-    const pages = document.querySelectorAll('nav ul li:not(.pages)');
+    const pages = document.querySelectorAll('nav ul a:not(.pages)');
+    const subPages = document.querySelectorAll('nav ul li ul:not(.pages) ');
 
     const handleClick = () => setOpenMobileNav(false);
+    const handleKeyPress = () => setOpenMobileNav(false);
 
     if (mobileNav) {
       pages.forEach(li => {
         li.addEventListener('click', handleClick);
+        li.addEventListener('keypress', handleKeyPress);
+      });
+      subPages.forEach(li => {
+        li.addEventListener('click', handleClick);
+        li.addEventListener('keypress', handleKeyPress);
       });
     }
 
     return () => {
       pages.forEach(li => {
         li.removeEventListener('click', handleClick);
+        li.removeEventListener('keypress', handleKeyPress);
+      });
+      subPages.forEach(li => {
+        li.removeEventListener('click', handleClick);
+        li.removeEventListener('keypress', handleKeyPress);
       });
 
       if (mobileNav) {
@@ -81,7 +111,7 @@ const Navbar = () => {
         }
       >
         <div className="flex items-center ">
-          <Link className="flex" to="/">
+          <Link className="flex" to="/" onClick={handlePagesBlur}>
             <img
               className="w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
               src={logo}
@@ -89,7 +119,7 @@ const Navbar = () => {
             />
             <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
           </Link>
-          <ul className="hidden capitalize items-center text-white laptop:flex ">
+          <ul className="hidden items-center text-white laptop:flex ">
             <li>
               <button className="bg-white/10 flex text-color-one capitalize ml-4 mr-6 xl:ml-10 xl:mr-16 py-1 xl:py-2 ">
                 <img
@@ -100,29 +130,52 @@ const Navbar = () => {
                 category
               </button>
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              <Link to="/">home</Link>
+            <li className="navbarLi">
+              <Link to="/" onClick={handlePagesBlur}>
+                Home
+              </Link>
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              <Link to="/job-listing">jobs</Link>
+            <li className="navbarLi">
+              <Link to="/job-listing" onClick={handlePagesBlur}>
+                Jobs
+              </Link>
             </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              explore
-            </li>
-            <li className="pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3">
-              contact
-            </li>
+            <li className="navbarLi">Explore</li>
+            <li className="navbarLi">Contact</li>
             <li
               className={
                 !isOpen
-                  ? 'pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3 pages'
-                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 cursor-pointer p-3 pages'
+                  ? 'navbarLi pages'
+                  : 'text-color-one border-b-2 pb-2 border-b-transparent transition-all ease-linear duration-100 p-3 pages'
               }
               onMouseEnter={() => setIsOpen(prev => !prev)}
               onMouseLeave={() => setIsOpen(prev => !prev)}
+              tabIndex={0}
+              onFocus={() => setIsOpen(true)}
             >
-              pages
-              <SubMenu isOpen={isOpen} />
+              Pages
+              {isOpen && (
+                <ul
+                  onBlur={handlePagesBlur}
+                  onFocus={handlePagesFocus}
+                  className="absolute font-body space-y-3 w-48 mt-6 bg-white text-black py-6 -ml-5 pl-8 pr-16 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
+                >
+                  <li className="hover:underline">
+                    <Link onClick={handlePagesBlur} to="/about-us">
+                      About us
+                    </Link>
+                  </li>
+                  <li className="hover:underline cursor-pointer">Pricing</li>
+                  <li className="hover:underline ">
+                    <Link onClick={handlePagesBlur} to="/404">
+                      Error 404
+                    </Link>
+                  </li>
+                  <li className="hover:underline cursor-pointer">Blog</li>
+                  <li className="hover:underline cursor-pointer">Contact us</li>
+                  <div className="absolute left-8 top-[-18px] w-4 h-4 border-t-2 border-r-2 border-b-0 border-l-2 border-white transform rotate-45 bg-white"></div>
+                </ul>
+              )}
             </li>
           </ul>
         </div>
@@ -131,18 +184,19 @@ const Navbar = () => {
           src={shape}
           alt="A graphic design of a squiqgly line shape "
         />
-        <div className="hidden laptop:flex pr-4">
+        <div className="hidden laptop:flex pr-4 capitalize text-white">
           <ul className="flex mr-4">
-            <li className="text-white after:content-['|'] after:ml-4 after:font-thin after:text-sm p-3">
+            <li className=" navbarLi">
               <Link to="/post-job">post job</Link>
             </li>
-            <li className="text-color-one p-3">login</li>
+            <div className="text-white/50 after:content-['|'] after:m-3 after:font-thin after:text-lg self-center"></div>
+            <li className=" navbarLi">login</li>
           </ul>
           <button>Hire Top Talents</button>
         </div>
 
-        <div
-          className="laptop:hidden cursor-pointer z-50"
+        <button
+          className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none"
           onClick={handleClick}
         >
           {!mobileNav ? (
@@ -150,7 +204,7 @@ const Navbar = () => {
           ) : (
             <XMarkIcon className="w-8 h-8 text-color-one" />
           )}
-        </div>
+        </button>
       </div>
       {/* <div className=""> IMPORTANT  remove later*/}
       <ul
@@ -215,7 +269,14 @@ const Navbar = () => {
                 ? 'hover:text-color-one hover:cursor-pointer border-b-2 border-white/20 hover:border-b-2 hover:border-color-one w-full pages'
                 : 'text-color-one cursor-pointer w-full pages'
             }
-            onClick={handleMobileSubMenu}
+            tabIndex={0}
+            onKeyDown={event => {
+              if (event.key === ' ' || event.key === 'Enter') {
+                handleMobileSubMenu();
+              }
+            }}
+            onBlur={handlePagesBlur}
+            onFocus={handlePagesFocus}
           >
             pages
             <div
@@ -236,8 +297,8 @@ const Navbar = () => {
                 <li
                   className={
                     mobileNavSubMenu
-                      ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
-                      : 'text-white'
+                      ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
+                      : 'text-white pages'
                   }
                 >
                   about us
@@ -247,26 +308,28 @@ const Navbar = () => {
               <li
                 className={
                   mobileNavSubMenu
-                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
-                    : 'text-white'
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
+                    : 'text-white pages'
                 }
               >
                 pricing
               </li>
+              <Link to="/404">
+                <li
+                  className={
+                    mobileNavSubMenu
+                      ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
+                      : 'text-white pages'
+                  }
+                >
+                  error 404
+                </li>
+              </Link>
               <li
                 className={
                   mobileNavSubMenu
-                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
-                    : 'text-white'
-                }
-              >
-                error 404
-              </li>
-              <li
-                className={
-                  mobileNavSubMenu
-                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4'
-                    : 'text-white'
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
+                    : 'text-white pages'
                 }
               >
                 blog
@@ -274,8 +337,8 @@ const Navbar = () => {
               <li
                 className={
                   mobileNavSubMenu
-                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one w-full cursor-pointer py-1 px-4 rounded-b-lg'
-                    : 'text-white'
+                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one w-full cursor-pointer py-1 px-4 rounded-b-lg pages'
+                    : 'text-white pages'
                 }
               >
                 contact us
