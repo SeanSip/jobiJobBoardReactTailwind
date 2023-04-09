@@ -12,9 +12,13 @@ module.exports = {
         'color-jobCardBg': '#F8FDE4',
         'color-button-green': '#31795A',
         'color-bg-gray': '#F6F6F6',
+        'color-hover': '#98BD00',
+        'color-light-text': '#333333',
+        'color-lightest-text': '#464646',
       },
       screens: {
         phone: '400px',
+        experImg: '510px',
         tablet: '640px',
         laptop: '1125px',
         desktop: '1300px',

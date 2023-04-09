@@ -51,14 +51,14 @@ const Hero = () => {
 
             <div className="hidden laptop:block absolute -right-0">
               <img
-                className="relative z-10 w-[606px] h-[785px]"
+                className="relative z-10 w-[606px] h-[785px] bg-cover"
                 src={heroImage}
-                alt=""
+                alt="Person sitting down on floor working on their laptop"
               />
               <img
                 className="absolute w-[596px] h-[731px] -top-8 right-12 -z-20"
                 src={bgShapeLarge}
-                alt=""
+                alt="Striped patterned garphic"
               />
             </div>
           </div>

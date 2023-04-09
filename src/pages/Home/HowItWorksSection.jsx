@@ -3,11 +3,19 @@ import howItWorksTextGraphic from '../../assets/howItWorksTextGraphic.png';
 import howItWorksIcon1 from '../../assets/howItWorksIcon1.png';
 import howItWorksIcon2 from '../../assets/howItWorksIcon2.png';
 import howItWorksIcon3 from '../../assets/howItWorksIcon3.png';
+import shape from '../../assets/shape.png';
 import arrowGraphic from '../../assets/arrowGraphic.png';
+import bgShapeSmall from '../../assets/bgShapeSmall.png';
 
 function HowItWorksSection() {
   return (
-    <section className="pt-[110px] pb-[129px]">
+    <section className="pt-[110px] pb-[129px] relative">
+      {/* Top left background graphic */}
+      <img
+        className="absolute top-0 w-20 h-12"
+        src={bgShapeSmall}
+        alt="Striped patterned garphic"
+      />
       <div className="flex flex-col items-center wrapper">
         <div className="flex w-fit relative mb-24">
           <h2 className="text-white">How it works?</h2>
@@ -71,6 +79,12 @@ function HowItWorksSection() {
           </div>
         </div>
       </div>
+      {/* Bottom right background graphic */}
+      <img
+        className="absolute bottom-4 right-4 w-16 h-16 xl:w-fit xl:h-fit"
+        src={shape}
+        alt="A graphic design of a squiqgly line shape"
+      />
     </section>
   );
 }
