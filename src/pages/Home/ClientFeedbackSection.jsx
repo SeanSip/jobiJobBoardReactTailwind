@@ -17,10 +17,9 @@ function ClientFeedbackSection() {
     <section className="bg-white pb-[180px]">
       <div className="wrapper border-b-2">
         <div className="flex items-center justify-between flex-col xl:flex-row xl:space-y-0 space-y-20">
-          <div className="w-fit relative">
-            <h2 className="flex flex-col">
-              Trusted by leading
-              <span>startups.</span>
+          <div className="w-fit xl:w-[34rem] relative">
+            <h2 className="flex flex-col text-center xl:text-left">
+              Trusted by leading startups.
             </h2>
           </div>
           <div className="flex relative w-52 items-center">
@@ -81,13 +80,37 @@ function ClientFeedbackSection() {
           </div>
         </div>
         {/* Logo Container */}
-        <div className="grid grid-cols-6 gap-x-10 mb-[104px]">
-          <img className="h-fit self-center" src={googleLogo} alt="" />
-          <img className="h-fit self-center" src={shipBobLogo} alt="" />
-          <img className="h-fit self-center" src={dribbleLogo} alt="" />
-          <img className="h-fit self-center" src={slackLogo} alt="" />
-          <img className="h-fit self-center" src={vineLogo} alt="" />
-          <img className="h-fit self-center" src={airBnbLogo} alt="" />
+        <div className="grid md:grid-cols-6 gap-x-10 mb-[104px] phone:grid-cols-3 grid-cols-2 mx-auto gap-y-10">
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={googleLogo}
+            alt=""
+          />
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={shipBobLogo}
+            alt=""
+          />
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={dribbleLogo}
+            alt=""
+          />
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={slackLogo}
+            alt=""
+          />
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={vineLogo}
+            alt=""
+          />
+          <img
+            className="h-fit self-center w-fit mx-auto"
+            src={airBnbLogo}
+            alt=""
+          />
         </div>
       </div>
     </section>

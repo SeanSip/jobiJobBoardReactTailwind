@@ -4,6 +4,7 @@ import circleLarge from '../../assets/circleLarge.png';
 import imageShapeLeft from '../../assets/imageShapeLeft.png';
 import imageShapeRight from '../../assets/imageShapeRight.png';
 import cvButtonShape from '../../assets/cvButtonShape.png';
+import cvPerson from '../../assets/cvPerson.webp';
 
 function CvSection() {
   return (
@@ -26,7 +27,8 @@ function CvSection() {
         <div className="flex h-full">
           {/* Left Image Container */}
           <div className="laptop:w-full">
-            <div className="w-[449px] h-[457px] bg-[#D9D9D980] relative top-[83px] left-[50px] xl:left-[100px] laptop:block hidden">
+            <div className="w-[449px] h-[457px] relative top-[3.05rem] left-[50px] xl:left-[100px] laptop:block hidden">
+              <img src={cvPerson} alt="" />
               <img
                 className="absolute left-4 top-20"
                 src={imageShapeLeft}
