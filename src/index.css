@@ -8,16 +8,16 @@ body {
   padding-top: 100px;
 }
 
+section {
+  overflow: hidden;
+}
+
 svg {
   user-select: none;
 }
 
 .mobileNavOpen {
   overflow: hidden;
-  /* background-color: red; */
-  /* position: fixed; */
-  /* position: absolute;
-  inset: 0; */
 }
 
 .selected {
@@ -107,6 +107,15 @@ svg {
 
   p {
     @apply font-body font-normal text-base text-color-body;
+  }
+
+  footer ul a {
+    @apply focus:outline-color-background focus:px-2 focus:py-1 w-fit focus:shadow-lg focus:text-color-light-text hover:text-color-light-text relative;
+  }
+
+  footer ul a:hover::after {
+    @apply content-[''];
+    @apply bg-black w-full h-[2px] absolute -bottom-2 left-0 rounded-full;
   }
 
   label {
