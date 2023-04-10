@@ -8,16 +8,16 @@ body {
   padding-top: 100px;
 }
 
+section {
+  overflow: hidden;
+}
+
 svg {
   user-select: none;
 }
 
 .mobileNavOpen {
   overflow: hidden;
-  /* background-color: red; */
-  /* position: fixed; */
-  /* position: absolute;
-  inset: 0; */
 }
 
 .selected {
@@ -69,7 +69,7 @@ svg {
 }
 
 .secondaryButton:hover {
-  background-color: #1d4736;
+  background-color: #96ca5b;
 }
 
 .btn {
@@ -109,6 +109,15 @@ svg {
     @apply font-body font-normal text-base text-color-body;
   }
 
+  footer ul a {
+    @apply focus:outline-color-background focus:px-2 focus:py-1 w-fit focus:shadow-lg focus:text-color-light-text hover:text-color-light-text relative;
+  }
+
+  footer ul a:hover::after {
+    @apply content-[''];
+    @apply bg-black w-full h-[2px] absolute -bottom-2 left-0 rounded-full;
+  }
+
   label {
     @apply font-body text-sm text-color-gray;
   }
@@ -126,11 +135,14 @@ svg {
     .textShadow {
       text-shadow: #244034 1px 1px 5px;
     }
+
+    .removeTextShadow {
+      text-shadow: #24403400 0px 0px 0px;
+    }
   }
 
   button {
-    @apply px-4 py-2 rounded-full font-medium text-black bg-color-one 
-    hover:bg-color-one/30 hover:border-black border-2 border-transparent;
+    @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-secondary hover:text-white focus:bg-color-secondary focus:text-white hover:textShadow;
   }
 }
 

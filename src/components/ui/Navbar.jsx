@@ -130,16 +130,12 @@ const Navbar = () => {
                 category
               </button>
             </li>
-            <li className="navbarLi">
-              <Link to="/" onClick={handlePagesBlur}>
-                Home
-              </Link>
-            </li>
-            <li className="navbarLi">
-              <Link to="/job-listing" onClick={handlePagesBlur}>
-                Jobs
-              </Link>
-            </li>
+            <Link to="/" onClick={handlePagesBlur}>
+              <li className="navbarLi">Home</li>
+            </Link>
+            <Link to="/job-listing" onClick={handlePagesBlur}>
+              <li className="navbarLi">Jobs</li>
+            </Link>
             <li className="navbarLi">Explore</li>
             <li className="navbarLi">Contact</li>
             <li
@@ -158,7 +154,7 @@ const Navbar = () => {
                 <ul
                   onBlur={handlePagesBlur}
                   onFocus={handlePagesFocus}
-                  className="absolute font-body space-y-3 w-48 mt-6 bg-white text-black py-6 -ml-5 pl-8 pr-16 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
+                  className="absolute font-body space-y-3 w-48 mt-6 bg-white shadow-lg text-black py-6 -ml-5 pl-8 pr-16 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
                 >
                   <li className="hover:underline">
                     <Link onClick={handlePagesBlur} to="/about-us">
@@ -186,9 +182,9 @@ const Navbar = () => {
         />
         <div className="hidden laptop:flex pr-4 capitalize text-white">
           <ul className="flex mr-4">
-            <li className=" navbarLi">
-              <Link to="/post-job">post job</Link>
-            </li>
+            <Link to="/post-job">
+              <li className=" navbarLi">post job</li>
+            </Link>
             <div className="text-white/50 after:content-['|'] after:m-3 after:font-thin after:text-lg self-center"></div>
             <li className=" navbarLi">login</li>
           </ul>
@@ -196,7 +192,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none"
+          className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none focus:bg-transparent"
           onClick={handleClick}
         >
           {!mobileNav ? (

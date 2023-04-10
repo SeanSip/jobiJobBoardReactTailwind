@@ -4,7 +4,7 @@ const JobCards = ({ job, onClick }) => {
   return (
     <div
       onClick={() => onClick(job)}
-      className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer"
+      className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg"
     >
       {/* Company Logo & Company Name */}
       <div>

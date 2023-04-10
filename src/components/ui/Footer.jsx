@@ -5,6 +5,10 @@ import footerBgShape from '../../assets/footerBgShape.png';
 import { FaPinterestP, FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 const Footer = () => {
+  function handleScrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <footer className=" bg-white">
       <div className=" text-black mx-auto wrapper">
@@ -47,23 +51,25 @@ const Footer = () => {
           <div className="col-span-1 xl:col-span-2">
             <h4 className="text-lg font-body mb-4 ">Products</h4>
             <ul className="flex flex-col leading-10 font-body text-base text-black/50">
-              <li className="">
-                <Link>Take the tour</Link>
+              <li className=" ">
+                <Link to="" onClick={handleScrollToTop}>
+                  Take the tour
+                </Link>
               </li>
               <li>
-                <Link>Live chat</Link>
+                <Link onClick={handleScrollToTop}>Live chat</Link>
               </li>
               <li>
-                <Link>Self-service</Link>
+                <Link onClick={handleScrollToTop}>Self-service</Link>
               </li>
               <li>
-                <Link>Mobile</Link>
+                <Link onClick={handleScrollToTop}>Mobile</Link>
               </li>
               <li>
-                <Link>Collaberation</Link>
+                <Link onClick={handleScrollToTop}>Collaberation</Link>
               </li>
               <li>
-                <Link>Reviews</Link>
+                <Link onClick={handleScrollToTop}>Reviews</Link>
               </li>
             </ul>
           </div>
@@ -75,7 +81,7 @@ const Footer = () => {
                 <Link>Pricing</Link>
               </li>
               <li>
-                <Link>About us</Link>
+                <Link to="/about-us">About us</Link>
               </li>
               <li>
                 <Link>Careers</Link>
@@ -90,33 +96,37 @@ const Footer = () => {
             <h4 className="text-lg font-body mb-4">Legal</h4>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
-                <Link>Terms of use</Link>
+                <Link onClick={handleScrollToTop}>Terms of use</Link>
               </li>
               <li>
-                <Link>Terms & conditions</Link>
+                <Link onClick={handleScrollToTop}>Terms & conditions</Link>
               </li>
               <li>
-                <Link>Privacy</Link>
+                <Link onClick={handleScrollToTop}>Privacy</Link>
               </li>
               <li>
-                <Link>Cookie policy</Link>
+                <Link onClick={handleScrollToTop}>Cookie policy</Link>
               </li>
             </ul>
           </div>
+
           {/* Newsletter */}
           <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full">
             <h4 className="text-lg font-body mb-4">Newsletter</h4>
             <p>Join & get important news regularly</p>
             <div className="flex mt-6 mb-2 relative">
               <input
-                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px] mr-24"
+                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px]"
                 type="text"
                 placeholder="Enter your email"
               />
-              <button className="rounded-md bg-black text-white hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 absolute right-3 top-0 bottom-0 my-2 px-5">
-                Send
-                <div className="bg-black/10 h-[60px] w-[95px] inset-0 -top-[10px] -left-[3.8px] absolute rounded-r-md"></div>
-              </button>
+              <div className="bg-black/10 px-[50px] relative rounded-r-md">
+                <button className="focus:outline-none focus:bg-indigo-600 absolute right-3 bottom-[17.5px] my-0 py-0 px-0 bg-gray-200 rounded-none border-none h-fit">
+                  <span className="bg-black rounded-md py-3 px-4 text-white hover:bg-color-secondary">
+                    Send
+                  </span>
+                </button>
+              </div>
             </div>
             <p className="text-[#979797] text-sm">
               We only send intersting and relevant emails.
@@ -136,14 +146,21 @@ const Footer = () => {
           <div className="flex ">
             <Link
               // IMPORTANT Change text color of hover text later to a custom color
-              className="text-gray-500 hover:text-green-500 mr-4 text-lg"
+              to="https://seansipus.com"
+              className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
               <FaFacebookF />
             </Link>
-            <Link className="text-gray-500 hover:text-green-500 mr-4 text-lg">
+            <Link
+              to="https://seansipus.com"
+              className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
+            >
               <FaInstagram />
             </Link>
-            <Link className="text-gray-500 hover:text-green-500 text-lg">
+            <Link
+              to="https://seansipus.com"
+              className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
+            >
               <FaPinterestP />
             </Link>
           </div>
