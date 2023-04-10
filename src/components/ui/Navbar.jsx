@@ -130,16 +130,12 @@ const Navbar = () => {
                 category
               </button>
             </li>
-            <li className="navbarLi">
-              <Link to="/" onClick={handlePagesBlur}>
-                Home
-              </Link>
-            </li>
-            <li className="navbarLi">
-              <Link to="/job-listing" onClick={handlePagesBlur}>
-                Jobs
-              </Link>
-            </li>
+            <Link to="/" onClick={handlePagesBlur}>
+              <li className="navbarLi">Home</li>
+            </Link>
+            <Link to="/job-listing" onClick={handlePagesBlur}>
+              <li className="navbarLi">Jobs</li>
+            </Link>
             <li className="navbarLi">Explore</li>
             <li className="navbarLi">Contact</li>
             <li
@@ -186,9 +182,9 @@ const Navbar = () => {
         />
         <div className="hidden laptop:flex pr-4 capitalize text-white">
           <ul className="flex mr-4">
-            <li className=" navbarLi">
-              <Link to="/post-job">post job</Link>
-            </li>
+            <Link to="/post-job">
+              <li className=" navbarLi">post job</li>
+            </Link>
             <div className="text-white/50 after:content-['|'] after:m-3 after:font-thin after:text-lg self-center"></div>
             <li className=" navbarLi">login</li>
           </ul>
