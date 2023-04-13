@@ -59,29 +59,20 @@ const Footer = () => {
                 <Link to="" onClick={handleScrollToTop}>
                   Take the tour
                 </Link>
-              <li className=" ">
-                <Link to="" onClick={handleScrollToTop}>
-                  Take the tour
-                </Link>
               </li>
               <li>
-                <Link onClick={handleScrollToTop}>Live chat</Link>
                 <Link onClick={handleScrollToTop}>Live chat</Link>
               </li>
               <li>
                 <Link onClick={handleScrollToTop}>Self-service</Link>
-                <Link onClick={handleScrollToTop}>Self-service</Link>
               </li>
               <li>
-                <Link onClick={handleScrollToTop}>Mobile</Link>
                 <Link onClick={handleScrollToTop}>Mobile</Link>
               </li>
               <li>
                 <Link onClick={handleScrollToTop}>Collaberation</Link>
-                <Link onClick={handleScrollToTop}>Collaberation</Link>
               </li>
               <li>
-                <Link onClick={handleScrollToTop}>Reviews</Link>
                 <Link onClick={handleScrollToTop}>Reviews</Link>
               </li>
             </ul>
@@ -94,7 +85,6 @@ const Footer = () => {
                 <Link>Pricing</Link>
               </li>
               <li>
-                <Link to="/about-us">About us</Link>
                 <Link to="/about-us">About us</Link>
               </li>
               <li>
@@ -111,23 +101,18 @@ const Footer = () => {
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
                 <Link onClick={handleScrollToTop}>Terms of use</Link>
-                <Link onClick={handleScrollToTop}>Terms of use</Link>
               </li>
               <li>
-                <Link onClick={handleScrollToTop}>Terms & conditions</Link>
                 <Link onClick={handleScrollToTop}>Terms & conditions</Link>
               </li>
               <li>
                 <Link onClick={handleScrollToTop}>Privacy</Link>
-                <Link onClick={handleScrollToTop}>Privacy</Link>
               </li>
               <li>
-                <Link onClick={handleScrollToTop}>Cookie policy</Link>
                 <Link onClick={handleScrollToTop}>Cookie policy</Link>
               </li>
             </ul>
           </div>
-
 
           {/* Newsletter */}
           <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full">
@@ -135,7 +120,6 @@ const Footer = () => {
             <p>Join & get important news regularly</p>
             <div className="flex mt-6 mb-2 relative">
               <input
-                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px]"
                 className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px]"
                 type="text"
                 placeholder="Enter your email"
@@ -168,25 +152,17 @@ const Footer = () => {
               // IMPORTANT Change text color of hover text later to a custom color
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
-              to="https://seansipus.com"
-              className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
               <FaFacebookF />
             </Link>
-            <Link
-              to="https://seansipus.com"
-              className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
-            >
+
             <Link
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
               <FaInstagram />
             </Link>
-            <Link
-              to="https://seansipus.com"
-              className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
-            >
+
             <Link
               to="https://seansipus.com"
               className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
