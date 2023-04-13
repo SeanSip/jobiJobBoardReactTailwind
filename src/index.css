@@ -69,7 +69,7 @@ svg {
 }
 
 .secondaryButton:hover {
-  background-color: #1d4736;
+  background-color: #96ca5b;
 }
 
 .btn {
@@ -135,11 +135,14 @@ svg {
     .textShadow {
       text-shadow: #244034 1px 1px 5px;
     }
+
+    .removeTextShadow {
+      text-shadow: #24403400 0px 0px 0px;
+    }
   }
 
   button {
-    @apply px-4 py-2 rounded-full font-medium text-black bg-color-one 
-    hover:bg-color-one/30 hover:border-black border-2 border-transparent;
+    @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-secondary hover:text-white focus:bg-color-secondary focus:text-white hover:textShadow;
   }
 }
 

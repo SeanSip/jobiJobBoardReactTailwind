@@ -431,16 +431,13 @@ const PostJobPage = () => {
               {/* Submit Button */}
               <div className="flex gap-x-4 flex-wrap gap-y-10">
                 <label className="w-fit">
-                  <button
-                    className="bg-color-one w-fit secondaryButton"
-                    type="submit"
-                  >
+                  <button className="w-fit secondaryButton" type="submit">
                     Submit
                   </button>
                 </label>
                 <label className="w-fit">
                   <button
-                    className="bg-transparent hover:bg-transparent hover:rounded-md"
+                    className="bg-transparent rounded-md hover:bg-red-500 text-black hover:text-white border-[1px] border-black py-[7px] focus:bg-red-500"
                     type="reset"
                   >
                     Cancel

@@ -64,7 +64,7 @@ const JobDetailsPage = props => {
             <BackwardIcon className="w-7" alt="back icon" />
             back
           </Link>
-          <div className="flex justify-evenly lg:gap-x-44 gap-x-8 flex-col-reverse sm:flex-row">
+          <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse sm:flex-row">
             <div className="flex flex-col w-fit">
               {/* TODO Make the posted by a timestamp */}
               <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
@@ -96,7 +96,7 @@ const JobDetailsPage = props => {
                   }}
                 />
 
-                <button className="w-fit bg-color-button-green text-white rounded-md px-7 hover:bg-blue-600 sm:self-start self-center">
+                <button className="w-fit bg-color-button-green text-white rounded-md px-7 sm:self-start self-center">
                   Apply for this position
                 </button>
               </div>
@@ -112,7 +112,7 @@ const JobDetailsPage = props => {
                 <a
                   target="_blank"
                   href={job.companyLink}
-                  className="w-fit bg-color-button-green text-white rounded-full py-[2px] px-4 mb-11"
+                  className="w-fit bg-color-button-green text-white rounded-full py-[2px] px-4 mb-11 hover:bg-color-secondary hover:textShadow focus:bg-color-secondary focus:textShadow"
                 >
                   View website
                 </a>

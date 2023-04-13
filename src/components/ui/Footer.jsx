@@ -9,6 +9,10 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function handleScrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <footer className=" bg-white">
       <div className=" text-black mx-auto wrapper">
@@ -122,7 +126,7 @@ const Footer = () => {
               />
               <div className="bg-black/10 px-[50px] relative rounded-r-md">
                 <button className="focus:outline-none focus:bg-indigo-600 absolute right-3 bottom-[17.5px] my-0 py-0 px-0 bg-gray-200 rounded-none border-none h-fit">
-                  <span className="bg-black hover:bg-color-one hover:text-black border-2 border-transparent hover:border-black rounded-md py-2 px-4 text-white">
+                  <span className="bg-black rounded-md py-3 px-4 text-white hover:bg-color-secondary">
                     Send
                   </span>
                 </button>
@@ -151,12 +155,14 @@ const Footer = () => {
             >
               <FaFacebookF />
             </Link>
+
             <Link
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
               <FaInstagram />
             </Link>
+
             <Link
               to="https://seansipus.com"
               className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"

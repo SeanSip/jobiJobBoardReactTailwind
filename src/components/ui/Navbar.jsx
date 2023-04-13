@@ -154,7 +154,7 @@ const Navbar = () => {
                 <ul
                   onBlur={handlePagesBlur}
                   onFocus={handlePagesFocus}
-                  className="absolute font-body space-y-3 w-48 mt-6 bg-white text-black py-6 -ml-5 pl-8 pr-16 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
+                  className="absolute font-body space-y-3 w-48 mt-6 bg-white shadow-lg text-black py-6 -ml-5 pl-8 pr-16 rounded-md after:contents-[''] after:bg-transparent after:w-full after:h-10 after:absolute after:-top-10 after:left-0"
                 >
                   <li className="hover:underline">
                     <Link onClick={handlePagesBlur} to="/about-us">
@@ -192,7 +192,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none"
+          className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none focus:bg-transparent"
           onClick={handleClick}
         >
           {!mobileNav ? (

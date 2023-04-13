@@ -69,7 +69,7 @@ function AboutUsPage() {
                     {heading}
                   </h3>
                   <button
-                    className="p-0 bg-transparent hover:bg-transparent flex-1 text-end border-0"
+                    className="p-0 bg-transparent hover:bg-transparent flex-1 text-end border-0 focus:bg-transparent focus:text-black focus:outline-offset-8 hover:text-black hover:removeTextShadow"
                     onClick={() => handleClick(id)}
                   >
                     {isPlusButton ? '+' : '-'}
