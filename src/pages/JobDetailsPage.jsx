@@ -3,8 +3,19 @@ import { useLocation, Link } from 'react-router-dom';
 import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { BackwardIcon } from '@heroicons/react/24/solid';
 import ReactQuill from 'react-quill';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { db } from '../firebase/config.jsx';
 
 import Banner from '../components/ui/Banner';
+
+const deleteJob = async jobId => {
+  try {
+    const jobRef = doc(db, 'jobs', jobId);
+    await deleteDoc(jobRef);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const JobDetailsPage = props => {
   const location = useLocation();
@@ -155,6 +166,20 @@ const JobDetailsPage = props => {
               </div>
               <button className="text-color-title mt-8 ">Apply Now</button>
             </aside>
+          </div>
+          {/* Delete Job Button */}
+          {/* IMPORTANT TODO Make user auth so that the delete button is only visible when logged in */}
+          <div className="mt-10 flex flex-col items-center sm:items-start">
+            <p className="italic text-sm">
+              *Work in progress, implementing user auth, please don't delete
+              jobs.*
+            </p>
+            <button
+              className="bg-red-500 text-white textShadow rounded-md mt-2 w-fit"
+              onClick={() => deleteJob(job.id)}
+            >
+              delete job
+            </button>
           </div>
         </div>
       </div>
