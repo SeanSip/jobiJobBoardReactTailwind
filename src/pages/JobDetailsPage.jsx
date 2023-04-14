@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { BackwardIcon } from '@heroicons/react/24/solid';
@@ -18,8 +18,35 @@ const deleteJob = async jobId => {
 };
 
 const JobDetailsPage = props => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const yesButtonRef = useRef();
+  const noButtonRef = useRef();
   const location = useLocation();
   const job = location.state;
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleKeyDownInput = e => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (e.target === yesButtonRef.current) {
+        noButtonRef.current.focus();
+      } else {
+        yesButtonRef.current.focus();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      yesButtonRef.current.focus();
+    }
+  }, [isModalOpen]);
 
   const yearlyTotal = () => {
     if (job.hours === 'Contract' || job.hours === 'Part-time') {
@@ -66,7 +93,35 @@ const JobDetailsPage = props => {
   return (
     <>
       <Banner title={'Job Details'} />
-      <div className="bg-white">
+      <div className="bg-white relative ">
+        {isModalOpen && (
+          <modal
+            onKeyDown={handleKeyDownInput}
+            className=" fixed bg-black/30 z-50 w-full h-screen flex items-center justify-center top-0 backdrop-blur-lg "
+          >
+            <div className="flex flex-col items-center bg-white px-4 py-10 rounded-xl w-fit mx-4">
+              <p className="text-2xl text-center">
+                Do you really want to delete this job?
+              </p>
+              <div className="flex mt-8 gap-x-4">
+                <button
+                  ref={yesButtonRef}
+                  className="w-fit"
+                  onClick={() => deleteJob(job.id) && closeModal()}
+                >
+                  Yes
+                </button>
+                <button
+                  ref={noButtonRef}
+                  className="w-fit"
+                  onClick={closeModal}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </modal>
+        )}
         <div className="wrapper py-[100px]">
           <Link
             className="text-xl font-button mb-4 sm:mb-20 text-color-gray flex items-center gap-x-1 w-fit underline hover:text-blue-600/70"
@@ -80,7 +135,7 @@ const JobDetailsPage = props => {
               {/* TODO Make the posted by a timestamp */}
               <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
               <h1 className="text-4xl font-body mb-5">{job.jobTitle}</h1>
-              <ul className="flex gap-x-2 mb-12 ">
+              <ul className="flex gap-x-2 mb-12 flex-wrap sm:flex-nowrap">
                 <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
                   <FaFacebookF className="w-2 mr-2" />
                   Facebook
@@ -170,13 +225,13 @@ const JobDetailsPage = props => {
           {/* Delete Job Button */}
           {/* IMPORTANT TODO Make user auth so that the delete button is only visible when logged in */}
           <div className="mt-10 flex flex-col items-center sm:items-start">
-            <p className="italic text-sm">
+            <p className="italic text-sm text-center">
               *Work in progress, implementing user auth, please don't delete
               jobs.*
             </p>
             <button
               className="bg-red-500 text-white textShadow rounded-md mt-2 w-fit"
-              onClick={() => deleteJob(job.id)}
+              onClick={openModal}
             >
               delete job
             </button>
