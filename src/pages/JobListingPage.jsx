@@ -34,7 +34,7 @@ function JobListingPage() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); // Handles current page in pagination
-  const [cardsPerPage] = useState(2); // Handles how many total job cards can be displayed for each page
+  const [cardsPerPage] = useState(12); // Handles how many total job cards can be displayed for each page
 
   // Variable declarations
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -186,7 +186,7 @@ function JobListingPage() {
         </div>
       </div>
       {/* Job Details Page Navigation Component*/}
-      {selectedJob && <JobDetailsPage job={selectedJob} />}
+      {selectedJob && <JobDetailsPage job={selectedJob} onDelete={deleteJob} />}
     </section>
   );
 }
