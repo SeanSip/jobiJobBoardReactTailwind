@@ -1,42 +1,93 @@
+// React imports
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import JobsCard from '../components/jobListings/JobCards';
-// import data from '../data.json';
-import Banner from '../components/ui/Banner';
+import { useNavigate } from 'react-router-dom';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
+// Component imports
+import JobsCard from '../components/jobListings/JobCards';
+import Banner from '../components/ui/Banner';
 import JobDetailsPage from './JobDetailsPage';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
+// Icon imports
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+} from '@heroicons/react/24/solid';
 
 const ref = collection(db, 'jobs');
 
-const fetchJobs = async setJobs => {
+// Async await function for fetching job data from firebase
+const fetchJobs = async (setJobs, setIsLoading) => {
   try {
     const req = await getDocs(ref);
-    console.log(req);
     const jobsTemp = req.docs.map(job => ({ ...job.data(), id: job.id }));
-    console.log(jobsTemp);
     setJobs(jobsTemp);
-    console.log(jobsTemp);
+    setIsLoading(false);
   } catch (error) {
     console.log(error);
   }
 };
 
 function JobListingPage() {
-  const [selectedJob, setSelectedJob] = useState(null);
+  // State hooks
+  const [selectedJob] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1); // Handles current page in pagination
+  const [cardsPerPage] = useState(2); // Handles how many total job cards can be displayed for each page
 
+  // Variable declarations
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentCards = jobs.slice(indexOfFirstCard, indexOfLastCard);
   const navigate = useNavigate();
+  const pageNumbers = [1];
+  const lastPage = Math.ceil(jobs.length / cardsPerPage);
 
+  // Pagination logic
+  if (currentPage <= 3) {
+    for (let i = 2; i <= Math.min(4, lastPage - 1); i++) {
+      pageNumbers.push(i);
+    }
+  } else if (currentPage >= lastPage - 2) {
+    for (let i = Math.max(lastPage - 3, 2); i <= lastPage - 1; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      pageNumbers.push(i);
+    }
+  }
+  if (lastPage > 1) {
+    pageNumbers.push(lastPage);
+  }
+
+  // Next and prev pagination functions
+  const nextPage = () => {
+    if (currentPage < lastPage) {
+      setCurrentPage(prevPage => prevPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > [1]) {
+      setCurrentPage(prevPage => prevPage - 1);
+    }
+  };
+
+  // Navigation function
   const handleJobClick = selectedJobCard => {
     navigate(`/job-listing/${selectedJobCard.id}`, { state: selectedJobCard });
   };
 
+  // UseEffect hook calling the fetchJobs async function used to get data from firebase
   useEffect(() => {
-    // fetchJobs(data); // IMPORTANT Remove later, this was the dummy data
-    fetchJobs(setJobs); // This is the current data from firebase
-  }, [setJobs]); // IMPORTANT remove later Make an empty array so that we only call the fetchJobs function on the first initial load, we don't want to call the function on every change, just the first one.
+    fetchJobs(setJobs, setIsLoading);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section>
@@ -70,13 +121,71 @@ function JobListingPage() {
                 Hang in there, the jobs are coming . . .
               </p>
             ) : (
-              jobs.map(job => (
+              currentCards.map(job => (
                 <JobsCard job={job} key={job.id} onClick={handleJobClick} />
               ))
             )}
           </div>
+
+          {/* Pagination Container */}
+          <div className="mt-20 flex justify-center sm:justify-start flex-wrap">
+            {/* Back Button */}
+            <button
+              className="mr-4 hidden sm:block bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
+              onClick={prevPage}
+            >
+              <ChevronLeftIcon className="w-6 h-6 p-0" />
+            </button>
+            {/* Pagination Number Buttons */}
+            {pageNumbers.map(number => {
+              if (typeof number === 'number') {
+                return (
+                  <button
+                    key={number}
+                    onClick={() => setCurrentPage(number)}
+                    className={
+                      number === currentPage
+                        ? 'bg-color-secondary hover:text-white focus:text-white text-white hover:removeTextShadow z-0 rounded-full px-[17px] py-[1px]'
+                        : number === 1
+                        ? 'bg-transparent text-black firstPageStyle'
+                        : number === lastPage
+                        ? 'bg-transparent text-black lastPageStyle'
+                        : 'bg-transparent hover:bg-color-one focus:bg-color-one text-black hover:text-black focus:text-black hover:removeTextShadow z-10 mx-0 sm:mx-2'
+                    }
+                  >
+                    {number}
+                  </button>
+                );
+              }
+            })}
+            {/* Forward Button */}
+            <button
+              className="ml-4 hidden sm:block bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
+              onClick={nextPage}
+            >
+              <ChevronRightIcon className="w-6 h-6 p-0" />
+            </button>
+          </div>
+          {/* Mobile Pagination Buttons */}
+          <div className="mt-6 w-full flex justify-center sm:hidden">
+            {/* Mobile Back Button */}
+            <button
+              className="mr-4 bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
+              onClick={prevPage}
+            >
+              <ChevronLeftIcon className="w-6 h-6 p-0" />
+            </button>
+            {/* Mobile Forward Button */}
+            <button
+              className="ml-4 bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
+              onClick={nextPage}
+            >
+              <ChevronRightIcon className="w-6 h-6 p-0" />
+            </button>
+          </div>
         </div>
       </div>
+      {/* Job Details Page Navigation Component*/}
       {selectedJob && <JobDetailsPage job={selectedJob} />}
     </section>
   );
