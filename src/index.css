@@ -72,6 +72,23 @@ svg {
   background-color: #96ca5b;
 }
 
+.firstPageStyle {
+  border: #00000050 1px solid;
+  margin: 0px 16px 0px 0px;
+}
+
+.lastPageStyle {
+  border: #00000050 1px solid;
+  margin: 0px 0px 0px 16px;
+}
+
+.lastPageStyle:hover,
+.firstPageStyle:hover {
+  background-color: #d2f34c;
+  color: #000000;
+  text-shadow: none;
+}
+
 .btn {
   @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-one/30 hover:border-black border-2 border-transparent;
 }
