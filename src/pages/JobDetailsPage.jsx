@@ -21,6 +21,8 @@ const JobDetailsPage = props => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const yesButtonRef = useRef();
   const noButtonRef = useRef();
+  const modalRef = useRef();
+  const modalContentRef = useRef();
   const location = useLocation();
   const job = location.state;
 
@@ -40,12 +42,31 @@ const JobDetailsPage = props => {
         yesButtonRef.current.focus();
       }
     }
+    if (e.key === 'Escape') {
+      closeModal();
+    }
   };
 
   useEffect(() => {
     if (isModalOpen) {
-      yesButtonRef.current.focus();
+      modalRef.current.focus();
     }
+
+    const handleMouseDown = e => {
+      if (!modalContentRef.current.contains(e.target)) {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      modalRef.current.addEventListener('mousedown', handleMouseDown);
+    }
+
+    return () => {
+      if (modalRef.current) {
+        modalRef.current.removeEventListener('mousedown', handleMouseDown);
+      }
+    };
   }, [isModalOpen]);
 
   const yearlyTotal = () => {
@@ -96,17 +117,22 @@ const JobDetailsPage = props => {
       <div className="bg-white relative ">
         {isModalOpen && (
           <modal
+            ref={modalRef}
+            tabIndex={-1}
             onKeyDown={handleKeyDownInput}
             className=" fixed bg-black/30 z-50 w-full h-screen flex items-center justify-center top-0 backdrop-blur-lg "
           >
-            <div className="flex flex-col items-center bg-white px-4 py-10 rounded-xl w-fit mx-4">
+            <div
+              ref={modalContentRef}
+              className="flex flex-col items-center bg-white px-4 py-10 rounded-xl w-fit mx-4"
+            >
               <p className="text-2xl text-center">
                 Do you really want to delete this job?
               </p>
               <div className="flex mt-8 gap-x-4">
                 <button
                   ref={yesButtonRef}
-                  className="w-fit"
+                  className="w-fit hover:bg-red-500 focus:bg-red-500"
                   onClick={() => deleteJob(job.id) && closeModal()}
                 >
                   Yes
