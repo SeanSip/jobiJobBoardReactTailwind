@@ -3,6 +3,7 @@ import Select from 'react-select';
 // import { FaUser, FaEnvelope } from 'react-icons/fa';
 
 const options = [
+  // Technical
   { value: 'UI/UX', label: 'UI/UX' },
   { value: 'Firebase', label: 'Firebase' },
   { value: 'Figma', label: 'Figma' },
@@ -34,6 +35,94 @@ const options = [
   { value: 'iOS', label: 'iOS' },
   { value: 'Unity', label: 'Unity' },
   { value: 'Unreal Engine', label: 'Unreal Engine' },
+  { value: 'Node.js', label: 'Node.js' },
+  { value: 'MongoDB', label: 'MongoDB' },
+  { value: 'SQL', label: 'SQL' },
+  { value: 'Docker', label: 'Docker' },
+  { value: 'Kubernetes', label: 'Kubernetes' },
+  { value: 'AWS', label: 'AWS' },
+  { value: 'Google Cloud Platform', label: 'Google Cloud Platform' },
+  { value: 'Microsoft Azure', label: 'Microsoft Azure' },
+  { value: 'HTML/CSS', label: 'HTML/CSS' },
+  { value: 'Bootstrap', label: 'Bootstrap' },
+  { value: 'jQuery', label: 'jQuery' },
+  { value: 'Redux', label: 'Redux' },
+  { value: 'RESTful API Design', label: 'RESTful API Design' },
+  { value: 'Git', label: 'Git' },
+  { value: 'Jenkins', label: 'Jenkins' },
+  { value: 'Selenium', label: 'Selenium' },
+  { value: 'Puppeteer', label: 'Puppeteer' },
+  { value: 'Jira', label: 'Jira' },
+  { value: 'Flutter', label: 'Flutter' },
+  { value: 'SwiftUI', label: 'SwiftUI' },
+  { value: 'Dart', label: 'Dart' },
+  { value: 'Python', label: 'Python' },
+  { value: 'Ruby on Rails', label: 'Ruby on Rails' },
+  { value: 'Express.js', label: 'Express.js' },
+  { value: 'Flask', label: 'Flask' },
+  { value: 'PostgreSQL', label: 'PostgreSQL' },
+  { value: 'MySQL', label: 'MySQL' },
+  { value: 'Redis', label: 'Redis' },
+  { value: 'Nginx', label: 'Nginx' },
+  { value: 'Apache', label: 'Apache' },
+  { value: 'GraphQL', label: 'GraphQL' },
+  { value: 'Apollo GraphQL', label: 'Apollo GraphQL' },
+  { value: 'RabbitMQ', label: 'RabbitMQ' },
+  { value: 'Kafka', label: 'Kafka' },
+  { value: 'Elasticsearch', label: 'Elasticsearch' },
+  { value: 'Logstash', label: 'Logstash' },
+  { value: 'Kibana', label: 'Kibana' },
+  { value: 'Prometheus', label: 'Prometheus' },
+  { value: 'Grafana', label: 'Grafana' },
+  { value: 'Terraform', label: 'Terraform' },
+  { value: 'Ansible', label: 'Ansible' },
+  { value: 'Chef', label: 'Chef' },
+  { value: 'Puppet', label: 'Puppet' },
+  { value: 'Splunk', label: 'Splunk' },
+  { value: 'Dynatrace', label: 'Dynatrace' },
+  { value: 'New Relic', label: 'New Relic' },
+  { value: 'Datadog', label: 'Datadog' },
+  { value: 'Design', label: 'Design' },
+  { value: 'Internet Srategy', label: 'Internet Srategy' },
+  { value: 'Traditional Media', label: 'Traditional Media' },
+  { value: 'Surface Analysis', label: 'Surface Analysis' },
+  { value: 'Blender', label: 'Blender' },
+  { value: 'SketchUp', label: 'SketchUp' },
+  { value: 'Krita', label: 'Krita' },
+  { value: 'Cinema 4D', label: 'Cinema 4D' },
+  { value: 'CAD', label: 'CAD' },
+  { value: 'Next.js', label: 'Next.js' },
+
+  // Soft Skills
+  { value: 'Communication', label: 'Communication' },
+  { value: 'Leadership', label: 'Leadership' },
+  { value: 'Teamwork', label: 'Teamwork' },
+  { value: 'Adaptability', label: 'Adaptability' },
+  { value: 'Problem-solving', label: 'Problem-solving' },
+  { value: 'Creativity', label: 'Creativity' },
+  { value: 'Emotional intelligence', label: 'Emotional intelligence' },
+  { value: 'Conflict resolution', label: 'Conflict resolution' },
+  { value: 'Critical thinking', label: 'Critical thinking' },
+  { value: 'Decision making', label: 'Decision making' },
+  { value: 'Presentation skills', label: 'Presentation skills' },
+  { value: 'Customer service', label: 'Customer service' },
+  { value: 'Attention to detail', label: 'Attention to detail' },
+  { value: 'Learning agility', label: 'Learning agility' },
+  { value: 'Collaboration', label: 'Collaboration' },
+  { value: 'Empathy', label: 'Empathy' },
+  { value: 'Innovation', label: 'Innovation' },
+  { value: 'Negotiation', label: 'Negotiation' },
+  { value: 'Persuasion', label: 'Persuasion' },
+  { value: 'Planning', label: 'Planning' },
+  { value: 'Prioritization', label: 'Prioritization' },
+  { value: 'Project management', label: 'Project management' },
+  { value: 'Agile', label: 'Agile' },
+  { value: 'Research', label: 'Research' },
+  { value: 'Stakeholder management', label: 'Stakeholder management' },
+  { value: 'Storytelling', label: 'Storytelling' },
+  { value: 'Strategic thinking', label: 'Strategic thinking' },
+  { value: 'Time management', label: 'Time management' },
+  { value: 'Training and development', label: 'Training and development' },
 ];
 
 const customStyles = {
@@ -92,27 +181,23 @@ const customStyles = {
   }),
 };
 
-// const MultiValue = ({ data, removeProps }) => (
-//   <div className="react-select__multi-value">
-//     {data.value === 'UI/UX' && (
-//       <FaUser className="react-select__multi-value-icon" />
-//     )}
-//     {data.value === 'Firebase' && (
-//       <FaEnvelope className="react-select__multi-value-icon" />
-//     )}
-//     <span className="react-select__multi-value-label">{data.label}</span>
-//     <span {...removeProps} className="react-select__multi-value-remove">
-//       &times;
-//     </span>
-//   </div>
-// );
-
 const Skills = ({ jobDetails, setJobDetails }) => {
   const handleOptionSelect = selectedOption => {
     setJobDetails(prevState => ({ ...prevState, skills: selectedOption }));
   };
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  options.sort((a, b) => {
+    const labelA = a.label.toUpperCase();
+    const labelB = b.label.toUpperCase();
+
+    if (labelA < labelB) {
+      return -1;
+    }
+    if (labelA > labelB) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <label className="jobPostLabel">
@@ -125,7 +210,6 @@ const Skills = ({ jobDetails, setJobDetails }) => {
         onChange={handleOptionSelect}
         options={options}
         styles={customStyles}
-        // components={{ MultiValue }}
       />
     </label>
   );
