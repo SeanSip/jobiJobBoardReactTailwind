@@ -1,6 +1,9 @@
 import React from 'react';
+import defaultLogo from '../../assets/jobiWithText.png';
 
 const JobCards = ({ job, onClick }) => {
+  const logoDisplay = job.logo === 'null' ? defaultLogo : job.logo;
+
   return (
     <div
       onClick={() => onClick(job)}
@@ -10,7 +13,7 @@ const JobCards = ({ job, onClick }) => {
       <div className="w-14 h-14 flex items-center">
         <img
           className="w-full bg-cover rounded-sm"
-          src={job.logo}
+          src={logoDisplay}
           alt={`Company logo for ${job.company}`}
         />
       </div>
