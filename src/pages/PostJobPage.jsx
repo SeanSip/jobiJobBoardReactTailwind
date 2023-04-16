@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../firebase/config';
+import { db, storage } from '../firebase/config';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -11,13 +12,12 @@ import Banner from '../components/ui/Banner';
 
 // IMPORTANT TODO Add scroll to view of error on form submission
 
-const ref = collection(db, 'jobs');
-
 const PostJobPage = () => {
-  const randomNumber = Math.trunc(Math.random() * 50 + 1); // For random image generator
   const [formError, setFormError] = useState(null);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [cancelSubmit, setCancelSubmit] = useState(false);
+  const [logoUrl, setLogoUrl] = useState(null);
+  const [logoFile, setLogoFile] = useState(null);
   const [jobDetails, setJobDetails] = useState({
     company: '',
     hours: '',
@@ -25,7 +25,7 @@ const PostJobPage = () => {
     city: '',
     state: '',
     address: '',
-    logo: `https://picsum.photos/50?random=${randomNumber}`,
+    logo: `${logoUrl}`,
     min: '',
     max: '',
     jobTitle: '',
@@ -39,7 +39,7 @@ const PostJobPage = () => {
     jobDescription: '',
   });
 
-  // Dropdown Menu Options
+  // Dropdown Menu Options for component import's custom props
   const hoursOptions = ['Full-time', 'Part-time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
 
@@ -47,6 +47,10 @@ const PostJobPage = () => {
     e.persist();
     const { name, value } = e.target;
     setJobDetails(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleLogoChange = e => {
+    setLogoFile(e.target.files[0]);
   };
 
   const handleSubmit = async e => {
@@ -80,8 +84,23 @@ const PostJobPage = () => {
       setFormError(required);
       return;
     }
+
+    let updatedJobDetails = { ...jobDetails };
+
+    if (logoFile) {
+      const storageRef = ref(storage, `logos/${logoFile.name}`);
+      const uploadTask = uploadBytes(storageRef, logoFile);
+
+      await uploadTask;
+
+      const url = await getDownloadURL(storageRef);
+      setLogoUrl(url);
+      updatedJobDetails.logo = url;
+    }
+
+    // Save job details to Firestore
     try {
-      await addDoc(ref, jobDetails);
+      await addDoc(collection(db, 'jobs'), updatedJobDetails);
       console.log('Success! Job added!');
       // Form fields reset
       setJobDetails({
@@ -90,7 +109,7 @@ const PostJobPage = () => {
         city: '',
         state: '',
         address: '',
-        logo: `https://picsum.photos/50?random=${randomNumber}`,
+        logo: '',
         min: '',
         max: '',
         jobTitle: '',
@@ -117,7 +136,7 @@ const PostJobPage = () => {
       city: '',
       state: '',
       address: '',
-      logo: `https://picsum.photos/50?random=${randomNumber}`,
+      logo: '',
       min: '',
       max: '',
       jobTitle: '',
@@ -155,8 +174,6 @@ const PostJobPage = () => {
       ['clean'],
     ],
   };
-
-  // jobDetails.length !== 0
 
   // Required error for onSubmit for form to prevent custom dropdown field values being empty
   const required = (fieldName, selectFor) => {
@@ -255,15 +272,16 @@ const PostJobPage = () => {
                   <div>{required('companyLink', 'Company Link')}</div>
                 </label>
               </div>
-              {/* IMPORTANT TODO Add upload image feature */}
-              <label className="jobPostLabel flex flex-col">
+
+              <label className="jobPostLabel flex flex-col w-full">
                 Logo*
                 <input
-                  className="border-2 rounded-md h-14 pl-4 mt-2"
-                  onChange={handleInputChange}
-                  type="text"
+                  id="file-upload"
+                  className="mt-2 customFile"
+                  onChange={handleLogoChange}
+                  type="file"
+                  accept="image/*"
                   name="logo"
-                  value={jobDetails.logo}
                 />
                 <div>{required('logo', 'Logo')}</div>
               </label>

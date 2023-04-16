@@ -109,6 +109,17 @@ svg {
   @apply pb-2 border-b-transparent hover:border-color-one border-b-2 transition-all ease-linear duration-100 cursor-pointer hover:text-color-one p-3;
 }
 
+.customFile {
+  @apply border-2 rounded-md hover:cursor-pointer;
+}
+
+input[type='file']::file-selector-button {
+  @apply rounded-sm hover:cursor-pointer mr-4 border-none bg-color-one hover:bg-color-secondary hover:text-white hover:textShadow py-4;
+}
+
+label input#file-upload-button {
+  @apply bg-red-500;
+}
 @layer base {
   h1 {
     @apply font-title;

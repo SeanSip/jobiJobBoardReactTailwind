@@ -92,6 +92,16 @@ const options = [
   { value: 'Cinema 4D', label: 'Cinema 4D' },
   { value: 'CAD', label: 'CAD' },
   { value: 'Next.js', label: 'Next.js' },
+  { value: 'Asana', label: 'Asana' },
+  { value: 'Scrum', label: 'Scrum' },
+  { value: 'Kanban', label: 'Kanban' },
+  { value: 'Maya', label: 'Maya' },
+  { value: 'CryEngine', label: 'CryEngine' },
+  { value: 'Tableau', label: 'Tableau' },
+  { value: 'Power BI', label: 'Power BI' },
+  { value: 'Data visualization', label: 'Data visualization' },
+  { value: 'Machine learning', label: 'Machine learning' },
+  { value: 'Statistical modeling', label: 'Statistical modeling' },
 
   // Soft Skills
   { value: 'Communication', label: 'Communication' },
