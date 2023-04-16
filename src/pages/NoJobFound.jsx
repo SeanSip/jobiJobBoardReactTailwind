@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Error404 from '../assets/vecteezy404Error.jpg';
 import next from '../assets/next.png';
 
-const Page404 = () => {
+const NoJobFound = () => {
   return (
     <section className="bg-white py-[120px]">
       <div className="wrapper flex xl:flex-row flex-col items-center justify-between">
@@ -14,11 +14,14 @@ const Page404 = () => {
         />
         <div className="w-fit xl:w-[39%] flex flex-col space-y-12 text-center xl:text-left">
           <h1 className="flex flex-col capitalize text-[100px] leading-tight text-[#31795A]">
-            404 <span className="text-black text-[82px] "> page not found</span>
+            404 <span className="text-black text-[82px] ">Oh-no...</span>
           </h1>
-          <p className="text-2xl">
-            These aren't the droids you're looking for... I mean pages...
+          <p className="text-2xl ">
+            No job listing found... Maybe the job post was deleted, or you
+            copypasta the wrong link?
           </p>
+          <p className="text-8xl mx-auto">🍝</p>
+          <p className="text-xl mx-auto">Mmm... pasta...</p>
           <Link
             role="button"
             aria-label="Go back to job listing"
@@ -34,4 +37,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default NoJobFound;

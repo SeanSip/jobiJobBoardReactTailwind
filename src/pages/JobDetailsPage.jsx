@@ -1,18 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useParams } from 'react-router-dom';
 import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { BackwardIcon } from '@heroicons/react/24/solid';
 import ReactQuill from 'react-quill';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
 
 import Banner from '../components/ui/Banner';
 import defaultLogo from '../assets/jobiWithText.png';
+import NoJobFound from './NoJobFound.jsx';
 
 const deleteJob = async jobId => {
   try {
     const jobRef = doc(db, 'jobs', jobId);
     await deleteDoc(jobRef);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const fetchJob = async (jobId, setJob) => {
+  try {
+    const jobRef = doc(db, 'jobs', jobId);
+    const jobDoc = await getDoc(jobRef);
+    if (jobDoc.exists()) {
+      setJob({ ...jobDoc.data(), id: jobDoc.id });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -25,8 +38,8 @@ const JobDetailsPage = props => {
   const modalRef = useRef();
   const modalContentRef = useRef();
   const location = useLocation();
-  const job = location.state;
-  const logoDisplay = job.logo === 'null' ? defaultLogo : job.logo;
+  const { id: jobId } = useParams();
+  const [job, setJob] = useState(location.state);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -64,12 +77,21 @@ const JobDetailsPage = props => {
       modalRef.current.addEventListener('mousedown', handleMouseDown);
     }
 
+    if (!job) {
+      fetchJob(jobId, setJob);
+    }
+
     return () => {
       if (modalRef.current) {
         modalRef.current.removeEventListener('mousedown', handleMouseDown);
       }
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, jobId]);
+
+  if (!job) {
+    return <NoJobFound />;
+  }
+  const logoDisplay = job.logo === 'null' ? defaultLogo : job.logo;
 
   const yearlyTotal = () => {
     if (job.hours === 'Contract' || job.hours === 'Part-time') {
