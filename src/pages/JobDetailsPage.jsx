@@ -7,6 +7,7 @@ import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
 
 import Banner from '../components/ui/Banner';
+import defaultLogo from '../assets/jobiWithText.png';
 
 const deleteJob = async jobId => {
   try {
@@ -25,6 +26,7 @@ const JobDetailsPage = props => {
   const modalContentRef = useRef();
   const location = useLocation();
   const job = location.state;
+  const logoDisplay = job.logo === 'null' ? defaultLogo : job.logo;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -197,7 +199,7 @@ const JobDetailsPage = props => {
               <div className="flex flex-col items-center">
                 <img
                   className="w-20 rounded-full mb-4"
-                  src={job.logo}
+                  src={logoDisplay}
                   alt={`Company logo for ${job.company}`}
                 />
                 <h3 className="mb-6 text-xl">{job.company}</h3>
