@@ -43,9 +43,9 @@ function App() {
           <Route path="/job-listing" element={<JobListingPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/404" element={<Page404 />} />
-          <Route path="*" element={<Page404 />} />
           <Route path="/job-listing/:id" element={<JobDetailsPage />} />
           <Route path="/post-job" element={<PostJobPage />} />
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </Layout>
     </Router>
