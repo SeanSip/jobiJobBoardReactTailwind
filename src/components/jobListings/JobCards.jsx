@@ -7,14 +7,14 @@ const JobCards = ({ job, onClick }) => {
       className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg"
     >
       {/* Company Logo & Company Name */}
-      <div>
+      <div className="w-14 h-14 flex items-center">
         <img
-          className="w-fit"
+          className="w-full bg-cover rounded-sm"
           src={job.logo}
           alt={`Company logo for ${job.company}`}
         />
-        <h1 className="text-3xl mt-6">{job.company}</h1>
       </div>
+      <h1 className="text-3xl mt-6">{job.company}</h1>
       {/* Company Hours */}
       <p className="text-[#FF5757] bg-[#FA0F0014] w-fit px-[10px] py-1 rounded-[3px] mt-14">
         {job.hours}
