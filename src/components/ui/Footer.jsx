@@ -25,11 +25,19 @@ const Footer = () => {
               Sign up and start finding your job or talents
             </p>
           </div>
-          <div className="self-center gap-x-5 gap-y-5 lg:mt-0 mt-10 flex flex-wrap justify-center">
-            <button className="rounded-md bg-transparent border-[1.5px] border-[#244034]">
-              Looking for job?
-            </button>
-            <button className="rounded-md">Post a job</button>
+          <div className="self-center gap-x-5 gap-y-5 lg:mt-0 mt-10 flex flex-wrap justify-center items-center">
+            <Link
+              to="/job-listing"
+              className="rounded-md bg-transparent border-[1.5px] border-[#244034] py-[10.5px] px-4 hover:bg-color-secondary hover:text-white hover:textShadow hover:border-transparent focus:bg-color-secondary focus:text-white focus:textShadow focus:border-transparent "
+            >
+              Looking for a job?
+            </Link>
+            <Link
+              to="/post-job"
+              className="rounded-md py-3 px-7 bg-color-one hover:bg-color-secondary hover:text-white hover:textShadow focus:bg-color-secondary focus:text-white focus:textShadow"
+            >
+              Post a Job
+            </Link>
           </div>
         </div>
         {/* Main Footer Grid */}
