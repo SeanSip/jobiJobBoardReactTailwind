@@ -59,7 +59,9 @@ svg {
 
 .collaborationBtn:hover {
   background-color: transparent;
-  color: blue;
+  color: #000000;
+  text-shadow: none;
+  text-decoration: underline;
 }
 
 .secondaryButton {
@@ -91,6 +93,10 @@ svg {
 
 .btn {
   @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-one/30 hover:border-black border-2 border-transparent;
+}
+
+.linkButton {
+  @apply w-fit px-6 py-2 mt-10 bg-color-one rounded-full hover:bg-color-secondary hover:text-white hover:textShadow focus:bg-color-secondary focus:text-white focus:textShadow;
 }
 
 .wrapper {

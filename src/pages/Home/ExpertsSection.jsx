@@ -129,8 +129,13 @@ const ExpertsSection = () => {
               <p>Protected payments system</p>
             </div>
           </div>
-          <Link to="/post-job">
-            <button className="w-fit px-10 mt-10">Post Job</button>
+          <Link
+            to="/post-job"
+            aria-label="link to post job page"
+            role="button"
+            className="linkButton"
+          >
+            Post a Job
           </Link>
         </div>
       </div>

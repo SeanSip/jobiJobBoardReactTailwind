@@ -13,19 +13,19 @@ function AboutUsPage() {
       id: 1,
       isPlusButton: true,
       heading: 'Who are we?',
-      text: 'Our founders Dustin Moskovitz and Justin lorem Rosenstein met while leading Engineering teams at Facebook quesi.',
+      text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum obcaecati architecto suscipit facere voluptatibus sint.',
     },
     {
       id: 2,
       isPlusButton: true,
       heading: `what's our goal`,
-      text: 'Our founders Dustin Moskovitz and Justin lorem Rosenstein met while leading Engineering teams at Facebook quesi.',
+      text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum obcaecati architecto suscipit facere voluptatibus sint.',
     },
     {
       id: 3,
       isPlusButton: true,
       heading: 'Our vision',
-      text: 'Our founders Dustin Moskovitz and Justin lorem Rosenstein met while leading Engineering teams at Facebook quesi.',
+      text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum obcaecati architecto suscipit facere voluptatibus sint.',
     },
   ]);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import collaborationGraphic from '../../assets/collaborationGraphic.png';
 import next from '../../assets/next.png';
 
@@ -23,14 +24,14 @@ function CollaborationSection() {
               We collaborate with a number of top tier companies on imagining
               the future of work, have a look.
             </p>
-            <button className="collaborationBtn font-body flex">
+            <Link to="/about-us" className="collaborationBtn font-body flex">
               learn more
               <img
                 className="ml-2 w-5 h-fit self-center"
                 src={next}
                 alt="Arrow graphic pointing to the right"
               />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
