@@ -7,12 +7,15 @@ import { db } from '../firebase/config.jsx';
 import JobsCard from '../components/jobListings/JobCards';
 import Banner from '../components/ui/Banner';
 import JobDetailsPage from './JobDetailsPage';
+import Dropdown from '../components/ui/Dropdown.jsx';
 // Icon imports
 import {
+  ChevronUpIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
 } from '@heroicons/react/24/solid';
+import JobCards from '../components/jobListings/JobCards';
 
 const ref = collection(db, 'jobs');
 
@@ -35,14 +38,41 @@ function JobListingPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); // Handles current page in pagination
   const [cardsPerPage] = useState(12); // Handles how many total job cards can be displayed for each page
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedHoursOption, setSelectedHoursOption] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [showFilter, setShowFilter] = useState(true);
 
   // Variable declarations
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = jobs.slice(indexOfFirstCard, indexOfLastCard);
   const navigate = useNavigate();
   const pageNumbers = [1];
-  const lastPage = Math.ceil(jobs.length / cardsPerPage);
+  const filteredJobs = jobs.filter(
+    job =>
+      ((job.jobTitle &&
+        job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (job.company &&
+          job.company.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (job.country &&
+          job.country.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (job.city &&
+          job.city.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (job.state &&
+          job.state.toLowerCase().includes(searchQuery.toLowerCase()))) &&
+      (selectedHoursOption === 'All' ||
+        !selectedHoursOption ||
+        job.hours === selectedHoursOption) &&
+      (!selectedLocation ||
+        (job.country &&
+          job.country.toLowerCase().includes(selectedLocation.toLowerCase())) ||
+        (job.city &&
+          job.city.toLowerCase().includes(selectedLocation.toLowerCase())) ||
+        (job.state &&
+          job.state.toLowerCase().includes(selectedLocation.toLowerCase())))
+  );
+  const currentCards = filteredJobs.slice(indexOfFirstCard, indexOfLastCard);
+  const lastPage = Math.ceil(filteredJobs.length / cardsPerPage);
 
   // Pagination logic
   if (currentPage <= 3) {
@@ -89,6 +119,13 @@ function JobListingPage() {
     return <div>Loading...</div>;
   }
 
+  const hoursOptions = ['All', 'Full-time', 'Part-time', 'Contract'];
+
+  // console.log(selectedLocation);
+  // console.log(jobs.location);
+  // console.log(jobs.company);
+  console.log(JobCards);
+
   return (
     <section>
       {/* Banner Component Import */}
@@ -103,9 +140,89 @@ function JobListingPage() {
           {/* Filter By */}
           {/* TODO Convert this into an actual functional filter */}
           <div className="lg pt-[101px] pb-[120px]">
-            <div className="bg-color-bg-gray p-6 rounded-lg capitalize flex justify-between items-center">
-              filter by
-              <ChevronDownIcon className="w-7 bg-white rounded-full p-2" />
+            <div className="bg-color-bg-gray rounded-lg capitalize flex flex-col justify-between items-center">
+              <div
+                className="flex justify-between w-full cursor-pointer p-6"
+                onClick={() => setShowFilter(!showFilter)}
+              >
+                filter by
+                <button
+                  className="p-0 bg-transparent hover:bg-transparent hover:text-black focus:text-black"
+                  onClick={() => setShowFilter(!showFilter)}
+                  aria-label="Opens menu for filter options for job listings"
+                  aria-expanded={showFilter}
+                >
+                  {showFilter ? (
+                    <ChevronUpIcon className="w-7 bg-white rounded-full p-2" />
+                  ) : (
+                    <ChevronDownIcon className="w-7 bg-white rounded-full p-2" />
+                  )}
+                </button>
+              </div>
+
+              <div
+                className={`${
+                  showFilter
+                    ? ' w-[95%] delay-150 transition-all ease-in duration-300'
+                    : ' w-0'
+                } contents-[''] bg-black/10 rounded-full h-[1px]`}
+              ></div>
+              <div
+                className={`${
+                  showFilter
+                    ? 'h-fit py-10 opacity-100 w-full'
+                    : 'h-0 opacity-0'
+                } transition-all ease-in-out duration-300 flex justify-evenly items-center gap-x-10 px-6`}
+              >
+                <label
+                  className={`${
+                    showFilter ? 'block' : 'hidden'
+                  } w-full flex-1 flex flex-col jobPostLabel`}
+                >
+                  Job title or company
+                  <input
+                    type="text"
+                    placeholder="Search by keyword"
+                    onChange={e => setSearchQuery(e.target.value)}
+                    tabIndex={showFilter ? 0 : -1}
+                    className="mt-2 p-4 border-2 rounded-md"
+                  />
+                </label>
+                <label
+                  className={`${
+                    showFilter ? 'block' : 'hidden'
+                  } w-full flex-1 flex flex-col jobPostLabel`}
+                >
+                  Country, State/province, city
+                  <input
+                    type="text"
+                    value={selectedLocation}
+                    onChange={e => setSelectedLocation(e.target.value)}
+                    placeholder="Enter country, state/province, city"
+                    tabIndex={showFilter ? 0 : -1}
+                    className="mt-2 p-4 border-2 rounded-md"
+                  />
+                </label>
+                <div
+                  className={`${
+                    showFilter ? 'block ' : 'hidden'
+                  } w-full flex-1 `}
+                >
+                  <Dropdown
+                    value={selectedHoursOption}
+                    onChange={value => {
+                      setSelectedHoursOption(value);
+                      setCurrentPage(1);
+                    }}
+                    options={hoursOptions}
+                    selectedOption={selectedHoursOption}
+                    name="hours"
+                    label="Hours"
+                    tabIndex={showFilter ? 0 : -1}
+                    className="bg-white hover:bg-white focus:bg-white"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           {/* Card Layout Container */}
