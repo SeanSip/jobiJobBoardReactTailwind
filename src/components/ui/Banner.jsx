@@ -15,7 +15,9 @@ function Banner({ title, subTitle }) {
         {/* Title */}
         <h1 className="text-white text-[64px] text-center">{title}</h1>
         {/* Sub-title */}
-        <p className="text-white text-center text-[22px] mt-5">{subTitle}</p>
+        <h2 className="text-white text-center text-[22px] mt-5 font-body">
+          {subTitle}
+        </h2>
       </div>
     </section>
   );

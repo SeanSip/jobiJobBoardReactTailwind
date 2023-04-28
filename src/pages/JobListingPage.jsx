@@ -41,7 +41,7 @@ function JobListingPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedHoursOption, setSelectedHoursOption] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
 
   // Variable declarations
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -121,17 +121,12 @@ function JobListingPage() {
 
   const hoursOptions = ['All', 'Full-time', 'Part-time', 'Contract'];
 
-  // console.log(selectedLocation);
-  // console.log(jobs.location);
-  // console.log(jobs.company);
-  console.log(JobCards);
-
   return (
     <section>
       {/* Banner Component Import */}
       <Banner
-        title={'Job Listings'}
-        subTitle={'Find your dream job, the jobi way!'}
+        title={'Job Listings'} // h1
+        subTitle={'Find your dream job, the jobi way!'} // h2
       />
       {/* Job Listings Container */}
       <div className="bg-white pb-[162px]">
@@ -145,7 +140,7 @@ function JobListingPage() {
                 className="flex justify-between w-full cursor-pointer p-6"
                 onClick={() => setShowFilter(!showFilter)}
               >
-                filter by
+                <h3>filter by</h3>
                 <button
                   className="p-0 bg-transparent hover:bg-transparent hover:text-black focus:text-black"
                   onClick={() => setShowFilter(!showFilter)}
@@ -172,7 +167,7 @@ function JobListingPage() {
                   showFilter
                     ? 'h-fit py-10 opacity-100 w-full'
                     : 'h-0 opacity-0'
-                } transition-all ease-in-out duration-300 flex justify-evenly items-center gap-x-10 px-6`}
+                } transition-all ease-in-out duration-300 flex justify-evenly items-center gap-x-10 px-6 flex-col md:flex-row gap-y-10`}
               >
                 <label
                   className={`${
