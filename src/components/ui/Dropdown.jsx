@@ -3,7 +3,16 @@ import { Menu } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 const Dropdown = props => {
-  const { value, onChange, options, selectedOption, name, label } = props;
+  const {
+    value,
+    onChange,
+    options,
+    selectedOption,
+    name,
+    label,
+    tabIndex,
+    className,
+  } = props;
 
   const handleOptionSelect = optionValue => {
     onChange(optionValue);
@@ -15,7 +24,10 @@ const Dropdown = props => {
         <div onChange={onChange} name={name} value={value}>
           {label}
         </div>
-        <Menu.Button className="flex justify-between items-center w-full cursor-pointer px-4 rounded-md h-14 border-black/10 border-2 mt-2 hover:bg-transparent focus:bg-transparent hover:text-black focus:text-black focus:removeTextShadow hover:removeTextShadow">
+        <Menu.Button
+          className={`${className} flex justify-between items-center w-full cursor-pointer px-4 rounded-md h-14 border-black/10 border-2 mt-2 hover:bg-transparent focus:bg-transparent hover:text-black focus:text-black focus:removeTextShadow hover:removeTextShadow`}
+          tabIndex={tabIndex}
+        >
           <span>{selectedOption}</span>
           <ChevronDownIcon className="h-5 w-5" />
         </Menu.Button>
