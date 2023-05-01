@@ -7,7 +7,7 @@ const JobCards = ({ job, onClick }) => {
   return (
     <div
       onClick={() => onClick(job)}
-      className="w-full h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg"
+      className="w-full md:max-w-full max-w-[500px] h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg overflow-hidden"
     >
       {/* Company Logo & Company Name */}
       <div className="w-14 h-14 flex items-center">
@@ -45,15 +45,15 @@ const JobCards = ({ job, onClick }) => {
         </div>
       )}
       {/* Company Location and Button Container */}
-      <div className="flex justify-between mt-16 md:flex-row flex-col space-y-3 md:space-y-0">
+      <div className="flex justify-between mt-16 lg:flex-row flex-col space-y-3 lg:space-y-0">
         {/* Company Location */}
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap">
           <p>{job.country}</p>
           <p>, </p>
           <p className="ml-[2px]"> {job.city}</p>
         </div>
         {/* Apply Button */}
-        <button className="uppercase bg-[#31795A] text-white h-fit py-1 px-5 ml-0 md:ml-2">
+        <button className="uppercase bg-[#31795A] text-white h-fit py-1 px-5 ml-0 lg:ml-2">
           apply
         </button>
       </div>

@@ -46,7 +46,9 @@ const PostJobPage = () => {
   const handleInputChange = e => {
     e.persist();
     const { name, value } = e.target;
-    setJobDetails(prevState => ({ ...prevState, [name]: value }));
+    // newValue to convert min and max from string to a number value
+    const newValue = name === 'max' || name === 'min' ? Number(value) : value;
+    setJobDetails(prevState => ({ ...prevState, [name]: newValue }));
   };
 
   const handleLogoChange = e => {
@@ -367,8 +369,10 @@ const PostJobPage = () => {
                     <input
                       className="border-2 rounded-md h-14 pl-4 mt-2"
                       onChange={handleInputChange}
-                      type="text"
+                      type="number"
                       name="min"
+                      min="0"
+                      step="25"
                       value={jobDetails.min}
                       placeholder="$"
                       pattern="[0-9]*"
@@ -382,8 +386,10 @@ const PostJobPage = () => {
                     <input
                       className="border-2 rounded-md h-14 pl-4 mt-2"
                       onChange={handleInputChange}
-                      type="text"
+                      type="number"
                       name="max"
+                      min="0"
+                      step="25"
                       value={jobDetails.max}
                       placeholder="$"
                       pattern="[0-9]*"

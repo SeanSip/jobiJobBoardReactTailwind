@@ -8,6 +8,7 @@ import JobsCard from '../components/jobListings/JobCards';
 import Banner from '../components/ui/Banner';
 import JobDetailsPage from './JobDetailsPage';
 import Dropdown from '../components/ui/Dropdown.jsx';
+import SalarySlider from '../components/jobListings/SalarySlider.jsx';
 // Icon imports
 import {
   ChevronUpIcon,
@@ -15,7 +16,6 @@ import {
   ChevronRightIcon,
   ChevronLeftIcon,
 } from '@heroicons/react/24/solid';
-import JobCards from '../components/jobListings/JobCards';
 
 const ref = collection(db, 'jobs');
 
@@ -42,12 +42,14 @@ function JobListingPage() {
   const [selectedHoursOption, setSelectedHoursOption] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [showFilter, setShowFilter] = useState(false);
+  const [minSalary, setMinSalary] = useState(0);
 
   // Variable declarations
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const navigate = useNavigate();
   const pageNumbers = [1];
+
   const filteredJobs = jobs.filter(
     job =>
       ((job.jobTitle &&
@@ -69,11 +71,12 @@ function JobListingPage() {
         (job.city &&
           job.city.toLowerCase().includes(selectedLocation.toLowerCase())) ||
         (job.state &&
-          job.state.toLowerCase().includes(selectedLocation.toLowerCase())))
+          job.state.toLowerCase().includes(selectedLocation.toLowerCase()))) &&
+      job.min >= minSalary
   );
+  console.log(minSalary);
   const currentCards = filteredJobs.slice(indexOfFirstCard, indexOfLastCard);
   const lastPage = Math.ceil(filteredJobs.length / cardsPerPage);
-
   // Pagination logic
   if (currentPage <= 3) {
     for (let i = 2; i <= Math.min(4, lastPage - 1); i++) {
@@ -218,6 +221,18 @@ function JobListingPage() {
                   />
                 </div>
               </div>
+              <SalarySlider
+                minSalary={minSalary}
+                setMinSalary={setMinSalary}
+                step={5}
+                max={10000}
+                inputStyles=""
+                numberSpanStyles=""
+                label="Min Salary"
+                containerStyles={`${
+                  showFilter ? 'block' : 'hidden'
+                } flex flex-col h-full w-full flex-1 px-6 pb-6`}
+              />
             </div>
           </div>
           {/* Card Layout Container */}
@@ -225,7 +240,7 @@ function JobListingPage() {
             className={
               jobs.length === 0
                 ? 'grid grid-cols-1 text-center py-10'
-                : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-x-6 md:gap-x-11 gap-y-6 md:gap-y-10 pt-7 w-full mx-auto'
+                : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 sm:gap-x-6 md:gap-x-11 gap-y-6 md:gap-y-10 pt-7 w-full mx-auto'
             }
           >
             {jobs.length === 0 ? (
