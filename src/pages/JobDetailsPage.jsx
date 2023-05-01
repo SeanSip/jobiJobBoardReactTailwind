@@ -180,11 +180,11 @@ const JobDetailsPage = props => {
             <BackwardIcon className="w-7" alt="back icon" />
             back
           </Link>
-          <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse sm:flex-row">
-            <div className="flex flex-col w-fit">
+          <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse sm:flex-row ">
+            <div className="flex flex-col w-fit ">
               {/* TODO Make the posted by a timestamp */}
               <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
-              <h1 className="text-4xl font-body mb-5">{job.jobTitle}</h1>
+              <h1 className="text-4xl font-body mb-5 ">{job.jobTitle}</h1>
               <ul className="flex gap-x-2 mb-12 flex-wrap sm:flex-nowrap">
                 <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
                   <FaFacebookF className="w-2 mr-2" />

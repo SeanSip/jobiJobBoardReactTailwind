@@ -199,3 +199,60 @@ div.ql-container.ql-snow {
 .no-border div.ql-container.ql-snow {
   border: none;
 }
+
+/* Salary Slider Stylings */
+input[type='range'] {
+  --thumb-color: #b9d640;
+  --track-color: #ffffff;
+  height: 5px;
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 4px solid #b9d640;
+  margin-top: -8px; /* adjust thumb position */
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    var(--thumb-color) 0%,
+    var(--thumb-color) var(--thumb-percent),
+    var(--track-color) var(--thumb-percent),
+    var(--track-color) 100%
+  );
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--thumb-color);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  margin-top: -8px; /* adjust thumb position */
+}
+
+input[type='range']::-moz-range-track {
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    var(--thumb-color) 0%,
+    var(--thumb-color) var(--thumb-percent),
+    var(--track-color) var(--thumb-percent),
+    var(--track-color) 100%
+  );
+  border-radius: 25px;
+  cursor: pointer;
+}
