@@ -181,11 +181,12 @@ const JobDetailsPage = props => {
             back
           </Link>
           <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse sm:flex-row ">
-            <div className="flex flex-col w-fit ">
+            {/* Main job post content */}
+            <div className="flex flex-col overflow-hidden break-words">
               {/* TODO Make the posted by a timestamp */}
               <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
-              <h1 className="text-4xl font-body mb-5 ">{job.jobTitle}</h1>
-              <ul className="flex gap-x-2 mb-12 flex-wrap sm:flex-nowrap">
+              <h1 className="text-4xl font-body mb-5">{job.jobTitle}</h1>
+              <ul className="flex gap-x-2 mb-12 flex-wrap md:flex-nowrap gap-y-2">
                 <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
                   <FaFacebookF className="w-2 mr-2" />
                   Facebook
@@ -199,7 +200,7 @@ const JobDetailsPage = props => {
                   Copy
                 </li>
               </ul>
-              <div className="flex flex-col gap-y-14">
+              <div className="flex flex-col gap-y-14 ">
                 {/* Job Description */}
                 <ReactQuill
                   value={job.jobDescription}
@@ -212,11 +213,13 @@ const JobDetailsPage = props => {
                   }}
                 />
 
-                <button className="w-fit bg-color-button-green text-white rounded-md px-7 sm:self-start self-center">
+                <button className="w-fit bg-color-button-green text-white rounded-md px-7 self-center sm:self-start">
                   Apply for this position
                 </button>
               </div>
             </div>
+
+            {/* Side card content */}
             <aside className="flex flex-col w-full sm:max-w-[340px] sm:min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md static sm:sticky top-0 sm:top-40">
               <div className="flex flex-col items-center">
                 <img
@@ -269,7 +272,7 @@ const JobDetailsPage = props => {
                   </div>
                 )}
               </div>
-              <button className="text-color-title mt-8 ">Apply Now</button>
+              <button className="text-color-title mt-8">Apply Now</button>
             </aside>
           </div>
           {/* Delete Job Button */}

@@ -16,6 +16,8 @@ import {
   ChevronRightIcon,
   ChevronLeftIcon,
 } from '@heroicons/react/24/solid';
+// Image imports
+import jobi from '../assets/jobiWithText.png';
 
 const ref = collection(db, 'jobs');
 
@@ -49,6 +51,14 @@ function JobListingPage() {
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const navigate = useNavigate();
   const pageNumbers = [1];
+
+  // Reset filters
+  const resetFilters = () => {
+    setSearchQuery('');
+    setSelectedHoursOption('');
+    setSelectedLocation('');
+    setMinSalary(0);
+  };
 
   const filteredJobs = jobs.filter(
     job =>
@@ -136,7 +146,6 @@ function JobListingPage() {
         {/* Job Listings Wrapper Container */}
         <div className="wrapper">
           {/* Filter By */}
-          {/* TODO Convert this into an actual functional filter */}
           <div className="lg pt-[101px] pb-[120px]">
             <div className="bg-color-bg-gray rounded-lg capitalize flex flex-col justify-between items-center">
               <div
@@ -180,6 +189,7 @@ function JobListingPage() {
                   Job title or company
                   <input
                     type="text"
+                    value={searchQuery}
                     placeholder="Search by keyword"
                     onChange={e => setSearchQuery(e.target.value)}
                     tabIndex={showFilter ? 0 : -1}
@@ -233,9 +243,29 @@ function JobListingPage() {
                   showFilter ? 'block' : 'hidden'
                 } flex flex-col h-full w-full flex-1 px-6 pb-6`}
               />
+              <div className="flex justify-start w-full">
+                <button
+                  className={`${
+                    showFilter ? 'block' : 'hidden'
+                  }  w-fit rounded-none rounded-bl-lg rounded-tr-lg`}
+                  onClick={resetFilters}
+                >
+                  Reset Filters
+                </button>
+              </div>
             </div>
           </div>
           {/* Card Layout Container */}
+          {filteredJobs.length === 0 && (
+            <div className="text-center font-body flex flex-col justify-center items-center">
+              <span className=" text-4xl">Sorry</span>
+              <p className="text-xl mt-4">
+                No job listings found matching your search criteria. Please try
+                adjusting your filters or search keywords
+              </p>
+              <img className="w-1/2" src={jobi} alt="" />
+            </div>
+          )}
           <div
             className={
               jobs.length === 0
