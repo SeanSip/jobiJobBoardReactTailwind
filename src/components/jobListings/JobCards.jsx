@@ -7,7 +7,7 @@ const JobCards = ({ job, onClick }) => {
   return (
     <div
       onClick={() => onClick(job)}
-      className="w-full md:max-w-full max-w-[500px] h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg overflow-hidden"
+      className="w-full md:max-w-full max-w-[500px] h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg overflow-hidden break-words"
     >
       {/* Company Logo & Company Name */}
       <div className="w-14 h-14 flex items-center">

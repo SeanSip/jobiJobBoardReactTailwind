@@ -372,7 +372,8 @@ const PostJobPage = () => {
                       type="number"
                       name="min"
                       min="0"
-                      step="25"
+                      max="9999999"
+                      step="1"
                       value={jobDetails.min}
                       placeholder="$"
                       pattern="[0-9]*"
@@ -389,7 +390,8 @@ const PostJobPage = () => {
                       type="number"
                       name="max"
                       min="0"
-                      step="25"
+                      max="10000000"
+                      step="1"
                       value={jobDetails.max}
                       placeholder="$"
                       pattern="[0-9]*"
