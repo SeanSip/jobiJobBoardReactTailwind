@@ -9,6 +9,7 @@ import Banner from '../components/ui/Banner';
 import JobDetailsPage from './JobDetailsPage';
 import Dropdown from '../components/ui/Dropdown.jsx';
 import SalarySlider from '../components/jobListings/SalarySlider.jsx';
+import countryOptions from '../components/dropdownOptions/countryOptionsArray.jsx';
 // Icon imports
 import {
   ChevronUpIcon,
@@ -18,6 +19,7 @@ import {
 } from '@heroicons/react/24/solid';
 // Image imports
 import jobi from '../assets/jobiWithText.png';
+import countryOptionsArray from '../components/dropdownOptions/countryOptionsArray.jsx';
 
 const ref = collection(db, 'jobs');
 
@@ -43,6 +45,7 @@ function JobListingPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedHoursOption, setSelectedHoursOption] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedCountryOption, setSelectedCountryOption] = useState('');
   const [showFilter, setShowFilter] = useState(false);
   const [minSalary, setMinSalary] = useState(0);
 
@@ -57,11 +60,16 @@ function JobListingPage() {
     setSearchQuery('');
     setSelectedHoursOption('');
     setSelectedLocation('');
+    setSelectedCountryOption('');
     setMinSalary(0);
   };
 
-  const filteredJobs = jobs.filter(
-    job =>
+  const filteredJobs = jobs.filter(job => {
+    const selectedHours = selectedHoursOption.split('(')[0].trim();
+    const selectedCountry = selectedCountryOption
+      ? selectedCountryOption.split('(')[0].trim()
+      : null;
+    return (
       ((job.jobTitle &&
         job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (job.company &&
@@ -72,9 +80,9 @@ function JobListingPage() {
           job.city.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (job.state &&
           job.state.toLowerCase().includes(searchQuery.toLowerCase()))) &&
-      (selectedHoursOption === 'All' ||
-        !selectedHoursOption ||
-        job.hours === selectedHoursOption) &&
+      (selectedHours === 'All' ||
+        !selectedHours ||
+        job.hours === selectedHours) &&
       (!selectedLocation ||
         (job.country &&
           job.country.toLowerCase().includes(selectedLocation.toLowerCase())) ||
@@ -82,10 +90,15 @@ function JobListingPage() {
           job.city.toLowerCase().includes(selectedLocation.toLowerCase())) ||
         (job.state &&
           job.state.toLowerCase().includes(selectedLocation.toLowerCase()))) &&
+      (!selectedCountry ||
+        (job.country &&
+          job.country.toLowerCase() === selectedCountry.toLowerCase())) &&
       job.min >= minSalary
-  );
-  console.log(minSalary);
+    );
+  });
+
   const currentCards = filteredJobs.slice(indexOfFirstCard, indexOfLastCard);
+
   const lastPage = Math.ceil(filteredJobs.length / cardsPerPage);
   // Pagination logic
   if (currentPage <= 3) {
@@ -132,7 +145,50 @@ function JobListingPage() {
     return <div>Loading...</div>;
   }
 
-  const hoursOptions = ['All', 'Full-time', 'Part-time', 'Contract'];
+  // Job type total jobs count
+  let fullTimeCount = 0;
+  let partTimeCount = 0;
+  let contractCount = 0;
+  // Job for each loop function
+  jobs.forEach(function (job) {
+    if (job.hours === 'Full-time') {
+      fullTimeCount++;
+    } else if (job.hours === 'Part-time') {
+      partTimeCount++;
+    } else if (job.hours === 'Contract') {
+      contractCount++;
+    }
+  });
+  // Job type options with count
+  const hoursOptions = [
+    `All (${jobs.length})`,
+    `Full-time (${fullTimeCount})`,
+    `Part-time (${partTimeCount})`,
+    `Contract (${contractCount})`,
+  ];
+
+  const countryDropDownWithJobCount = () => {
+    // Country options array import and reassigned variable name
+    const countryOptionArray = countryOptionsArray;
+    // Sort country array list alphabetically
+    countryOptionArray.sort((a, b) => a.localeCompare(b));
+    // Initialize country counts
+    const countryCounts = {};
+    //Country counter for each funcion
+    jobs.forEach(function (job) {
+      if (countryCounts[job.country]) {
+        countryCounts[job.country]++;
+      } else {
+        countryCounts[job.country] = 1;
+      }
+    });
+    //Country options map function
+    const countryOptions = Object.keys(countryCounts).map(function (country) {
+      return `${country} (${countryCounts[country]})`;
+    });
+
+    return countryOptions;
+  };
 
   return (
     <section>
@@ -196,21 +252,26 @@ function JobListingPage() {
                     className="mt-2 p-4 border-2 rounded-md"
                   />
                 </label>
-                <label
+                <div
                   className={`${
                     showFilter ? 'block' : 'hidden'
                   } w-full flex-1 flex flex-col jobPostLabel`}
                 >
-                  Country, State/province, city
-                  <input
-                    type="text"
-                    value={selectedLocation}
-                    onChange={e => setSelectedLocation(e.target.value)}
-                    placeholder="Enter country, state/province, city"
+                  <Dropdown
+                    value={selectedCountryOption}
+                    onChange={value => {
+                      setSelectedCountryOption(value);
+                      setCurrentPage(1);
+                    }}
+                    options={countryDropDownWithJobCount()}
+                    selectedOption={selectedCountryOption}
+                    name="Country"
+                    placeholder="Select Country"
+                    label="Country"
                     tabIndex={showFilter ? 0 : -1}
-                    className="mt-2 p-4 border-2 rounded-md"
+                    className="bg-white hover:bg-white focus:bg-white"
                   />
-                </label>
+                </div>
                 <div
                   className={`${
                     showFilter ? 'block ' : 'hidden'
@@ -225,7 +286,8 @@ function JobListingPage() {
                     options={hoursOptions}
                     selectedOption={selectedHoursOption}
                     name="hours"
-                    label="Hours"
+                    placeholder="Select job type"
+                    label="Job Type"
                     tabIndex={showFilter ? 0 : -1}
                     className="bg-white hover:bg-white focus:bg-white"
                   />
@@ -256,6 +318,12 @@ function JobListingPage() {
             </div>
           </div>
           {/* Card Layout Container */}
+          {/* TODO This will be the total jobs list */}
+          <p>Total of {filteredJobs.length} jobs found</p>
+          {/* TODO This will be the page out of page list */}
+          <p>
+            page {currentPage} of {pageNumbers.length}
+          </p>
           {filteredJobs.length === 0 && (
             <div className="text-center font-body flex flex-col justify-center items-center">
               <span className=" text-4xl">Sorry</span>

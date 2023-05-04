@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db, storage } from '../firebase/config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 // Page Imports
 import Dropdown from '../components/ui/Dropdown';
 import Skills from '../components/skills/Skills';
 import Banner from '../components/ui/Banner';
+
+import categoryOptions from '../components/dropdownOptions/categoryOptions';
+import countryOptions from '../components/dropdownOptions/countryOptionsArray';
 
 // IMPORTANT TODO Add scroll to view of error on form submission
 
@@ -34,14 +37,22 @@ const PostJobPage = () => {
     skills: [],
     experience: '',
     qualifications: '',
-    industry: '',
     companyLink: '',
     jobDescription: '',
+    postedOn: serverTimestamp(),
   });
 
   // Dropdown Menu Options for component import's custom props
   const hoursOptions = ['Full-time', 'Part-time', 'Contract'];
   const salaryOptions = ['Month', 'Week', 'Hour'];
+  const experienceOptions = [
+    'Entry/ Junior (0-1 years)',
+    'Beginner (1-2 years)',
+    'Intermediate (2-5 years)',
+    'Senior (5+ years)',
+  ];
+  categoryOptions;
+  countryOptions;
 
   const handleInputChange = e => {
     e.persist();
@@ -80,6 +91,8 @@ const PostJobPage = () => {
       'country',
       'city',
       'state',
+      'category',
+      'experience',
     ].filter(required);
 
     if (missingRequiredFields.length) {
@@ -121,7 +134,6 @@ const PostJobPage = () => {
         skills: [],
         experience: '',
         qualifications: '',
-        industry: '',
         companyLink: '',
         jobDescription: '',
       });
@@ -148,7 +160,6 @@ const PostJobPage = () => {
       skills: [],
       experience: '',
       qualifications: '',
-      industry: '',
       companyLink: '',
       jobDescription: '',
     });
@@ -276,7 +287,7 @@ const PostJobPage = () => {
               </div>
 
               <label className="jobPostLabel flex flex-col w-full">
-                Logo*
+                Logo
                 <input
                   id="file-upload"
                   className="mt-2 customFile"
@@ -344,7 +355,7 @@ const PostJobPage = () => {
               </div>
               <div className="flex lg:flex-row flex-col gap-x-6 lg:gap-y-0 gap-y-10">
                 {/* Salary Dropdown */}
-                <div className="w-full">
+                <div className="lg:w-8/12 w-full">
                   <Dropdown
                     value={jobDetails.salary}
                     onChange={value =>
@@ -362,7 +373,7 @@ const PostJobPage = () => {
                 </div>
 
                 {/* Min/Max Container */}
-                <div className="flex justify-evenly gap-x-6 gap-y-10 md:flex-row flex-col">
+                <div className="flex justify-evenly gap-x-6 gap-y-10 phone:flex-row flex-col lg:w-4/12 w-full">
                   {/* Min $ input */}
                   <label className="jobPostLabel flex flex-col w-full">
                     Min*
@@ -417,21 +428,27 @@ const PostJobPage = () => {
                 <div>{required('address', 'Address')}</div>
               </label>
               {/* Country, City, State/ Province Container */}
-              <div className="flex gap-x-6 gap-y-10 md:flex-row flex-col">
+              <div className="flex gap-x-6 gap-y-10 md:flex-row flex-col w-full">
                 {/* Country */}
-                <label className="jobPostLabel flex flex-col w-full">
-                  Country*
-                  <input
-                    className="border-2 rounded-md h-14 pl-4 mt-2"
-                    onChange={handleInputChange}
-                    type="text"
-                    name="country"
+                <div className="flex-1 md:w-1/4 w-full">
+                  <Dropdown
                     value={jobDetails.country}
+                    onChange={value =>
+                      setJobDetails(prevState => ({
+                        ...prevState,
+                        country: value,
+                      }))
+                    }
+                    options={countryOptions}
+                    selectedOption={jobDetails.country}
+                    name={jobDetails.country}
+                    label="Country*"
+                    placeholder="Select Country"
                   />
                   <div>{required('country', 'Country')}</div>
-                </label>
+                </div>
                 {/* City */}
-                <label className="jobPostLabel flex flex-col w-full">
+                <label className="jobPostLabel flex flex-col w-full flex-1">
                   City*
                   <input
                     className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -443,7 +460,7 @@ const PostJobPage = () => {
                   <div>{required('city', 'City')}</div>
                 </label>
                 {/* Province/State */}
-                <label className="jobPostLabel flex flex-col w-full">
+                <label className="jobPostLabel flex flex-col w-full flex-1">
                   State/ Province*
                   <input
                     className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -457,6 +474,46 @@ const PostJobPage = () => {
               </div>
               {/* Skills */}
               <Skills jobDetails={jobDetails} setJobDetails={setJobDetails} />
+
+              <div className="flex max-w-full gap-x-6 md:flex-row flex-col gap-y-10 ">
+                {/* Experience Dropdown */}
+                <div className="md:w-1/2 w-full">
+                  <Dropdown
+                    value={jobDetails.experience}
+                    onChange={value =>
+                      setJobDetails(prevState => ({
+                        ...prevState,
+                        experience: value,
+                      }))
+                    }
+                    options={experienceOptions}
+                    selectedOption={jobDetails.experience}
+                    name={jobDetails.experience}
+                    label="Experience*"
+                    placeholder="Experience"
+                  />
+                  <div>{required('experience', 'Experience')}</div>
+                </div>
+
+                {/* Category Dropdown */}
+                <div className="md:w-1/2 w-full">
+                  <Dropdown
+                    value={jobDetails.category}
+                    onChange={value =>
+                      setJobDetails(prevState => ({
+                        ...prevState,
+                        category: value,
+                      }))
+                    }
+                    options={categoryOptions}
+                    selectedOption={jobDetails.category}
+                    name={jobDetails.category}
+                    label="Job Category*"
+                    placeholder="Category"
+                  />
+                  <div>{required('category', 'Job Category')}</div>
+                </div>
+              </div>
 
               {/* Submit Button */}
               <div className="flex gap-x-4 flex-wrap gap-y-10">
@@ -483,6 +540,7 @@ const PostJobPage = () => {
                   Please fill in missing fields & press submit again
                 </div>
               </div>
+              <p aria-label="explanation for * symbol">* required</p>
             </div>
           </form>
         </div>
