@@ -102,6 +102,16 @@ const options = [
   { value: 'Data visualization', label: 'Data visualization' },
   { value: 'Machine learning', label: 'Machine learning' },
   { value: 'Statistical modeling', label: 'Statistical modeling' },
+  {
+    value: 'Web accessibility standards',
+    label: 'Web accessibility standards',
+  },
+  { value: 'WordPress', label: 'WordPress' },
+  { value: 'Drupal', label: 'Drupal' },
+  { value: 'Sanity.io', label: 'Sanity.io' },
+  { value: 'Mailchimp', label: 'Mailchimp' },
+  { value: 'Email Development', label: 'Email Development' },
+  { value: 'Content Management Systems', label: 'Content Management Systems' },
 
   // Soft Skills
   { value: 'Communication', label: 'Communication' },

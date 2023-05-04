@@ -158,7 +158,11 @@ label input#file-upload-button {
 
   input::placeholder,
   input {
-    @apply font-body text-[#00000080];
+    @apply font-body text-base;
+  }
+
+  input::placeholder {
+    @apply text-[#00000080];
   }
 
   textarea {

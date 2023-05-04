@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, Link, useParams } from 'react-router-dom';
 import { FaLink, FaTwitter, FaFacebookF } from 'react-icons/fa';
-import { BackwardIcon } from '@heroicons/react/24/solid';
+import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import ReactQuill from 'react-quill';
-import { doc, deleteDoc, getDoc } from 'firebase/firestore';
+import { doc, deleteDoc, getDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/config.jsx';
 
 import Banner from '../components/ui/Banner';
@@ -96,10 +96,8 @@ const JobDetailsPage = props => {
   const yearlyTotal = () => {
     if (job.hours === 'Contract' || job.hours === 'Part-time') {
       return (
-        <div className="flex items-center mt-4">
-          <p>{`$${job.min}`}</p>
-          <p>-</p>
-          <p>{`$${job.max}`}</p>
+        <div className="flex items-center">
+          <p>{`$${job.min}-$${job.max}`}</p>
           <p className="ml-1 text-color-gray">{`/ ${job.salary}`}</p>
         </div>
       );
@@ -107,15 +105,30 @@ const JobDetailsPage = props => {
       if (job.salary === 'Month') {
         const min = Math.floor((job.min * 12) / 1000);
         const max = Math.floor((job.max * 12) / 1000);
-        return <p>{`${min}k-${max}k/year`}</p>;
+        return (
+          <div className="flex items-center">
+            <p>{`${min}k-${max}k`}</p>
+            <p className="ml-1 text-color-gray">/year</p>
+          </div>
+        );
       } else if (job.salary === 'Week') {
         const min = Math.floor((job.min * 52) / 1000);
         const max = Math.floor((job.max * 52) / 1000);
-        return <p>{`${min}k-${max}k/year`}</p>;
+        return (
+          <div className="flex items-center">
+            <p>{`${min}k-${max}k`}</p>
+            <p className="ml-1 text-color-gray">/year</p>
+          </div>
+        );
       } else if (job.salary === 'Hour') {
         const min = Math.floor((job.min * 40 * 50) / 1000);
         const max = Math.floor((job.max * 40 * 50) / 1000);
-        return <p>{`${min}k-${max}k/year`}</p>;
+        return (
+          <div className="flex items-center">
+            <p>{`${min}k-${max}k`}</p>
+            <p className="ml-1 text-color-gray">/year</p>
+          </div>
+        );
       }
     }
   };
@@ -123,6 +136,19 @@ const JobDetailsPage = props => {
   const quillModules = {
     toolbar: false,
     clipboard: { matchVisual: false },
+  };
+
+  // Timestamp
+  const datePostedOn = () => {
+    const timestampData = job.postedOn;
+    const timestamp = Timestamp.fromMillis(
+      timestampData.seconds * 1000 + timestampData.nanoseconds / 1000000
+    );
+    const date = timestamp.toDate();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = date.toLocaleDateString(undefined, options);
+
+    return dateString;
   };
 
   if (!job) {
@@ -177,14 +203,17 @@ const JobDetailsPage = props => {
             className="text-xl font-button mb-4 sm:mb-20 text-color-gray flex items-center gap-x-1 w-fit underline hover:text-blue-600/70"
             to="/job-listing"
           >
-            <BackwardIcon className="w-7" alt="back icon" />
+            <ChevronLeftIcon className="w-5 mt-1" alt="back icon" />
             back
           </Link>
-          <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse sm:flex-row ">
+          <div className="flex justify-evenly lg:gap-x-16 gap-x-8 flex-col-reverse md:flex-row ">
             {/* Main job post content */}
             <div className="flex flex-col overflow-hidden break-words">
-              {/* TODO Make the posted by a timestamp */}
-              <p className="mb-4 sm:mt-0 mt-4 text-color-gray">{`Posted by: ${job.company}`}</p>
+              {/* Posted By Container */}
+              <div className="flex flex-wrap mb-4 md:mt-0 mt-4">
+                <p className="text-color-gray">{`${datePostedOn()} by`}</p>
+                <p className="ml-1">{job.company}</p>
+              </div>
               <h1 className="text-4xl font-body mb-5">{job.jobTitle}</h1>
               <ul className="flex gap-x-2 mb-12 flex-wrap md:flex-nowrap gap-y-2">
                 <li className="border-[1px] border-color-title px-3 py-1 rounded-md flex items-center text-[#244034] cursor-pointer hover:bg-color-one">
@@ -220,14 +249,14 @@ const JobDetailsPage = props => {
             </div>
 
             {/* Side card content */}
-            <aside className="flex flex-col w-full sm:max-w-[340px] sm:min-w-[280px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md static sm:sticky top-0 sm:top-40">
+            <aside className="flex flex-col w-full md:max-w-[340px] md:min-w-[340px] bg-color-bg-gray rounded-lg px-6 pb-11 pt-9 h-fit shadow-md static md:sticky top-0 md:top-40">
               <div className="flex flex-col items-center">
                 <img
                   className="w-20 rounded-full mb-4"
                   src={logoDisplay}
                   alt={`Company logo for ${job.company}`}
                 />
-                <h3 className="mb-6 text-xl">{job.company}</h3>
+                <h3 className="mb-6 text-xl text-center">{job.company}</h3>
                 <a
                   target="_blank"
                   href={job.companyLink}
@@ -236,29 +265,59 @@ const JobDetailsPage = props => {
                   View website
                 </a>
               </div>
-              <div className="space-y-9 py-7 border-t-2">
-                {/* Salary*/}
-                <div className="mt-4">
-                  <p className="capitalize text-color-gray">salary</p>
-                  <p className="flex items-center mt-1">{yearlyTotal()}</p>
+
+              {/* Salary, Experience, Location, Job Type, Date, and Category Container */}
+              <div className="flex flex-col gap-y-10 py-7 border-t-2">
+                {/* Salary and Experience Container */}
+                <div className="flex justify-evenly gap-x-6 gap-y-10 flex-col phone:flex-row">
+                  {/* Salary*/}
+                  <label className="flex-1 min-w-fit">
+                    Salary
+                    <p className="flex items-center mt-1">{yearlyTotal()}</p>
+                  </label>
+                  {/* Experience */}
+                  <label className="flex-1">
+                    Experience
+                    <p className="mt-1">{job.experience}</p>
+                  </label>
                 </div>
-                {/* Company Location */}
-                <div>
-                  <p className="capitalize text-color-gray">location</p>
-                  <div className="flex mt-1">
-                    <p>{job.country}</p>
-                    <p>, </p>
-                    <p className="ml-[2px]"> {job.city}</p>
-                  </div>
+
+                {/* Location and Job Type Container */}
+                <div className="flex justify-evenly gap-x-6 gap-y-10 flex-col phone:flex-row">
+                  {/* Company Location */}
+                  <label className="flex-1">
+                    Location
+                    <div className="flex mt-1 capitalize">
+                      <p>{job.country}</p>
+                      <p>, </p>
+                      <p className="ml-[2px]"> {job.city}</p>
+                    </div>
+                  </label>
+                  {/* Job Type */}
+                  <label className="flex-1">
+                    Job Type
+                    <p className="mt-1">{job.hours}</p>
+                  </label>
                 </div>
-                {/* Job Type */}
-                <div>
-                  <p className="capitalize text-color-gray">job type</p>
-                  <p className="mt-1">{job.hours}</p>
+                {/* Job Category */}
+
+                {/* Date and Category Container */}
+                <div className="flex justify-evenly gap-x-6 gap-y-10 flex-col phone:flex-row">
+                  {/* Date */}
+                  <label className="flex-1">
+                    Date
+                    <p className="mt-1">{datePostedOn()}</p>
+                  </label>
+                  {/* Category */}
+                  <label className="flex-1">
+                    Category
+                    <p className="mt-1">{job.category}</p>
+                  </label>
                 </div>
               </div>
-              {/* Skills */}
-              <div className="">
+
+              {/* Skills Container*/}
+              <div>
                 {job.skills && job.skills.length > 0 && (
                   <div className="flex flex-wrap mt-4">
                     {job.skills.map(skill => (

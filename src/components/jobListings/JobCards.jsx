@@ -47,7 +47,7 @@ const JobCards = ({ job, onClick }) => {
       {/* Company Location and Button Container */}
       <div className="flex justify-between mt-16 lg:flex-row flex-col space-y-3 lg:space-y-0">
         {/* Company Location */}
-        <div className="flex items-center flex-wrap">
+        <div className="flex items-center flex-wrap capitalize">
           <p>{job.country}</p>
           <p>, </p>
           <p className="ml-[2px]"> {job.city}</p>
