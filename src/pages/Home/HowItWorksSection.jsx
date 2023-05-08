@@ -70,7 +70,7 @@ function HowItWorksSection() {
               alt="Circular icon graphic of cartoon pencil"
             />
             <h3 className="text-white text-xl capitalize text-center">
-              Apply job or hire
+              Apply to job or hire
             </h3>
             <p className="text-[#81B197] text-center w-full max-w-[312px] mt-4">
               Apply & get your preferable jobs with all the requirements and get
