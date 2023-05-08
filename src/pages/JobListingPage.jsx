@@ -235,7 +235,7 @@ function JobListingPage() {
                   showFilter
                     ? 'h-fit py-10 opacity-100 w-full'
                     : 'h-0 opacity-0'
-                } transition-all ease-in-out duration-300 flex justify-evenly items-center gap-x-10 px-6 flex-col md:flex-row gap-y-10`}
+                } transition-all ease-in-out duration-300 flex justify-evenly items-center gap-x-6 px-6 flex-col md:flex-row gap-y-10`}
               >
                 <label
                   className={`${
@@ -249,7 +249,7 @@ function JobListingPage() {
                     placeholder="Search by keyword"
                     onChange={e => setSearchQuery(e.target.value)}
                     tabIndex={showFilter ? 0 : -1}
-                    className="mt-2 p-4 border-2 rounded-md"
+                    className="mt-2 p-[14px] border-2 rounded-md"
                   />
                 </label>
                 <div
@@ -269,7 +269,7 @@ function JobListingPage() {
                     placeholder="Select Country"
                     label="Country"
                     tabIndex={showFilter ? 0 : -1}
-                    className="bg-white hover:bg-white focus:bg-white"
+                    className="bg-white hover:bg-white focus:bg-white justify-between"
                   />
                 </div>
                 <div
@@ -289,7 +289,7 @@ function JobListingPage() {
                     placeholder="Select job type"
                     label="Job Type"
                     tabIndex={showFilter ? 0 : -1}
-                    className="bg-white hover:bg-white focus:bg-white"
+                    className="bg-white hover:bg-white focus:bg-white justify-between"
                   />
                 </div>
               </div>

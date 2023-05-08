@@ -13,6 +13,7 @@ const Dropdown = props => {
     tabIndex,
     className,
     placeholder,
+    labelStyles,
   } = props;
 
   const handleOptionSelect = optionValue => {
@@ -22,7 +23,7 @@ const Dropdown = props => {
   return (
     <Menu as="div" className="flex flex-col relative">
       <label
-        className="jobPostLabel"
+        className={`jobPostLabel ${labelStyles}`}
         onChange={onChange}
         name={name}
         value={value}
@@ -30,7 +31,7 @@ const Dropdown = props => {
         {label}
       </label>
       <Menu.Button
-        className={`${className} max-w-full flex justify-between items-center cursor-pointer px-4 rounded-md h-14 border-black/10 border-2 mt-2 hover:bg-transparent focus:bg-transparent hover:text-black focus:text-black focus:removeTextShadow hover:removeTextShadow`}
+        className={`${className}  max-w-full flex  items-center cursor-pointer px-4 rounded-md h-14 border-black/10 border-2 mt-2 hover:bg-transparent focus:bg-transparent hover:text-black focus:text-black focus:removeTextShadow hover:removeTextShadow`}
         tabIndex={tabIndex}
       >
         <span
