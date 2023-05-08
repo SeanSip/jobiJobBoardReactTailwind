@@ -38,12 +38,10 @@ svg {
 }
 
 .clientCard {
-  height: 530px;
   width: 100%;
   background-color: #f9ffe1;
   border-radius: 30px;
   border: 1.6px solid #000000;
-  padding: 30px 50px;
 }
 
 .clientCard:hover {
@@ -182,6 +180,10 @@ label input#file-upload-button {
   button {
     @apply px-4 py-2 rounded-full font-medium text-black bg-color-one hover:bg-color-secondary hover:text-white focus:bg-color-secondary focus:text-white hover:textShadow;
   }
+
+  .clientCard {
+    @apply h-[530px] phone:py-[30px] phone:px-[50px] py-[15px] px-[20px];
+  }
 }
 
 /* ReactQuill Stylings */
@@ -259,4 +261,9 @@ input[type='range']::-moz-range-track {
   );
   border-radius: 25px;
   cursor: pointer;
+}
+
+button.react-multiple-carousel__arrow--left,
+button.react-multiple-carousel__arrow--right {
+  @apply bg-red-500;
 }
