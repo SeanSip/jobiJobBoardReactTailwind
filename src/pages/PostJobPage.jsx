@@ -350,12 +350,13 @@ const PostJobPage = () => {
                   selectedOption={jobDetails.hours}
                   name={jobDetails.hours}
                   label="Hours*"
+                  className="justify-between"
                 />
                 <div>{required('hours', 'Hours')}</div>
               </div>
               <div className="flex lg:flex-row flex-col gap-x-6 lg:gap-y-0 gap-y-10">
                 {/* Salary Dropdown */}
-                <div className="lg:w-8/12 w-full">
+                <div className="lg:w-8/12 w-full flex-1">
                   <Dropdown
                     value={jobDetails.salary}
                     onChange={value =>
@@ -368,14 +369,15 @@ const PostJobPage = () => {
                     selectedOption={jobDetails.salary}
                     name={jobDetails.salary}
                     label="Salary*"
+                    className="justify-between"
                   />
                   <div>{required('salary', 'Salary')}</div>
                 </div>
 
                 {/* Min/Max Container */}
-                <div className="flex justify-evenly gap-x-6 gap-y-10 phone:flex-row flex-col lg:w-4/12 w-full">
+                <div className="flex gap-x-6 gap-y-10 phone:flex-row flex-col w-full flex-1">
                   {/* Min $ input */}
-                  <label className="jobPostLabel flex flex-col w-full">
+                  <label className="jobPostLabel flex flex-col w-full flex-1 min-w-[1px]">
                     Min*
                     <input
                       className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -393,7 +395,7 @@ const PostJobPage = () => {
                     <div>{required('min', 'Min $')}</div>
                   </label>
                   {/* Max $ input */}
-                  <label className="jobPostLabel flex flex-col w-full">
+                  <label className="jobPostLabel flex flex-col w-full flex-1 min-w-[1px]">
                     Max*
                     <input
                       className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -430,7 +432,7 @@ const PostJobPage = () => {
               {/* Country, City, State/ Province Container */}
               <div className="flex gap-x-6 gap-y-10 md:flex-row flex-col w-full">
                 {/* Country */}
-                <div className="flex-1 md:w-1/4 w-full">
+                <div className="flex-1 md:w-1/4 w-full min-w-[1px]">
                   <Dropdown
                     value={jobDetails.country}
                     onChange={value =>
@@ -444,11 +446,12 @@ const PostJobPage = () => {
                     name={jobDetails.country}
                     label="Country*"
                     placeholder="Select Country"
+                    className="justify-between"
                   />
                   <div>{required('country', 'Country')}</div>
                 </div>
                 {/* City */}
-                <label className="jobPostLabel flex flex-col w-full flex-1">
+                <label className="jobPostLabel flex flex-col w-full flex-1 min-w-[1px]">
                   City*
                   <input
                     className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -460,7 +463,7 @@ const PostJobPage = () => {
                   <div>{required('city', 'City')}</div>
                 </label>
                 {/* Province/State */}
-                <label className="jobPostLabel flex flex-col w-full flex-1">
+                <label className="jobPostLabel flex flex-col w-full flex-1 min-w-[1px]">
                   State/ Province*
                   <input
                     className="border-2 rounded-md h-14 pl-4 mt-2"
@@ -491,6 +494,7 @@ const PostJobPage = () => {
                     name={jobDetails.experience}
                     label="Experience*"
                     placeholder="Experience"
+                    className="justify-between"
                   />
                   <div>{required('experience', 'Experience')}</div>
                 </div>
@@ -510,6 +514,7 @@ const PostJobPage = () => {
                     name={jobDetails.category}
                     label="Job Category*"
                     placeholder="Category"
+                    className="justify-between"
                   />
                   <div>{required('category', 'Job Category')}</div>
                 </div>
