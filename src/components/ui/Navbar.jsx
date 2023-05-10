@@ -101,7 +101,7 @@ const Navbar = () => {
     // Navbar Container
     <nav
       onMouseLeave={() => setIsOpen(false)} // Closes sub menu if cursor leaves nav section
-      className="w-screen h-[100px] z-50 fixed top-0 pb-1 bg-[#244034]"
+      className="w-screen h-[50px] tablet:h-[100px] z-50 fixed top-0 pb-1 bg-[#244034]"
     >
       <div
         className={
@@ -176,7 +176,7 @@ const Navbar = () => {
           </ul>
         </div>
         <img
-          className="mt-[0px] h-20"
+          className="mt-[0px] h-9 tablet:h-20"
           src={shape}
           alt="A graphic design of a squiqgly line shape "
         />
