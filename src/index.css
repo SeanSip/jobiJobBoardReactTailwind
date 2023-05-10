@@ -4,8 +4,6 @@
 @tailwind utilities;
 
 body {
-  background-color: #244034;
-  padding-top: 100px;
 }
 
 section {
@@ -87,6 +85,10 @@ svg {
   background-color: #d2f34c;
   color: #000000;
   text-shadow: none;
+}
+
+body {
+  @apply pt-[50px] tablet:pt-[100px] bg-color-background;
 }
 
 .btn {
