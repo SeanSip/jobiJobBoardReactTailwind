@@ -24,7 +24,7 @@ const ExpertsSection = () => {
             <img
               className="w-[321px] h-[197px] bg-cover"
               src={portraitOne}
-              alt=""
+              alt="Portrait photo of a Jobi candidate"
             />
             <div className="bg-white shadow-2xl absolute left-[230px] top-[60px] w-[261px] rounded-md">
               <div className="flex">
@@ -42,11 +42,19 @@ const ExpertsSection = () => {
           </div>
           {/* Bottom container */}
           <div className="flex pt-8 gap-x-8 relative">
-            <img className=" h-fit" src={portraitTwo} alt="" />
-            <img src={portraitThree} alt="" />
+            <img
+              className=" h-fit"
+              src={portraitTwo}
+              alt="Portrait photo of a Jobi candidate"
+            />
+            <img src={portraitThree} alt="Portrait photo of a Jobi candidate" />
             <div className="bg-white flex h-fit absolute right-[24px] top-3 shadow-2xl p-3 rounded-md">
               <div className="p-6 h-fit bg-[#FFE5E5] rounded-full relative">
-                <img className="w-4 h-4 absolute inset-4" src={check} alt="" />
+                <img
+                  className="w-4 h-4 absolute inset-4"
+                  src={check}
+                  alt="Check mark graphic"
+                />
               </div>
               <div className="flex flex-col pl-4">
                 <p className="text-sm">Payment</p>
@@ -89,7 +97,7 @@ const ExpertsSection = () => {
             <img
               className="absolute right-16 w-10 h-10"
               src={bgDarkShapeSmall}
-              alt=""
+              alt="Square pattern graphic made of stripes"
             />
           </div>
         </div>

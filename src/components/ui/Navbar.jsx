@@ -43,14 +43,14 @@ const Navbar = () => {
 
   useEffect(() => {
     if (stopScroll) {
-      document.body.classList.add('mobileNavOpen');
+      document.body.classList.add('overflowHidden');
     } else {
-      document.body.classList.remove('mobileNavOpen');
+      document.body.classList.remove('overflowHidden');
     }
 
     const handleResize = () => {
       if (window.innerWidth >= 1124 && stopScroll) {
-        document.body.classList.remove('mobileNavOpen');
+        document.body.classList.remove('overflowHidden');
         setOpenMobileNav(false);
         setMobileNavSubMenu(false);
       }
@@ -113,9 +113,9 @@ const Navbar = () => {
         <div className="flex items-center ">
           <Link className="flex" to="/" onClick={handlePagesBlur}>
             <img
-              className="w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
+              className="w-6 sm:w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
               src={logo}
-              alt=""
+              alt="Company logo"
             />
             <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
           </Link>
@@ -229,7 +229,7 @@ const Navbar = () => {
                   <img
                     className="w-3 h-fit self-center mr-2"
                     src={category}
-                    alt=""
+                    alt="Four squares in a 2x2 grid"
                   />
                   category
                 </button>

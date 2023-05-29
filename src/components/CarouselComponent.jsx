@@ -50,7 +50,7 @@ const CustomRightArrow = ({ styleRightArrow, onClick, onFocus, onBlur }) => {
       onBlur={onBlur}
       className={styleRightArrow}
     >
-      <img src={next} alt="" />
+      <img src={next} alt="Right arrow graphic" />
     </button>
   );
 };
@@ -63,7 +63,7 @@ const CustomLeftArrow = ({ styleLeftArrow, onClick, onFocus, onBlur }) => {
       onBlur={onBlur}
       className={styleLeftArrow}
     >
-      <img src={back} alt="" />
+      <img src={back} alt="Left arrow graphic" />
     </button>
   );
 };

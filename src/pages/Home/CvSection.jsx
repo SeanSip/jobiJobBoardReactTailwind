@@ -28,7 +28,10 @@ function CvSection() {
           {/* Left Image Container */}
           <div className="laptop:w-full">
             <div className="w-[449px] h-[457px] relative top-[3.05rem] left-[50px] xl:left-[100px] laptop:block hidden">
-              <img src={cvPerson} alt="" />
+              <img
+                src={cvPerson}
+                alt="Image of a person pointing to their side"
+              />
               <img
                 className="absolute left-4 top-20"
                 src={imageShapeLeft}

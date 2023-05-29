@@ -258,6 +258,7 @@ const JobDetailsPage = props => {
                 />
                 <h3 className="mb-6 text-xl text-center">{job.company}</h3>
                 <a
+                  aria-label="Opens a new tab to the company website"
                   target="_blank"
                   href={job.companyLink}
                   className="w-fit bg-color-button-green text-white rounded-full py-[2px] px-4 mb-11 hover:bg-color-secondary hover:textShadow focus:bg-color-secondary focus:textShadow"
