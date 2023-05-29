@@ -21,6 +21,9 @@ const Footer = () => {
     } else {
       emailError.style.display = 'block';
       emailError.textContent = 'Please enter a valid email address';
+      setTimeout(() => {
+        emailError.style.display = 'none';
+      }, 5000);
     }
   };
 
