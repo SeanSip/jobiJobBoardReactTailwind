@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import footerBgShape from '../../assets/footerBgShape.png';
 import { FaPinterestP, FaInstagram, FaFacebookF } from 'react-icons/fa';
 
+import ModalPopUp from './ModalPopUp';
+
 const Footer = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleButtonClick = event => {
+    event.preventDefault();
+    const emailInput = document.querySelector('#email');
+    const emailError = document.querySelector('#emailErrorMessage');
+    if (emailInput.checkValidity()) {
+      setShowModal(true);
+      emailInput.value = '';
+      emailInput.placeholder = 'Enter email';
+      emailError.style.display = 'none';
+    } else {
+      emailError.style.display = 'block';
+      emailError.textContent = 'Please enter a valid email address';
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   function handleScrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -15,6 +38,27 @@ const Footer = () => {
 
   return (
     <footer className=" bg-white">
+      {/* Modal Component */}
+      <ModalPopUp
+        tabIndex={-1}
+        show={showModal}
+        onClose={handleCloseModal}
+        buttons={[
+          {
+            text: 'Okay',
+            className: 'w-fit',
+            onClick: handleCloseModal,
+          },
+        ]}
+      >
+        <p className="text-2xl text-center">
+          Thank you subscribing to our newsletter!
+        </p>
+        <p className="text-xs text-center mt-2">
+          * The newsletter is just for presentation purposes, you will not
+          recieve any emails
+        </p>
+      </ModalPopUp>
       <div className=" text-black mx-auto wrapper">
         <div className="wrapper flex pt-[100px] pb-[70px] justify-between flex-col lg:flex-row border-b-[1px]">
           <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
@@ -40,6 +84,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+
         {/* Main Footer Grid */}
         <div className="md:grid flex sm:flex-row flex-col flex-wrap justify-between grid-cols-4 md:grid-cols-4 xl:grid-cols-11 sm:gap-4 gap-8 py-8 ">
           {/* Logo */}
@@ -63,10 +108,8 @@ const Footer = () => {
           <div className="col-span-1 xl:col-span-2">
             <h4 className="text-lg font-body mb-4 ">Products</h4>
             <ul className="flex flex-col leading-10 font-body text-base text-black/50">
-              <li className=" ">
-                <Link to="" onClick={handleScrollToTop}>
-                  Take the tour
-                </Link>
+              <li>
+                <Link onClick={handleScrollToTop}>Take the tour</Link>
               </li>
               <li>
                 <Link onClick={handleScrollToTop}>Live chat</Link>
@@ -123,23 +166,39 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full">
+          <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full ">
             <h4 className="text-lg font-body mb-4">Newsletter</h4>
             <p>Join & get important news regularly</p>
-            <div className="flex mt-6 mb-2 relative">
+            <form action="" className="flex mt-6 mb-2 relative ">
+              <label htmlFor="email" className="visuallyHidden">
+                Email:
+              </label>
+              <span
+                id="emailErrorMessage"
+                className=" text-red-500 absolute -top-[18.5px] left-1"
+              ></span>
               <input
-                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px]"
-                type="text"
+                name="email"
+                id="email"
+                aria-label="email"
+                className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px] "
+                type="email"
                 placeholder="Enter your email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               />
               <div className="bg-black/10 px-[50px] relative rounded-r-md">
-                <button className="focus:outline-none focus:bg-indigo-600 absolute right-3 bottom-[17.5px] my-0 py-0 px-0 bg-gray-200 rounded-none border-none h-fit">
-                  <span className="bg-black rounded-md py-3 px-4 text-white hover:bg-color-secondary">
+                <button
+                  onClick={handleButtonClick}
+                  className="focus:outline-none focus:bg-indigo-600 absolute right-3 bottom-[17.5px] my-0 py-0 px-0 bg-gray-200 rounded-none border-none h-fit"
+                >
+                  <span className="bg-black rounded-md py-3 px-5 text-white hover:bg-color-secondary">
                     Send
                   </span>
                 </button>
               </div>
-            </div>
+            </form>
+
             <p className="text-[#979797] text-sm">
               We only send intersting and relevant emails.
             </p>

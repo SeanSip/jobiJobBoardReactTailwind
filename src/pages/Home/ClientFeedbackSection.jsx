@@ -1,6 +1,4 @@
 import React from 'react';
-import back from '../../assets/back.png';
-import next from '../../assets/next.png';
 import googleLogo from '../../assets/googleLogo.png';
 import shipBobLogo from '../../assets/shipBobLogo.png';
 import dribbleLogo from '../../assets/dribbleLogo.png';
@@ -82,32 +80,32 @@ function ClientFeedbackSection() {
           <img
             className="h-fit self-center w-fit mx-auto"
             src={googleLogo}
-            alt=""
+            alt="Company logo for google"
           />
           <img
             className="h-fit self-center w-fit mx-auto"
             src={shipBobLogo}
-            alt=""
+            alt="Company logo for Ship Bob"
           />
           <img
             className="h-fit self-center w-fit mx-auto"
             src={dribbleLogo}
-            alt=""
+            alt="Company logo for Dribble"
           />
           <img
             className="h-fit self-center w-fit mx-auto"
             src={slackLogo}
-            alt=""
+            alt="Company logo for Slack"
           />
           <img
             className="h-fit self-center w-fit mx-auto"
             src={vineLogo}
-            alt=""
+            alt="Company logo for Vine"
           />
           <img
             className="h-fit self-center w-fit mx-auto"
             src={airBnbLogo}
-            alt=""
+            alt="Company logo for Air BnB"
           />
         </div>
       </div>

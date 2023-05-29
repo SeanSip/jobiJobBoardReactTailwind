@@ -331,7 +331,11 @@ function JobListingPage() {
                 No job listings found matching your search criteria. Please try
                 adjusting your filters or search keywords
               </p>
-              <img className="w-1/2" src={jobi} alt="" />
+              <img
+                className="w-1/2"
+                src={jobi}
+                alt="Jobi company logo with the name written on top of the logo"
+              />
             </div>
           )}
           <div

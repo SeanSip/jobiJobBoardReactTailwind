@@ -3,9 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-}
-
 section {
   overflow: hidden;
 }
@@ -14,7 +11,22 @@ svg {
   user-select: none;
 }
 
-.mobileNavOpen {
+.visuallyHidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+input[type='email'].invalid::placeholder {
+  color: red;
+}
+
+.overflowHidden {
   overflow: hidden;
 }
 

@@ -20,10 +20,10 @@ function CollaborationSection() {
             <h2 className="flex flex-col text-5xl mb-11 sm:text-6xl w-fit md:w-[30rem] text-center md:text-left">
               Collaboration with Top Brands.
             </h2>
-            <p className="flex flex-col text-2xl mb-12 max-w-[34rem] text-color-lightest-text">
+            <h3 className="flex flex-col text-2xl mb-12 max-w-[34rem] text-color-lightest-text">
               We collaborate with a number of top tier companies on imagining
               the future of work, have a look.
-            </p>
+            </h3>
             <Link to="/about-us" className="collaborationBtn font-body flex">
               learn more
               <img

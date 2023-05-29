@@ -30,10 +30,10 @@ const JobCategory = () => {
           </div>
           {/* Right Side Text Container */}
           <div className="flex flex-col space-y-7">
-            <p className="max-w-[556px] font-body text-xl phone:text-left text-center">
+            <h3 className="max-w-[556px] font-body text-xl phone:text-left text-center">
               Together with useful notifications, collaborationinsights, and
               improvement tip lorem etc.
-            </p>
+            </h3>
 
             <Link className="w-fit relative flex items-center phone:mx-0 mx-auto font-body hover:text-color-hover after:content-[''] after:absolute after:w-full after:h-[0.1rem] after:bg-black after:-bottom-1 after:hover:bg-color-hover">
               Explore all fields
