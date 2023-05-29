@@ -27,7 +27,7 @@ function App() {
             exact
             path="/"
             element={
-              <section>
+              <main>
                 <Hero />
                 <JobCategory />
                 <ExpertsSection />
@@ -37,15 +37,57 @@ function App() {
                 <CollaborationSection />
                 <JobiGuideSection />
                 <CvSection />
-              </section>
+              </main>
             }
           ></Route>
-          <Route path="/job-listing" element={<JobListingPage />} />
-          <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/404" element={<Page404 />} />
-          <Route path="/job-listing/:id" element={<JobDetailsPage />} />
-          <Route path="/post-job" element={<PostJobPage />} />
-          <Route path="*" element={<Page404 />} />
+          <Route
+            path="/job-listing"
+            element={
+              <main>
+                <JobListingPage />
+              </main>
+            }
+          />
+          <Route
+            path="/about-us"
+            element={
+              <main>
+                <AboutUsPage />
+              </main>
+            }
+          />
+          <Route
+            path="/404"
+            element={
+              <main>
+                <Page404 />
+              </main>
+            }
+          />
+          <Route
+            path="/job-listing/:id"
+            element={
+              <main>
+                <JobDetailsPage />
+              </main>
+            }
+          />
+          <Route
+            path="/post-job"
+            element={
+              <main>
+                <PostJobPage />
+              </main>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <main>
+                <Page404 />
+              </main>
+            }
+          />
         </Routes>
       </Layout>
     </Router>

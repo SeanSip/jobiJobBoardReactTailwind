@@ -117,7 +117,7 @@ const Navbar = () => {
               src={logo}
               alt="Company logo"
             />
-            <h1 className="text-3xl font-logo text-white xl:text-4xl">jobi</h1>
+            <a className="text-3xl font-logo text-white xl:text-4xl">jobi</a>
           </Link>
           <ul className="hidden items-center text-white laptop:flex ">
             <li>
