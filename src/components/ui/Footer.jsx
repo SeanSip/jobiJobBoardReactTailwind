@@ -65,9 +65,9 @@ const Footer = () => {
       <div className=" text-black mx-auto wrapper">
         <div className="wrapper flex pt-[100px] pb-[70px] justify-between flex-col lg:flex-row border-b-[1px]">
           <div className="space-y-3 self-center lg:self-start lg:text-left text-center">
-            <h1 className="text-4xl sm:text-5xl font-title ">
+            <h2 className="text-4xl sm:text-5xl font-title ">
               Most complete job portal.
-            </h1>
+            </h2>
             <p className="text-[#979797] font-body">
               Sign up and start finding your job or talents
             </p>
@@ -109,7 +109,7 @@ const Footer = () => {
 
           {/* Products */}
           <div className="col-span-1 xl:col-span-2">
-            <h4 className="text-lg font-body mb-4 ">Products</h4>
+            <h3 className="text-lg font-body mb-4 ">Products</h3>
             <ul className="flex flex-col leading-10 font-body text-base text-black/50">
               <li>
                 <Link onClick={handleScrollToTop}>Take the tour</Link>
@@ -133,7 +133,7 @@ const Footer = () => {
           </div>
           {/* Links */}
           <div className="col-span-1 xl:col-span-2">
-            <h4 className="text-lg font-body mb-4">Links</h4>
+            <h3 className="text-lg font-body mb-4">Links</h3>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
                 <Link>Pricing</Link>
@@ -151,7 +151,7 @@ const Footer = () => {
           </div>
           {/* Legal */}
           <div className="col-span-1 xl:col-span-2">
-            <h4 className="text-lg font-body mb-4">Legal</h4>
+            <h3 className="text-lg font-body mb-4">Legal</h3>
             <ul className="leading-10 font-body text-base text-black/50">
               <li>
                 <Link onClick={handleScrollToTop}>Terms of use</Link>
@@ -170,7 +170,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div className="col-span-8 xl:col-span-3 xl:px-0 sm:px-20 mx-auto md:mx-0 w-full ">
-            <h4 className="text-lg font-body mb-4">Newsletter</h4>
+            <h3 className="text-lg font-body mb-4">Newsletter</h3>
             <p>Join & get important news regularly</p>
             <form action="" className="flex mt-6 mb-2 relative ">
               <label htmlFor="email" className="visuallyHidden">
@@ -184,6 +184,7 @@ const Footer = () => {
                 name="email"
                 id="email"
                 aria-label="email"
+                aria-required="true"
                 className="py-2 px-3 rounded-l-md border-2 bg-black/10 focus:outline-none focus:border-black/50 w-full h-[60px] "
                 type="email"
                 placeholder="Enter your email"
