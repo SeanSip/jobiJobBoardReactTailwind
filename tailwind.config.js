@@ -16,6 +16,7 @@ module.exports = {
         'color-hover': '#98BD00',
         'color-light-text': '#333333',
         'color-lightest-text': '#464646',
+        'color-apple-light': '#6e6e73',
       },
       screens: {
         phone: '400px',

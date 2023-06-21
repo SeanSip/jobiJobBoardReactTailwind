@@ -362,6 +362,7 @@ function JobListingPage() {
             <button
               className="mr-4 hidden sm:block bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
               onClick={prevPage}
+              aria-label="Previous Page"
             >
               <ChevronLeftIcon className="w-6 h-6 p-0" />
             </button>
@@ -391,6 +392,7 @@ function JobListingPage() {
             <button
               className="ml-4 hidden sm:block bg-transparent border-2 focus:textShadow px-2 hover:bg-color-one hover:text-black"
               onClick={nextPage}
+              aria-label="Next Page"
             >
               <ChevronRightIcon className="w-6 h-6 p-0" />
             </button>

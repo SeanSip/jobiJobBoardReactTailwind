@@ -110,7 +110,7 @@ const Footer = () => {
           {/* Products */}
           <div className="col-span-1 xl:col-span-2">
             <h3 className="text-lg font-body mb-4 ">Products</h3>
-            <ul className="flex flex-col leading-10 font-body text-base text-black/50">
+            <ul className="flex flex-col leading-10 font-body text-base text-color-apple-light">
               <li>
                 <Link onClick={handleScrollToTop}>Take the tour</Link>
               </li>
@@ -134,7 +134,7 @@ const Footer = () => {
           {/* Links */}
           <div className="col-span-1 xl:col-span-2">
             <h3 className="text-lg font-body mb-4">Links</h3>
-            <ul className="leading-10 font-body text-base text-black/50">
+            <ul className="leading-10 font-body text-base text-color-apple-light">
               <li>
                 <Link>Pricing</Link>
               </li>
@@ -152,7 +152,7 @@ const Footer = () => {
           {/* Legal */}
           <div className="col-span-1 xl:col-span-2">
             <h3 className="text-lg font-body mb-4">Legal</h3>
-            <ul className="leading-10 font-body text-base text-black/50">
+            <ul className="leading-10 font-body text-base text-color-apple-light">
               <li>
                 <Link onClick={handleScrollToTop}>Terms of use</Link>
               </li>
@@ -203,7 +203,7 @@ const Footer = () => {
               </div>
             </form>
 
-            <p className="text-[#979797] text-sm">
+            <p className="text-color-apple-light text-sm">
               We only send intersting and relevant emails.
             </p>
           </div>
@@ -224,21 +224,21 @@ const Footer = () => {
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaFacebookF />
+              <FaFacebookF alt="Facebook logo" />
             </Link>
 
             <Link
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaInstagram />
+              <FaInstagram alt="Instagram logo" />
             </Link>
 
             <Link
               to="https://seansipus.com"
               className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaPinterestP />
+              <FaPinterestP alt="Pinterest logo" />
             </Link>
           </div>
         </div>
