@@ -111,13 +111,18 @@ const Navbar = () => {
         }
       >
         <div className="flex items-center ">
-          <Link className="flex" to="/" onClick={handlePagesBlur}>
+          <Link
+            className="flex text-3xl font-logo text-white xl:text-4xl"
+            to="/"
+            onClick={handlePagesBlur}
+            aria-label="Go to homepage"
+          >
             <img
               className="w-6 sm:w-8 h-fit self-center xl:w-10 mr-2 xl:mr-3"
               src={logo}
-              alt="Company logo"
+              alt="jobi logo"
             />
-            <a className="text-3xl font-logo text-white xl:text-4xl">jobi</a>
+            jobi
           </Link>
           <ul className="hidden items-center text-white laptop:flex ">
             <li>
@@ -194,7 +199,9 @@ const Navbar = () => {
         <button
           className="laptop:hidden cursor-pointer z-50 bg-transparent p-1 hover:bg-transparent border-none focus:bg-transparent"
           onClick={handleClick}
+          aria-label="Mobile menu"
         >
+          <span className="sr-only">Mobile menu</span>
           {!mobileNav ? (
             <Bars3Icon className="w-8 h-8 text-color-one" />
           ) : (
