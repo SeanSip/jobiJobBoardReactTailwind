@@ -19,7 +19,7 @@ const JobCards = ({ job, onClick }) => {
 
       <h1 className="text-3xl mt-6">{job.company}</h1>
       {/* Company Hours */}
-      <p className="text-[#ff0000] bg-[#fa11000e] w-fit px-[10px] py-1 rounded-[3px] mt-14">
+      <p className="text-color-apple-light bg-[#fa11000e] w-fit px-[10px] py-1 rounded-[3px] mt-14">
         {job.hours}
       </p>
       {/* Company Job Title */}
