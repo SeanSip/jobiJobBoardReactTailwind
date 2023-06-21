@@ -68,7 +68,7 @@ const Footer = () => {
             <h2 className="text-4xl sm:text-5xl font-title ">
               Most complete job portal.
             </h2>
-            <p className="text-[#979797] font-body">
+            <p className="text-color-apple-light font-body">
               Sign up and start finding your job or talents
             </p>
           </div>
@@ -224,21 +224,24 @@ const Footer = () => {
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaFacebookF alt="Facebook logo" />
+              <FaFacebookF aria-hidden="true" />
+              <span className="sr-only">Facebook logo</span>
             </Link>
 
             <Link
               to="https://seansipus.com"
               className="text-gray-500 mr-1 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaInstagram alt="Instagram logo" />
+              <FaInstagram aria-hidden="true" />
+              <span className="sr-only">Instagram logo</span>
             </Link>
 
             <Link
               to="https://seansipus.com"
               className="text-gray-500 text-lg border-4 border-transparent hover:border-color-one rounded-full p-1 hover:scale-125 transition-all ease-in-out duration-300 focus:scale-125 hover:bg-color-background hover:text-color-one focus:border-color-one focus:outline-none focus:bg-color-background focus:text-color-one"
             >
-              <FaPinterestP alt="Pinterest logo" />
+              <FaPinterestP aria-hidden="true" />
+              <span className="sr-only">Pinterest logo</span>
             </Link>
           </div>
         </div>
