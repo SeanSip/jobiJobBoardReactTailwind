@@ -364,7 +364,8 @@ function JobListingPage() {
               onClick={prevPage}
               aria-label="Previous Page"
             >
-              <ChevronLeftIcon className="w-6 h-6 p-0" />
+              <ChevronLeftIcon className="w-6 h-6 p-0" aria-hidden="true" />
+              <span className="sr-only">Previous</span>
             </button>
             {/* Pagination Number Buttons */}
             {pageNumbers.map(number => {
@@ -394,7 +395,8 @@ function JobListingPage() {
               onClick={nextPage}
               aria-label="Next Page"
             >
-              <ChevronRightIcon className="w-6 h-6 p-0" />
+              <ChevronRightIcon className="w-6 h-6 p-0" aria-hidden="true" />
+              <span className="sr-only">Next Page</span>
             </button>
           </div>
           {/* Mobile Pagination Buttons */}
