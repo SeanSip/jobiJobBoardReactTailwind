@@ -10,16 +10,16 @@ const JobCards = ({ job, onClick }) => {
       className="w-full md:max-w-full max-w-[500px] h-full bg-white border-[1px] border-[#EBEBEB] px-9 py-10 mx-auto hover:bg-color-jobCardBg hover:border-[#4C7B68] flex flex-col rounded-[10px] justify-between cursor-pointer shadow-lg overflow-hidden break-words"
     >
       {/* Company Logo & Company Name */}
-      <div className="w-14 h-14 flex items-center">
-        <img
-          className="w-full bg-cover rounded-sm"
-          src={logoDisplay}
-          alt={`Company logo for ${job.company}`}
-        />
-      </div>
+
+      <img
+        className="max-w-[3.5rem] w-full h-auto aspect-square bg-cover rounded-sm "
+        src={logoDisplay}
+        alt={`Company logo for ${job.company}`}
+      />
+
       <h1 className="text-3xl mt-6">{job.company}</h1>
       {/* Company Hours */}
-      <p className="text-[#FF5757] bg-[#FA0F0014] w-fit px-[10px] py-1 rounded-[3px] mt-14">
+      <p className="text-[#ff0000] bg-[#fa11000e] w-fit px-[10px] py-1 rounded-[3px] mt-14">
         {job.hours}
       </p>
       {/* Company Job Title */}
@@ -29,7 +29,7 @@ const JobCards = ({ job, onClick }) => {
         <p>{`$${job.min}`}</p>
         <p>-</p>
         <p>{`$${job.max}`}</p>
-        <p className="ml-1 text-color-gray">{`/ ${job.salary}`}</p>
+        <p className="ml-1 text-gray-600">{`/ ${job.salary}`}</p>
       </div>
       {/* Company Skills  */}
       {job.skills && job.skills.length > 0 && (
