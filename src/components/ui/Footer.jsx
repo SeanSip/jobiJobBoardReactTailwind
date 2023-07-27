@@ -55,7 +55,7 @@ const Footer = () => {
         ]}
       >
         <p className="text-2xl text-center">
-          Thank you subscribing to our newsletter!
+          Thank you for subscribing to our newsletter!
         </p>
         <p className="text-xs text-center mt-2">
           * The newsletter is just for presentation purposes, you will not

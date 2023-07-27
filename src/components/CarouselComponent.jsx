@@ -68,6 +68,7 @@ const CustomLeftArrow = ({ styleLeftArrow, onClick, onFocus, onBlur }) => {
   );
 };
 
+// Carousel styling for Find Experts section
 const CarouselItem = ({ item }) => {
   return (
     <div className="flex flex-col text-center mb-10">
@@ -80,6 +81,7 @@ const CarouselItem = ({ item }) => {
   );
 };
 
+// Carousel Cards styling for ClientFeedbackSection
 const CarouselItemTwo = ({ item }) => {
   return (
     <div className="mt-10 px-0 lg:px-[20px] w-full sm:w-[85%] lg:w-full mx-auto h-full">
@@ -105,6 +107,19 @@ const CarouselItemTwo = ({ item }) => {
   );
 };
 
+// Carousel styling for logo slider at bottom of ClientFeedbackSection
+const CarouselItemThree = ({ item }) => {
+  return (
+    <div className="flex w-fit h-32 justify-center items-center content-center mx-auto">
+      <img
+        className="h-fit justify-center self-center content-center items-center w-full flex"
+        src={item.logo}
+        alt={item.altText}
+      />
+    </div>
+  );
+};
+
 const CarouselComponent = ({
   items,
   itemType,
@@ -117,6 +132,12 @@ const CarouselComponent = ({
   titleImgAlt,
   titleImg,
   arrowContainerStyles,
+  autoPlaySpeed,
+  swipeable,
+  infinite,
+  arrows,
+  draggable,
+  pauseOnHover,
 }) => {
   const carouselRef = useRef(null);
   const [autoPlay, setAutoPlay] = useState(true);
@@ -172,21 +193,29 @@ const CarouselComponent = ({
           responsive === 'responsiveOne' ? responsiveOne : responsiveTwo
         }
         className={divContainerStyling}
-        infinite={true}
-        swipeable={true}
+        infinite={infinite}
+        swipeable={swipeable}
         keyBoardControl={true}
-        arrows={false}
+        arrows={arrows}
         autoPlay={autoPlay}
-        autoPlaySpeed={4000}
+        autoPlaySpeed={autoPlaySpeed}
         ref={carouselRef}
+        draggable={draggable}
+        pauseOnHover={pauseOnHover}
       >
         {items.map((item, index) => {
-          // render CarouselItem or CarouselItemTwo based on itemType prop
-          return itemType === 'one' ? (
-            <CarouselItem key={index} item={item} />
-          ) : (
-            <CarouselItemTwo key={index} item={item} />
-          );
+          // render CarouselItem, CarouselItemTwo, or CarouselItemThree based on itemType prop
+          if (itemType === 'one') {
+            return <CarouselItem key={index} item={item} />;
+          } else if (itemType === 'two') {
+            return <CarouselItemTwo key={index} item={item} />;
+          } else if (itemType === 'three') {
+            // Assuming you have the `itemThree` variable defined
+            return <CarouselItemThree key={index} item={item} />;
+          } else {
+            // Handle the case when itemType doesn't match any known values
+            return null; // Or render a default component, an error message, or omit the item entirely
+          }
         })}
       </Carousel>
     </>

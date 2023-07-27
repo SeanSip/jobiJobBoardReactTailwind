@@ -59,10 +59,20 @@ const items = [
   },
 ];
 
+const iconItems = [
+  { logo: shipBobLogo, altText: 'company logo' },
+  { logo: googleLogo, altText: 'company logo' },
+  { logo: dribbleLogo, altText: 'company logo' },
+  { logo: slackLogo, altText: 'company logo' },
+  { logo: vineLogo, altText: 'company logo' },
+  { logo: airBnbLogo, altText: 'company logo' },
+];
+
 function ClientFeedbackSection() {
   return (
     <section className="bg-white pb-[180px]">
       <div className="wrapper border-b-2">
+        {/* Feedback Cards Carousel */}
         <Carousel
           items={items}
           itemType="two"
@@ -74,40 +84,28 @@ function ClientFeedbackSection() {
           styleLeftArrow="hover:cursor-pointer hover:bg-[#D2F34C] p-10 rounded-full bg-transparent h-fit"
           title="Trusted by leading startups"
           titleAndArrowsContainer="justify-between lg:flex-row flex-col items-center text-center lg:text-left px-0 lg:px-[20px]"
+          autoPlaySpeed={6000}
+          swipeable={true}
+          infinite={true}
+          arrows={false}
+          draggable={true}
+          pauseOnHover={false}
         />
-        {/* Logo Container */}
-        <div className="grid md:grid-cols-6 gap-x-10 mb-[104px] phone:grid-cols-3 grid-cols-2 mx-auto gap-y-10 pt-[112px]">
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={googleLogo}
-            alt="Company logo for google"
-          />
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={shipBobLogo}
-            alt="Company logo for Ship Bob"
-          />
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={dribbleLogo}
-            alt="Company logo for Dribble"
-          />
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={slackLogo}
-            alt="Company logo for Slack"
-          />
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={vineLogo}
-            alt="Company logo for Vine"
-          />
-          <img
-            className="h-fit self-center w-fit mx-auto"
-            src={airBnbLogo}
-            alt="Company logo for Air BnB"
-          />
-        </div>
+        {/* Logo Carousel */}
+        <Carousel
+          items={iconItems}
+          responsive="responsiveOne"
+          styleLeftArrow="hidden"
+          styleRightArrow="hidden"
+          itemType="three"
+          divContainerStyling="absolute"
+          autoPlaySpeed={2000}
+          swipeable={true}
+          infinite={true}
+          arrows={false}
+          draggable={false}
+          pauseOnHover={false}
+        />
       </div>
     </section>
   );

@@ -53,6 +53,12 @@ function FindExpertsSection() {
           titleImg={categoryTitleShape}
           titleImgAlt="Gaphic of three black lines bursting outwards from the top-right corner of this sections heading text"
           titleAndArrowsContainer="justify-between lg:flex-row flex-col items-center pb-10 text-center lg:text-left px-0 lg:px-[20px]"
+          autoPlaySpeed={3000}
+          swipeable={true}
+          infinite={true}
+          arrows={false}
+          draggable={true}
+          pauseOnHover={true}
         />
       </div>
     </section>
