@@ -35,7 +35,10 @@ const JobCategory = () => {
               improvement tip lorem etc.
             </h3>
 
-            <Link className="w-fit relative flex items-center phone:mx-0 mx-auto font-body hover:text-color-hover after:content-[''] after:absolute after:w-full after:h-[0.1rem] after:bg-black after:-bottom-1 after:hover:bg-color-hover">
+            <Link
+              className="w-fit relative flex items-center phone:mx-0 mx-auto font-body hover:text-color-hover after:content-[''] after:absolute after:w-full after:h-[0.1rem] after:bg-black after:-bottom-1 after:hover:bg-color-hover"
+              to="/job-listing"
+            >
               Explore all fields
               <ChevronRightIcon className="w-4 h-5 relative top-[0.10rem]" />
             </Link>
