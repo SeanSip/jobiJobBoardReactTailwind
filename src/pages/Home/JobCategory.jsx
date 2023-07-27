@@ -12,7 +12,7 @@ import iconAccounting from '../../assets/iconAccounting.png';
 
 const JobCategory = () => {
   return (
-    <section className="w-screen h-fit py-36 bg-[#F2F9D8] relative overflow-hidden">
+    <section className="h-fit py-36 bg-[#F2F9D8] relative overflow-hidden">
       {/* Section Screen Wrapper */}
       <div className="wrapper">
         {/* Section Title and Right Side Text Container */}
