@@ -38,16 +38,16 @@ function MembershipPage() {
                 <p className="absolute text-xs mx-3 my-[7px]">POPULAR</p>
               </div>
               <div className="flex justify-center flex-col items-center h-full">
-                <h3>Standard</h3>
+                <h3>Gold</h3>
                 <h4 className="mt-2 text-2xl flex relative font-title">
                   <span className="pt-2">$</span>
                   <span className="ml-[14px] text-7xl">27.</span>
                   <span className="ml-[3px] pt-2">99</span>
                 </h4>
                 <div className="my-14 space-y-4 flex justify-center items-center flex-col">
-                  <p className="">1 Domain</p>
-                  <p className="">1 Year Premium Support</p>
-                  <p className="">3gb Hosting</p>
+                  <p className="">3 Domains</p>
+                  <p className="">2 Years Premium Support</p>
+                  <p className="">10gb Hosting</p>
                 </div>
                 <button className="bg-[#31795a] focus:text-[#31795a] focus:outline-none focus:bg-[#bae800] text-white hover:removeTextShadow w-full">
                   Choose Plan
@@ -56,16 +56,16 @@ function MembershipPage() {
             </li>
             <li className="pricingCard">
               <div className="flex justify-center flex-col items-center h-full">
-                <h3>Standard</h3>
+                <h3>Diamond</h3>
                 <h4 className="mt-2 text-2xl flex relative font-title">
                   <span className="pt-2">$</span>
                   <span className="ml-[14px] text-7xl">39.</span>
                   <span className="ml-[3px] pt-2">99</span>
                 </h4>
                 <div className="my-14 space-y-4 flex justify-center items-center flex-col">
-                  <p className="">1 Domain</p>
-                  <p className="">1 Year Premium Support</p>
-                  <p className="">3gb Hosting</p>
+                  <p className="">Unlimited Domains</p>
+                  <p className="">3 Years Premium Support</p>
+                  <p className="">Unlimited Hosting</p>
                 </div>
                 <button className="bg-[#31795a] focus:text-[#31795a] focus:outline-none focus:bg-[#bae800] text-white hover:removeTextShadow w-full">
                   Choose Plan
