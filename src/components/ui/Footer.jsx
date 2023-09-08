@@ -136,7 +136,7 @@ const Footer = () => {
             <h3 className="text-lg font-body mb-4">Links</h3>
             <ul className="leading-10 font-body text-base text-color-apple-light">
               <li>
-                <Link>Pricing</Link>
+                <Link to="/pricing">Pricing</Link>
               </li>
               <li>
                 <Link to="/about-us">About us</Link>

@@ -16,6 +16,7 @@ import Page404 from './pages/Page404';
 import PostJobPage from './pages/PostJobPage';
 import JobDetailsPage from './pages/JobDetailsPage';
 import ScrollToTop from './components/ScrollToTop';
+import MembershipPage from './pages/MembershipPage';
 
 function App() {
   return (
@@ -53,6 +54,14 @@ function App() {
             element={
               <main>
                 <AboutUsPage />
+              </main>
+            }
+          />
+          <Route
+            path="/pricing"
+            element={
+              <main>
+                <MembershipPage />
               </main>
             }
           />

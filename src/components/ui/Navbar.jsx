@@ -166,7 +166,11 @@ const Navbar = () => {
                       About us
                     </Link>
                   </li>
-                  <li className="hover:underline cursor-pointer">Pricing</li>
+                  <li className="hover:underline cursor-pointer">
+                    <Link onClick={handlePagesBlur} to="/pricing">
+                      Pricing
+                    </Link>
+                  </li>
                   <li className="hover:underline ">
                     <Link onClick={handlePagesBlur} to="/404">
                       Error 404
@@ -307,16 +311,18 @@ const Navbar = () => {
                   about us
                 </li>
               </Link>
+              <Link to="/pricing">
+                <li
+                  className={
+                    mobileNavSubMenu
+                      ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
+                      : 'text-white pages'
+                  }
+                >
+                  pricing
+                </li>
+              </Link>
 
-              <li
-                className={
-                  mobileNavSubMenu
-                    ? ' text-white hover:text-black hover:bg-color-one/50 hover:border-color-one cursor-pointer py-1 px-4 pages'
-                    : 'text-white pages'
-                }
-              >
-                pricing
-              </li>
               <Link to="/404">
                 <li
                   className={
