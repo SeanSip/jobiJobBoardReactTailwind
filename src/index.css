@@ -98,6 +98,20 @@ input[type='email'].invalid::placeholder {
   text-shadow: none;
 }
 
+/* Membership Section */
+
+.pricingCard:hover button,
+.pricingCard:focus button {
+  background-color: #bae800;
+  color: #337056;
+}
+
+.pricingCard:active {
+  transform: scale(1.05);
+  transition: none;
+}
+/*  */
+
 body {
   @apply pt-[50px] tablet:pt-[100px] bg-color-background;
 }
@@ -196,6 +210,10 @@ label input#file-upload-button {
 
   .clientCard {
     @apply h-[530px] phone:py-[30px] phone:px-[50px] py-[15px] px-[20px];
+  }
+
+  .pricingCard {
+    @apply lg:w-[350px] w-full sm:w-[500px] phone:w-10/12 h-[453.55px] border-[#244034] border-[0.65px] rounded-[32px] p-10 transition-transform hover:cursor-pointer hover:bg-[#faffe5] hover:border-[#bae800] focus-within:border-[#bae800] focus-within:bg-[#faffe5];
   }
 }
 
